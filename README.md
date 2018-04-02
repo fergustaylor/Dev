@@ -1,1 +1,1 @@
-# [Search](https://github.com/fergustaylor/Dev/Search/)
+# [Search](https://fergustaylor.github.io/Dev/Search)
