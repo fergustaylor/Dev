@@ -5,7 +5,6 @@
 .mySlides {display: none}
 
 .slideshow-container {
-  max-width: 1000px;
   position: relative;
   margin: auto;
 }
@@ -17,7 +16,7 @@
   width: auto;
   padding: 16px;
   margin-top: -22px;
-  color: white;
+  color: #49bf9d;
   font-weight: bold;
   font-size: 30px;
   transition: 0.6s ease;
