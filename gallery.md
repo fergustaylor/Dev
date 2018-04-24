@@ -30,12 +30,10 @@ img {vertical-align: middle;}
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
-/* Caption text */
 .text {
   color: #f2f2f2;
   font-size: 15px;
@@ -182,7 +180,7 @@ function showSlides(n) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex-1].style.display = "block";
-  slides[slideIndex-1].style.height=this.contentDocument.body.scrollHeight +'px';
+  slides[slideIndex-1].childNodes[1].style.height=slides[slideIndex-1].childNodes[1].contentDocument.body.scrollHeight +'px';
   dots[slideIndex-1].className += " active";
 }
 </script>
