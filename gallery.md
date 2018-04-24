@@ -21,6 +21,7 @@
   font-size: 30px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
+  border-bottom: none;
 }
 .next {
   right: 0;
