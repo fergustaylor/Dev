@@ -1,59 +1,52 @@
 
+<script src="https://fergustaylor.github.io/Dev/js/iframesize.js"></script>
+<link rel="stylesheet" href="https://fergustaylor.github.io/Dev/css/iframe.css">
 <link rel="stylesheet" href="https://fergustaylor.github.io/Dev/css/slide.css">
 
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/DEvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/DEvoronoi.html"></iframe>
   <div class="text">DEvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/EDvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/EDvoronoi.html"></iframe>
   <div class="text">EDvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/GPledUCCwEDvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/GPledUCCwEDvoronoi.html"></iframe>
   <div class="text">GPledUCCwEDvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/IUCCASvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/IUCCASvoronoi.html"></iframe>
   <div class="text">IUCCASvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/MIUvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/MIUvoronoi.html"></iframe>
   <div class="text">MIUvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/OOHvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/OOHvoronoi.html"></iframe>
   <div class="text">OOHvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/SpecEDvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/SpecEDvoronoi.html"></iframe>
   <div class="text">SpecEDvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/UUHvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/UUHvoronoi.html"></iframe>
   <div class="text">UUHvoronoi</div>
 </div>
 
 <div class="mySlides fade">
-  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/WICvoronoi.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
+  <iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/WICvoronoi.html"></iframe>
   <div class="text">WICvoronoi</div>
 </div>
 
