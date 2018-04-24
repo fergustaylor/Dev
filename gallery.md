@@ -185,31 +185,3 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/DEpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/EDpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/GPledUCCwEDpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/IUCCASpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/MIUpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/OOHpoints.html"  width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/SpecEDpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/UUHpoints.html"  width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
-
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/WICpoints.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
-</iframe>
