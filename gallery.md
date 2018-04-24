@@ -1,10 +1,8 @@
 2 Galleries
 
 <style>
-* {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
+
 .mySlides {display: none}
-img {vertical-align: middle;}
 
 .slideshow-container {
   max-width: 1000px;
@@ -35,9 +33,6 @@ img {vertical-align: middle;}
 }
 
 .text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
   position: absolute;
   bottom: 8px;
   width: 100%;
