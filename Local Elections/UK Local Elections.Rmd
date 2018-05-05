@@ -1,0 +1,81 @@
+---
+title: "3rd May - UK Local Elections"
+---
+
+#United Kingdom local elections, 2018
+
+https://en.wikipedia.org/wiki/United_Kingdom_local_elections,_2018
+
+Elections to all 32 London boroughs, 34 metropolitan boroughs, 67 district and borough councils and 17 unitary authorities.
+
+There will also be direct elections for the Mayoralties of Hackney, Lewisham, Newham, Tower Hamlets and Watford.
+
+```{r}
+library(rgdal)
+library(tidyverse)
+library(ggplot2)
+library(sf)
+library(stringr)
+library(ggiraph)
+```
+
+```{r}
+shapefile1 <- readOGR("~/Dropbox/Dev/Local Elections/Counties_and_Unitary_Authorities_December_2015_Full_Clipped_Boundaries_in_England_and_Wales", "Counties_and_Unitary_Authorities_December_2015_Full_Clipped_Boundaries_in_England_and_Wales") 
+shapefile2 <- readOGR("~/Dropbox/Dev/Local Elections/Counties_and_Unitary_Authorities_December_2015_Full_Extent_Boundaries_in_England_and_Wales", "Counties_and_Unitary_Authorities_December_2015_Full_Extent_Boundaries_in_England_and_Wales")
+shapefile3 <- readOGR("~/Dropbox/Dev/Local Elections/Counties_and_Unitary_Authorities_December_2015_Generalised_Clipped_Boundaries_in_England_and_Wales", "Counties_and_Unitary_Authorities_December_2015_Generalised_Clipped_Boundaries_in_England_and_Wales")
+shapefile4 <- readOGR("~/Dropbox/Dev/Local Elections/Counties_and_Unitary_Authorities_December_2015_Super_Generalised_Clipped_Boundaries_in_England_and_Wales", "Counties_and_Unitary_Authorities_December_2015_Super_Generalised_Clipped_Boundaries_in_England_and_Wales")
+shapefile5 <- readOGR("~/Dropbox/Dev/Local Elections/Counties_and_Unitary_Authorities_December_2015_Ultra_Generalised_Clipped_Boundaries_in_England_and_Wales", "Counties_and_Unitary_Authorities_December_2015_Ultra_Generalised_Clipped_Boundaries_in_England_and_Wales")
+```
+
+```{r}
+dfshapefile1 <- fortify(shapefile1)
+dfshapefile2 <- fortify(shapefile2)
+dfshapefile3 <- fortify(shapefile3)
+dfshapefile4 <- fortify(shapefile4)
+dfshapefile5 <- fortify(shapefile5)
+```
+
+```{r}
+sfshapefile1 <- st_as_sf(shapefile1)
+sfshapefile2 <- st_as_sf(shapefile2)
+sfshapefile3 <- st_as_sf(shapefile3)
+sfshapefile4 <- st_as_sf(shapefile4)
+sfshapefile5 <- st_as_sf(shapefile5)
+```
+
+```{r}
+ggplot(sfshapefile5) +
+  geom_sf() +
+  coord_sf(crs= 4326, datum = sf::st_crs(4326))
+```
+
+```{r}
+ggplot(sfshapefile4) +
+  geom_sf() +
+  coord_sf(crs= 4326, datum = sf::st_crs(4326))
+```
+
+```{r}
+ggplot(sfshapefile3) +
+  geom_sf() +
+  coord_sf(crs= 4326, datum = sf::st_crs(4326))
+```
+
+```{r}
+Londonboroughs <- c("Barking and Dagenham", "Barnet", "Bexley", "Brent", "Bromley", "Camden", "Croydon", "Ealing", "Enfield", "Greenwich", "Hackney", "Hammersmith and Fulham", "Haringey", "Harrow", "Havering", "Hillingdon", "Hounslow", "Islington", "Kensington and Chelsea", "Kingston upon Thames", "Lambeth", "Lewisham", "Merton", "Newham", "Redbridge", "Richmond upon Thames", "Southwark", "Sutton", "Tower Hamlets", "Waltham Forest", "Wandsworth", "Westminster")
+
+sfshapefile3subset <- sfshapefile3 %>%
+  dplyr::filter(ctyua15nm %in% Londonboroughs)
+
+ggplot(sfshapefile3) +
+  geom_sf() +
+  geom_sf(data = sfshapefile3subset, fill = "blue") +
+  coord_sf(crs= 4326, datum = sf::st_crs(4326)) +
+  theme_void()
+
+ggplot() +
+  geom_sf(data = sfshapefile3subset, fill = "blue") +
+  coord_sf(crs= 4326, datum = sf::st_crs(4326)) +
+  theme_void()
+```
+
