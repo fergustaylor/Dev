@@ -1,5 +1,11 @@
 <https://www.cultureofinsight.com/blog/2018/05/02/2018-04-08-multivariate-dot-density-maps-in-r-with-sf-ggplot2/>
 
+<style>
+img {
+    width: 100%;
+}
+</style>
+
 Load the libraries
 
     library(tidyverse) # dev version of ggplot2 required devtools::install_github('hadley/ggplot2')
