@@ -1,10 +1,14 @@
 <https://www.cultureofinsight.com/blog/2018/05/02/2018-04-08-multivariate-dot-density-maps-in-r-with-sf-ggplot2/>
 
+Load the libraries
+
     library(tidyverse) # dev version of ggplot2 required devtools::install_github('hadley/ggplot2')
     library(sf)
     library(lwgeom)
+
+Load the data
+
     # election results filtered to London region
-    
     ge_data <- read_csv("http://researchbriefings.files.parliament.uk/documents/CBP-7979/HoC-GE2017-constituency-results.csv") %>% 
       filter(region_name == "London") %>% 
       select(ons_id, constituency_name, first_party, Con = con, Lab = lab, LD = ld, UKIP = ukip, Green = green)
@@ -19,8 +23,6 @@
     # merge the data
     sf_data <- left_join(ge_data, uk) %>% 
       st_as_sf() # I'm losing sf class after join so make sf object again
-
-    ## Joining, by = "ons_id"
 
     head(sf_data)
 
@@ -59,24 +61,26 @@
     ## # A tibble: 6 x 3
     ##      lon   lat Party
     ##    <dbl> <dbl> <fct>
-    ## 1 0.131   51.5 Con  
-    ## 2 0.131   51.6 Con  
-    ## 3 0.132   51.5 Con  
-    ## 4 0.0976  51.5 Con  
-    ## 5 0.102   51.5 Con  
-    ## 6 0.113   51.5 Con
+    ## 1 0.133   51.5 Con  
+    ## 2 0.128   51.5 Con  
+    ## 3 0.100   51.5 Con  
+    ## 4 0.136   51.5 Con  
+    ## 5 0.0799  51.5 Con  
+    ## 6 0.107   51.5 Con
 
     tail(sf_dots)
 
     ## # A tibble: 6 x 3
     ##      lon   lat Party
     ##    <dbl> <dbl> <fct>
-    ## 1 -0.214  51.4 Green
-    ## 2 -0.246  51.4 Green
-    ## 3 -0.243  51.4 Green
-    ## 4 -0.207  51.4 Green
-    ## 5 -0.220  51.4 Green
-    ## 6 -0.247  51.4 Green
+    ## 1 -0.230  51.4 Green
+    ## 2 -0.186  51.4 Green
+    ## 3 -0.240  51.4 Green
+    ## 4 -0.209  51.4 Green
+    ## 5 -0.242  51.4 Green
+    ## 6 -0.230  51.4 Green
+
+Plot it
 
     # colour palette for our party points
     pal <- c("Con" = "#0087DC", "Lab" = "#DC241F", "LD" = "#FCBB30", "UKIP" = "#70147A", "Green" = "#78B943")
@@ -104,7 +108,7 @@
             plot.caption = element_text(size = 32)
       )
 
-![](Other_Work_files/figure-markdown_strict/party_points.png)
+![](Other_Work_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
     ggsave("party_points2.png", dpi = 320, width = 80, height = 70, units = "cm")
 
@@ -115,4 +119,4 @@
       theme_void() +
       theme(legend.position = c(0.8, 0.9), legend.direction = "horizontal")
 
-![](Other_Work_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](Other_Work_files/figure-markdown_strict/unnamed-chunk-7-1.png)

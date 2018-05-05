@@ -5,11 +5,15 @@ output: md_document
 
 https://www.cultureofinsight.com/blog/2018/05/02/2018-04-08-multivariate-dot-density-maps-in-r-with-sf-ggplot2/
 
-```{r}
+Load the libraries
+```{r, message=FALSE, warning=FALSE}
 library(tidyverse) # dev version of ggplot2 required devtools::install_github('hadley/ggplot2')
 library(sf)
 library(lwgeom)
+```
 
+Load the data
+```{r, message=FALSE, warning=FALSE}
 # election results filtered to London region
 ge_data <- read_csv("http://researchbriefings.files.parliament.uk/documents/CBP-7979/HoC-GE2017-constituency-results.csv") %>% 
   filter(region_name == "London") %>% 
@@ -25,11 +29,13 @@ uk <- st_read("uk_650_wpc_2017_full_res_v1.8/uk_650_wpc_2017_full_res_v1.8.shp",
 # merge the data
 sf_data <- left_join(ge_data, uk) %>% 
   st_as_sf() # I'm losing sf class after join so make sf object again
-
-head(sf_data)
 ```
 
 ```{r}
+head(sf_data)
+```
+
+```{r, message=FALSE, warning=FALSE}
 # data frame of number of dots to plot for each party (1 for every 100 votes)
 num_dots <- ceiling(select(as.data.frame(sf_data), Con:Green) / 100)
 
@@ -42,11 +48,14 @@ sf_dots <- map_df(names(num_dots),
                     setNames(c("lon","lat")) %>%                                  # set column names
                     mutate(Party = factor(.x, levels = names((num_dots))))        # add categorical party variable
                   ) # map_df then binds each party's tibble into one
+```
 
+```{r}
 head(sf_dots)
 tail(sf_dots)
 ```
 
+Plot it
 ```{r}
 # colour palette for our party points
 pal <- c("Con" = "#0087DC", "Lab" = "#DC241F", "LD" = "#FCBB30", "UKIP" = "#70147A", "Green" = "#78B943")
