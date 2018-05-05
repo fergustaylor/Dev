@@ -108,7 +108,7 @@ Plot it
             plot.caption = element_text(size = 32)
       )
 
-![](Other_Work_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](Other_Work_files/figure-markdown_strict/party_points2.png)
 
     ggsave("party_points2.png", dpi = 320, width = 80, height = 70, units = "cm")
 
