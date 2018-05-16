@@ -1,10 +1,3 @@
 
-<style>
-iframe{
-width:100%;
-height:100vh;
-}
-</style>
-
-<iframe src="https://fergustaylor.github.io/Dev/Search/example.html">
+<iframe src="https://fergustaylor.github.io/Dev/Search/example.html" width="100%" onload="this.style.height=this.contentDocument.body.scrollHeight +'px';" onresize="this.style.height=this.contentDocument.body.scrollHeight +'px';">
 </iframe>
