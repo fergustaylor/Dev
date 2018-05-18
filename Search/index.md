@@ -10,6 +10,7 @@ window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
 window.addEventListener("change", myFunction);
 window.addEventListener("search", myFunction);
+window.addEventListener("input", myFunction);
 </script>
 
 <style>
