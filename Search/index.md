@@ -20,8 +20,5 @@ iframe {
 </iframe>
 
 <script>
-function myFunction2() {
-document.documentElement.getElementsByTagName("iframe")[0].style.height = document.body.scrollHeight +'px';
-}
-document.getElementsByTagName("iframe")[0].contentWindow.addEventListener('input', myFunction2);
+
 </script>
