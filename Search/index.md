@@ -8,6 +8,9 @@ for (i = 0; i < frames.length; i++) {
 }
 window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
+document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("input", myFunction);
+document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("change", myFunction);
+document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("submit", myFunction);
 </script>
 
 <style>
@@ -19,9 +22,3 @@ iframe {
 
 <iframe src="https://fergustaylor.github.io/Dev/Search/example.html">
 </iframe>
-
-<script>
-document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("input", myFunction);
-document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("change", myFunction);
-document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("submit", myFunction);
-</script>
