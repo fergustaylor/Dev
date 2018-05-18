@@ -18,7 +18,3 @@ iframe {
 
 <iframe src="https://fergustaylor.github.io/Dev/Search/example.html">
 </iframe>
-
-<script>
-
-</script>
