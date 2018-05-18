@@ -13,8 +13,8 @@ window.addEventListener("resize", myFunction);
 <style>
 iframe {
  width:100%;
- height:500px;
-}
+ min-height: 500px !important;
+}}
 </style>
 
 <iframe src="https://fergustaylor.github.io/Dev/Search/example.html">
