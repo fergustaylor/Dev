@@ -20,7 +20,7 @@ iframe {
 </iframe>
 
 <script>
-document.getElementsByTagName("iframe")[0].contentWindow.addEventListener('input', myFunction);
-document.getElementsByTagName("iframe”)[0].contentWindow.addEventListener(‘change’, myFunction);
-document.getElementsByTagName("iframe”)[0].contentWindow.addEventListener(submit’, myFunction);
+document.getElementsByTagName("iframe")[0].contentWindow.addEventListener("input", myFunction);
+document.getElementsByTagName("iframe”)[0].contentWindow.addEventListener("change", myFunction);
+document.getElementsByTagName("iframe”)[0].contentWindow.addEventListener("submit", myFunction);
 </script>
