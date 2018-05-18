@@ -8,6 +8,11 @@ for (i = 0; i < frames.length; i++) {
 }
 window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
+
+function myFunction2() {
+document.documentElement.getElementsByTagName("iframe")[0].style.height = document.body.scrollHeight +'px';
+}
+document.getElementsByTagName("iframe")[0].contentWindow.addEventListener('input', myFunction2);
 </script>
 
 <style>
