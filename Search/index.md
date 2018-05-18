@@ -8,9 +8,9 @@ for (i = 0; i < frames.length; i++) {
 }
 window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
-window.addEventListener("change", myFunction);
-window.addEventListener("search", myFunction);
-window.addEventListener("input", myFunction);
+
+document.getElementsByTagName("iframe")[0].contentDocument.getElementsByTagName("input")[0].addEventListener("input", myFunction);
+
 </script>
 
 <style>
