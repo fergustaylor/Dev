@@ -86,4 +86,3 @@ image %>%
   image_animate(fps=4) %>%
   image_write("gifparty.gif")
 ```
-
