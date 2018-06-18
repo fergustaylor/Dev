@@ -27,7 +27,9 @@ Recreating a UK local election graphic from [Paul Campbell.](https://www.culture
 
 Making a gallery/slideshow element.
 
+<a href="https://fergustaylor.github.io/Dev/Gallery">
 <img src="./Gallery/image.png" alt="" style="width:100%;height:auto;">
+</a>
 
 # [Ebola](https://fergustaylor.github.io/Dev/Ebola)
 
