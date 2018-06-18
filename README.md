@@ -9,3 +9,21 @@ Uses 'refinements' to group individual site results. Unexpected benefit is the s
 <div style="width:100%;height:0;padding-bottom:63%;position:relative;"><iframe src="https://giphy.com/embed/3kD264S0WiNXIZoIJ1" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
 
 # [Hackday](https://fergustaylor.github.io/Dev/Hackday)
+
+# [Local Elections](https://fergustaylor.github.io/Dev/Local%20Elections/Other_Work)
+
+<img src="./Local%20Elections/party.gif" alt="" style="width:100%;height:auto;">
+
+![](./Local%20Elections/party.gif)
+
+# [Local Elections](https://fergustaylor.github.io/Dev/Local%20Elections/Other_Work)
+
+# [Gallery](https://fergustaylor.github.io/Dev/gallery)
+
+# [Ebola](https://fergustaylor.github.io/Dev/Ebola)
+
+# [Foundation](https://fergustaylor.github.io/Dev/Foundation)
+
+# [R2D3](https://fergustaylor.github.io/Dev/r2d3)
+
+
