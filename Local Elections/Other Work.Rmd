@@ -10,6 +10,8 @@ Load the libraries
 library(tidyverse) # dev version of ggplot2 required devtools::install_github('hadley/ggplot2')
 library(sf)
 library(lwgeom)
+library(geofacet)
+library(ggrepel)
 ```
 
 Load the data
@@ -95,3 +97,191 @@ ggplot() +
   theme(legend.position = c(0.8, 0.9), legend.direction = "horizontal")
 ```
 
+```{r}
+ggplot() +
+  geom_sf(data = sf_data, fill = "white", colour = "white") +
+  geom_point(data = sf_dots, aes(lon, lat, colour = Party), size=0.000000001) +
+  scale_colour_manual(values = pal) +
+  coord_sf(crs = 4326, datum = NA)
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = sf_data, fill = "white", colour = "white") +
+  geom_point(data = sf_dots, aes(lon, lat, colour = Party), size=0.000000001) +
+  geom_sf(data = sf_data, color = "black", alpha = 0) +
+  scale_colour_manual(values = pal) +
+  coord_sf(crs = 4326, datum = NA)
+```
+
+
+```{r}
+ggplot() +
+  geom_sf(data = sf_data, fill = "white", colour = "grey") +
+  coord_sf(crs = 4326, datum = NA)
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = sf_data, fill = "white", colour = "transparent") +
+  coord_sf(crs = 4326, datum = NA)
+```
+
+```{r}
+ge_data3 <- ge_data %>%
+  mutate("Total" = Con + Lab + LD + UKIP + Green)
+
+ge_data3$geometry <- sf_data$geometry %>%
+  sf::st_centroid() %>%
+  as.data.frame()
+
+ggplot() +
+  geom_sf(data = sf_data, fill = "white", colour = "grey") +
+  geom_sf(data = ge_data3$geometry, aes(size = ge_data3$Total)) +
+  coord_sf(crs = 4326, datum = NA)
+
+ggplot() +
+  geom_sf(data = sf_data, fill = "white", colour = "grey") +
+  coord_sf(crs = 4326, datum = NA)
+```
+
+```{r}
+ge_data2 <- ge_data %>%
+  select(-first_party) %>%
+  gather(key = Party, value = Votes,
+       Con, Lab, LD, UKIP, Green)
+```
+
+
+```{r}
+#pal <- c("blue", "green", "red", "yellow", "purple")
+#names(pal) <- c("Con", "Green", "Lab", "LD", "UKIP")
+pal <- c("Con" = "#0087DC", "Lab" = "#DC241F", "LD" = "#FCBB30", "UKIP" = "#70147A", "Green" = "#78B943")
+```
+
+```{r}
+ ge_data2 %>%
+  filter(constituency_name == "Chipping Barnet") %>%
+ggplot() +
+  geom_point(aes(x= Party, y = constituency_name, size=Votes, colour = Party)) +
+  scale_colour_manual(values= pal) +
+  theme(panel.background = element_blank(), 
+        legend.position="none", 
+        title=element_blank())
+```
+
+```{r}
+ ge_data2 %>%
+  filter(constituency_name == "Chipping Barnet") %>%
+ggplot() +
+  geom_point(aes(x= Party, y = constituency_name, size=Votes, colour = Party)) +
+  scale_colour_manual(values= pal) +
+  theme(panel.background = element_blank(), 
+        legend.position="none", 
+        title=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+
+ ge_data2 %>%
+  filter(constituency_name == "Chipping Barnet") %>%
+ggplot() +
+  geom_point(aes(x= reorder(Party, -Votes), y = constituency_name, size=Votes, colour = Party)) +
+  scale_colour_manual(values= pal) +
+  theme(panel.background = element_blank(), 
+        legend.position="none", 
+        title=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+
+```{r}
+ge_data2 %>%
+ggplot() + 
+  geom_point(aes(x= Party, y = constituency_name, size=Votes, colour = Party)) +
+  scale_colour_manual(values= pal) +
+  theme(panel.background = element_blank(), 
+        legend.position="none", 
+        title=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  facet_wrap(~ constituency_name)
+```
+
+Create a geofacet grid
+http://john-joseph-horton.com/extending-geofacet-to-algorithmically-generate-grids-from-lat-long-data/
+```{r}
+#geofacet::grid_design(sf_data)
+```
+
+```{r}
+centroid <- sf_data$geometry %>%
+  sf::st_centroid()  %>%
+  sf::st_coordinates() %>%
+  as.data.frame() %>%
+  rename("longitude" = X, "latitude" = Y)
+
+centroid$rank <- 1:nrow(centroid)
+centroid$city <- ge_data$constituency_name
+
+x <- centroid$longitude
+y <- centroid$latitude
+index <- as.integer(centroid$rank)
+city <- centroid$city
+
+# illustrate putting on n x n grid 
+row <- rank(y)
+col <- rank(x)
+df <- data.frame(x,y,row,col,index, city)
+
+# grid a reduced grid 
+df <- create_new_grid(x,y,city, num.iterations = 500)
+```
+
+```{r}
+# raw coordinates 
+ggplot(data = df, aes(x = x,y = y)) + 
+  geom_text_repel(aes(label = city)) + 
+  theme_bw()
+
+# on n x n grid  
+ggplot(data = df, aes(x = col,y = row)) + 
+  geom_tile(fill="grey", colour = "black") + 
+  geom_text_repel(aes(label = city)) +  
+  theme_bw()
+
+# plus results 
+ggplot(data = df, aes(x = new.col,y = new.row)) + 
+  geom_point() + 
+  geom_tile(fill="grey", colour = "black") + 
+  geom_text_repel(aes(label = unit.name), size = 2) + 
+  theme_bw()
+```
+
+```{r}
+rm(row, col, x, y, index, city, centroid)
+
+grid <- df %>%
+  select(-c(row, col, x, y)) %>%
+  rename("row" = new.row, "col" = new.col, "name" = unit.name, "code" = index)
+```
+
+```{r}
+ge_data2 %>%
+ggplot() + 
+  geom_point(aes(x= Party, y = constituency_name, size=Votes, colour = Party)) +
+  scale_colour_manual(values= pal) +
+  theme(panel.background = element_blank(), 
+        legend.position="none", 
+        title=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank()) +
+  facet_geo(~ constituency_name, grid = grid)
+```

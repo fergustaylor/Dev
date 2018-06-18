@@ -1,0 +1,89 @@
+---
+title: "100 versions"
+---
+
+100 Versions
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sf)
+library(lwgeom)
+library(geofacet)
+library(ggrepel)
+library(magick)
+```
+
+```{r}
+# election results filtered to London region
+ge_data <- read_csv("http://researchbriefings.files.parliament.uk/documents/CBP-7979/HoC-GE2017-constituency-results.csv") %>% 
+  filter(region_name == "London") %>% 
+  select(ons_id, constituency_name, first_party, Con = con, Lab = lab, LD = ld, UKIP = ukip, Green = green)
+
+# shapefile filtered to London region
+# data available here: https://www.dropbox.com/s/4iajcx25grpx5qi/uk_650_wpc_2017_full_res_v1.8.zip?dl=0
+uk <- st_read("uk_650_wpc_2017_full_res_v1.8/uk_650_wpc_2017_full_res_v1.8.shp", stringsAsFactors = FALSE, quiet = TRUE) %>% 
+  st_transform(4326) %>% 
+  filter(REGN == "London") %>% 
+  select(ons_id = PCONCODE)
+
+# merge the data
+sf_data <- left_join(ge_data, uk) %>% 
+  st_as_sf() # I'm losing sf class after join so make sf object again
+
+num_dots <- ceiling(select(as.data.frame(sf_data), Con:Green) / 100)
+
+# colour palette for our party points
+pal <- c("Con" = "#0087DC", "Lab" = "#DC241F", "LD" = "#FCBB30", "UKIP" = "#70147A", "Green" = "#78B943")
+```
+
+Function it.
+
+```{r, message=FALSE, warning=FALSE}
+gifit <- function (i) {
+
+  sf_dots <- map_df(names(num_dots), 
+                  ~ st_sample(sf_data, size = num_dots[,.x], type = "random") %>%
+                    st_cast("POINT") %>%
+                    st_coordinates() %>%
+                    as_tibble() %>%
+                    setNames(c("lon","lat")) %>%
+                    mutate(Party = factor(.x, levels = names((num_dots))))
+                  )
+ggplot() +
+  geom_sf(data = sf_data, fill = "transparent",colour = "white") +
+  geom_point(data = sf_dots, aes(lon, lat, colour = Party)) +
+  scale_colour_manual(values = pal) +
+  coord_sf(crs = 4326, datum = NA) +
+  theme_void(base_family = "Helvetica Neue", base_size = 48) +
+  guides(colour = guide_legend(override.aes = list(size = 18))) +
+  theme(
+        plot.background = element_rect(fill = "#212121", color = NA), 
+        panel.background = element_rect(fill = "#212121", color = NA),
+        plot.margin = margin(1, 1, 1, 1, "cm"),
+        legend.position="none"
+        )
+title <- str_c("partygif/party_points", i, ".png")
+ggsave(title, dpi = 320, width = 80, height = 70, units = "cm")
+}
+```
+
+https://ryanpeek.github.io/2016-10-19-animated-gif_maps_in_R/
+
+Repeat x 100
+
+```{r, message=FALSE}
+lapply(1:100, gifit)
+```
+
+Gif it.
+
+```{r}
+image <- list.files(path = "./partygiflow/", pattern = "*.png", full.names = T) 
+
+image %>% 
+  map(image_read) %>%
+  image_join() %>%
+  image_animate(fps=4) %>%
+  image_write("gifparty.gif")
+```
+
