@@ -2,7 +2,7 @@
 title: "100 versions"
 ---
 
-100 Versions
+100 Versions of [Local Elections Graphic](https://ryanpeek.github.io/2016-10-19-animated-gif_maps_in_R/)
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -66,8 +66,6 @@ title <- str_c("partygif/party_points", i, ".png")
 ggsave(title, dpi = 320, width = 80, height = 70, units = "cm")
 }
 ```
-
-https://ryanpeek.github.io/2016-10-19-animated-gif_maps_in_R/
 
 Repeat x 100
 
