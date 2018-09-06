@@ -1,0 +1,25 @@
+
+```{r, warning=FALSE, message=FALSE, echo= FALSE}
+library(tidyverse)
+```
+
+```{r}
+portfolio <- list.files(path = "./portfolio")
+thumb <- list.files(path = "./thumb")
+
+images <- data.frame(thumb, portfolio)
+
+images %>%
+  jsonlite::toJSON() %>%
+  write(file="./images.json")
+```
+
+```{r}
+iframesource <- list.files(path = "./iframes", pattern = ".html")
+iframethumb <- list.files(path = "./iframethumb")
+iframe <- data.frame(iframethumb, iframesource)
+
+iframe %>%
+  jsonlite::toJSON() %>%
+  write(file="./iframe.json")
+```

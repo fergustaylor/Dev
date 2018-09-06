@@ -1,0 +1,18 @@
+---
+title: "GGanimate"
+---
+
+```{r}
+#devtools::install_github('thomasp85/gganimate')
+library(gganimate)
+library(tidyverse)
+```
+
+Following the recent redesign of the [gganimate](https://github.com/thomasp85/gganimate) package, I thought I'd be interested in learning to expand my ggplot use.
+
+I was particularly impressed by the [following.](https://www.data-imaginist.com/2017/animating-the-logo/)
+
+```{r}
+help("gganimate")
+```
+
