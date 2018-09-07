@@ -153,9 +153,30 @@ head(totaldataframe)
 
 Export data
 ```{r}
+Datestamp <- Sys.Date()
+
+dataframeName <- str_c("archive/", Datestamp) %>%
+str_replace_all(" ", "") %>%
+str_c("drugs.Rda")
+save(totaldataframe, file=dataframeName)
+
+save(totaldataframe, file="drugs.Rda")
+
+jsonName <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "drugs.json")
+totaldataframe %>%
+  jsonlite::toJSON() %>%
+  write(file = jsonName)
+
 totaldataframe %>%
   jsonlite::toJSON() %>%
   write(file="drugs.json")
+
+#encoding to csv not sorted yet
+#dataframeNamecsv <- str_c("archive/", Datestamp) %>%
+#  str_replace_all(" ", "") %>%
+#  str_c("drugs.csv")
+#write.csv(totaldataframe, dataframeNamecsv)
+#write.csv(totaldataframe, "drugs.csv")
 ```
 
 //////////////////
