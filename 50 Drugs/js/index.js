@@ -17,6 +17,7 @@ request.onreadystatechange = function(response) {
         var inputs = document.createElement('input')
         inputs.setAttribute("type", "checkbox")
         inputs.setAttribute("value", item.drug)
+        inputs.setAttribute("class", item.class)
 
         //add event listener to input (to cancel out double-effect by clicking on span)
         inputs.addEventListener("click", function(){
@@ -59,6 +60,8 @@ request.onreadystatechange = function(response) {
 // Set up and make the request.
 request.open('GET', 'https://fergustaylor.github.io/Dev/50%20Drugs/drugs.json', true);
 request.send();
+
+// Make class
 
 //functions for the radio buttons
 function showdrugs() {
