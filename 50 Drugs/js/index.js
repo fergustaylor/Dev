@@ -118,21 +118,17 @@ function showsearched(string) {
 
 var druginputarray = [];
 
-function showall() {
-  var selected = $('div#checklist>span>input:checked');
-  //create array
-  for (i = 0; i < selected.length; i++) {
-    druginputarray.push(selected[i].value);
-  }
-  graphit(druginputarray);
+function describeall() {
+//code to write all of it.
 }
 
 
-function showselected () {
+function describeselected() {
+  //code to write only the selected
   var selected = $('div#checklist>span>input:checked');
   //create array
   for (i = 0; i < selected.length; i++) {
     druginputarray.push(selected[i].value);
   }
-  listit(druginputarray);
+  //describe(druginputarray);
 }
