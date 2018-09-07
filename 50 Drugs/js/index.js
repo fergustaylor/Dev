@@ -1,4 +1,5 @@
 var checklistcontainer = document.getElementById('checklist');
+var classlistcontainer = document.getElementById('classlist');
 // Create a new XMLHttpRequest.
 var request = new XMLHttpRequest();
 // Handle state changes for the request.
@@ -11,12 +12,10 @@ request.onreadystatechange = function(response) {
      jsonOptions.forEach(function(item) {
         // Create a new <span> element.
         var span = document.createElement('span')
-        //span.setAttribute("value", item.title)
 
         // Create a new <input> element.
         var inputs = document.createElement('input')
         inputs.setAttribute("type", "checkbox")
-        //inputs.setAttribute("name", "drugs")
         inputs.setAttribute("value", item.drug)
 
         //add event listener to input (to cancel out double-effect by clicking on span)
@@ -72,6 +71,7 @@ function showdrugs() {
 
 function showclasses() {
   //hide all drugs, show classes.
+
   //code below needs changing
   var all = $('div#checklist>span')
   //loop through all
