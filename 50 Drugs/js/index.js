@@ -62,7 +62,7 @@ request.open('GET', 'https://fergustaylor.github.io/Dev/50%20Drugs/drugs.json', 
 request.send();
 
 //functions for the radio buttons
-function showall() {
+function showdrugs() {
   var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
@@ -70,7 +70,9 @@ function showall() {
   }
 }
 
-function showselected() {
+function showclasses() {
+  //hide all drugs, show classes.
+  //code below needs changing
   var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
@@ -80,19 +82,6 @@ function showselected() {
   //loop through selected
   for (i = 0; i < selected.length; i++) {
     selected[i].style.display = 'block';
-  }
-}
-
-function showunselected() {
-  var all = $('div#checklist>span')
-  //loop through all
-  for (i = 0; i < all.length; i++) {
-    all[i].style.display = 'none';
-  }
-  var unselected = $('div#checklist>span>input').not(':checked').parent()
-  //loop through selected
-  for (i = 0; i < unselected.length; i++) {
-    unselected[i].style.display = 'block';
   }
 }
 
@@ -121,7 +110,6 @@ var druginputarray = [];
 function describeall() {
 //code to write all of it.
 }
-
 
 function describeselected() {
   //code to write only the selected
