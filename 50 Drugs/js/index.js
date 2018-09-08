@@ -76,6 +76,22 @@ request.onreadystatechange = function(response) {
         this.checked = state;
         });
 
+        //add event listener for drug class function
+        inputs.addEventListener("click", checktheclass(){
+          if (this.checked) {
+            //check the drugs of that class
+            var classcheckboxes = $('div#checklist>span>input.'+this.value);
+            for (i = 0; i < classcheckboxes.length; i++) {
+              classcheckboxes[i].checked = true;
+            }
+          } else {
+            var classcheckboxes = $('div#checklist>span>input.'+this.value);
+            for (i = 0; i < classcheckboxes.length; i++) {
+              classcheckboxes[i].checked = false;
+            }
+          }
+        });
+
         //add event listener to check the same drug class boxes
 
         // Set the value using the item in the JSON array.
@@ -191,56 +207,48 @@ checklists.appendChild(checklists5);
 span.appendChild(checklists);
 
 var breaks = document.createElement('br')
-//span.appendChild(breaks);
 
 var example = document.createElement('p');
 example.setAttribute("class", "example")
 var example5 = document.createTextNode("Example(s) of drugs: "+item["Example(s) of drugs:"]);
 example.appendChild(example5);
 span.appendChild(example);
-//span.appendChild(breaks);
 
 var pcpk = document.createElement('p');
 pcpk.setAttribute("class", "pcpk")
 var pcpk5 = document.createTextNode("Important PK/PD: "+item["Important pharmacokinetics / pharmacodynamics:"]);
 pcpk.appendChild(pcpk5);
 span.appendChild(pcpk);
-//span.appendChild(breaks);
 
 var indication = document.createElement('p');
 indication.setAttribute("class", "indication")
 var indication5 = document.createTextNode("Indication(s): "+item["Indication(s):"]);
 indication.appendChild(indication5);
 span.appendChild(indication);
-//span.appendChild(breaks);
 
 var moa = document.createElement('p');
 moa.setAttribute("class", "moa")
 var moa5 = document.createTextNode("Mechanism of action: "+item["Mechanism of action:"]);
 moa.appendChild(moa5);
 span.appendChild(moa);
-//span.appendChild(breaks);
 
 var patientinfo = document.createElement('p');
 patientinfo.setAttribute("class", "patientinfo")
 var patientinfo5 = document.createTextNode("Patient information: "+item["Patient information:"]);
 patientinfo.appendChild(patientinfo5);
 span.appendChild(patientinfo);
-//span.appendChild(breaks);
 
 var sideeffects = document.createElement('p');
 sideeffects.setAttribute("class", "sideeffects")
 var sideeffects5 = document.createTextNode("Side effects: "+item["Side effects:"]);
 sideeffects.appendChild(sideeffects5);
 span.appendChild(sideeffects);
-//span.appendChild(breaks);
 
 var classinfo = document.createElement('p');
 classinfo.setAttribute("class", "classinfo")
 var classinfo5 = document.createTextNode("Drug class: "+item.class);
 classinfo.appendChild(classinfo5);
 span.appendChild(classinfo);
-//span.appendChild(breaks);
 
 if (item["Other information:"] > 0) {
   var otherinfo = document.createElement('p');
@@ -248,7 +256,6 @@ if (item["Other information:"] > 0) {
   var otherinfo5 = document.createTextNode("Other information: "+item["Other information:"]);
   otherinfo.appendChild(otherinfo5);
   span.appendChild(otherinfo);
-  //span.appendChild(breaks);
 }
 
 infocontainer.appendChild(span);
