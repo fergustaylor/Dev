@@ -46,13 +46,63 @@ request.onreadystatechange = function(response) {
         this.firstChild.checked = state;
         });
 
-        //hide loading div
-        var x = document.getElementsByClassName("loading");
-        x[0].style.display = "none";
-
         //add span to checklistcontainer
         checklistcontainer.appendChild(span);
       });
+
+      //hide loading div
+      var x = document.getElementsByClassName("loading");
+      x[0].style.display = "none";
+
+      // Make class
+      var classes = [];
+      $('div#checklist>span>input').each(function() {
+            classes.push($(this).attr('class'));
+      });
+      classes = Array.from(new Set(classes));
+      // for each value in Classes
+      classes.forEach(function(item) {
+        var span = document.createElement('span')
+
+        // Create a new <input> element.
+        var inputs = document.createElement('input')
+        inputs.setAttribute("type", "checkbox")
+        inputs.setAttribute("value", item)
+
+        //add event listener to input (to cancel out double-effect by clicking on span)
+        inputs.addEventListener("click", function(){
+        state = this.checked;
+        state = !state;
+        this.checked = state;
+        });
+
+        // Set the value using the item in the JSON array.
+        var checklists = document.createElement('p')
+        var checklists5 = document.createTextNode(item)
+        checklists.appendChild(checklists5)
+
+        //add a break
+        var breaks = document.createElement('br')
+
+        // Add the <input> element to the <span>.
+        span.appendChild(inputs);
+        // Add the <p> element to the <span>.
+        span.appendChild(checklists);
+
+        //add event listener to span
+        span.addEventListener("click", function(){
+        state = this.firstChild.checked;
+        state = !state;
+        this.firstChild.checked = state;
+        });
+        //add span to checklistcontainer
+        classlistcontainer.appendChild(span);
+      });
+      //make classlist display:none
+      var all = $('div#classlist>span')
+      for (i = 0; i < all.length; i++) {
+        all[i].style.display = 'none';
+      }
     }
   }
 };
@@ -61,74 +111,30 @@ request.onreadystatechange = function(response) {
 request.open('GET', 'https://fergustaylor.github.io/Dev/50%20Drugs/drugs.json', true);
 request.send();
 
-// Make class
-var classes = [];
-$('div#checklist>span>input').each(function() {
-      classes.push($(this).attr('class'));
-});
-classes = Array.from(new Set(classes));
-// for each value in Classes
-classes.forEach(function(item) {
-  var span = document.createElement('span')
-
-  // Create a new <input> element.
-  var inputs = document.createElement('input')
-  inputs.setAttribute("type", "checkbox")
-  inputs.setAttribute("value", item)
-
-  //add event listener to input (to cancel out double-effect by clicking on span)
-  inputs.addEventListener("click", function(){
-  state = this.checked;
-  state = !state;
-  this.checked = state;
-  });
-
-  // Set the value using the item in the JSON array.
-  var checklists = document.createElement('p')
-  var checklists5 = document.createTextNode(item)
-  checklists.appendChild(checklists5)
-
-  //add a break
-  var breaks = document.createElement('br')
-
-  // Add the <input> element to the <span>.
-  span.appendChild(inputs);
-  // Add the <p> element to the <span>.
-  span.appendChild(checklists);
-
-  //add event listener to span
-  span.addEventListener("click", function(){
-  state = this.firstChild.checked;
-  state = !state;
-  this.firstChild.checked = state;
-  });
-
-  //add span to checklistcontainer
-  classlistcontainer.appendChild(span);
-});
-
 //functions for the radio buttons
 function showdrugs() {
+  //hide classes
+  var all = $('div#classlist>span')
+  for (i = 0; i < all.length; i++) {
+    all[i].style.display = 'none';
+  }
+  //show drugs
   var all = $('div#checklist>span')
-  //loop through all
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'block';
   }
 }
 
 function showclasses() {
-  //hide all drugs, show classes.
-
-  //code below needs changing
+  //hide all drugs
   var all = $('div#checklist>span')
-  //loop through all
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'none';
   }
-  var selected = $('div#checklist>span>input:checked').parent()
-  //loop through selected
-  for (i = 0; i < selected.length; i++) {
-    selected[i].style.display = 'block';
+  //show classes
+  var all = $('div#classlist>span')
+  for (i = 0; i < all.length; i++) {
+    all[i].style.display = 'block';
   }
 }
 
