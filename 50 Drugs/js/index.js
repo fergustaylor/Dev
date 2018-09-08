@@ -149,14 +149,14 @@ function showsearched(string) {
   for (i = 0; i < all.length; i++) {
     all[i].style.display = 'none';
   }
-  var searched = $("span:contains("+string+")")
+  var searched = $("div#checklist>span:contains("+string+")")
   //loop through searched
   for (i = 0; i < searched.length; i++) {
     searched[i].style.display = 'block';
   }
   //search by capitalised version
   var string2 = string.charAt(0).toUpperCase()+string.slice(1);
-  var searched2 = $("span:contains("+string2+")")
+  var searched2 = $("div#checklist>span:contains("+string2+")")
   //loop through searched
   for (i = 0; i < searched2.length; i++) {
     searched2[i].style.display = 'block';
