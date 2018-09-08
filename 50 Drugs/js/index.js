@@ -288,7 +288,6 @@ function describeselected() {
       span.appendChild(checklists);
 
       var breaks = document.createElement('br')
-      //span.appendChild(breaks);
 
       var example = document.createElement('p');
       example.setAttribute("class", "example")
@@ -341,6 +340,6 @@ function describeselected() {
       }
 
       infocontainer.appendChild(span);
-      });
     }
+    });
 }
