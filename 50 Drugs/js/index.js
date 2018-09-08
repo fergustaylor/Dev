@@ -187,11 +187,12 @@ var checklists = document.createElement('p');
 var checklists5 = document.createTextNode(item.drug);
 checklists.appendChild(checklists5);
 
-span.appendChild(checklists)
+span.appendChild(checklists);
 
 var breaks = document.createElement('br')
 span.appendChild(breaks);
 
+infocontainer.appendChild(span);
 //////
 });
 }
