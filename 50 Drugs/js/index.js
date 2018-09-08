@@ -76,6 +76,8 @@ request.onreadystatechange = function(response) {
         this.checked = state;
         });
 
+        //add event listener to check the same drug class boxes
+
         // Set the value using the item in the JSON array.
         var checklists = document.createElement('p')
         var checklists5 = document.createTextNode(item)
@@ -166,7 +168,32 @@ function showsearched(string) {
 var druginputarray = [];
 
 function describeall() {
-//code to write all of it.
+//remove everything from body apart from index.js.
+$("body *").not("body script").remove();
+//add new div
+var infocontainer = document.createElement('div');
+infocontainer.setAttribute("id", "infocontainer")
+document.body.appendChild(infocontainer);
+var infocontainer = document.getElementById('infocontainer');
+
+//write all of them in.
+var jsonOptions = JSON.parse(request.responseText);
+
+jsonOptions.forEach(function(item) {
+// Create a new <span> element.
+var span = document.createElement('span');
+
+var checklists = document.createElement('p');
+var checklists5 = document.createTextNode(item.drug);
+checklists.appendChild(checklists5);
+
+span.appendChild(checklists)
+
+var breaks = document.createElement('br')
+span.appendChild(breaks);
+
+//////
+});
 }
 
 function describeselected() {
