@@ -139,6 +139,10 @@ function showclasses() {
 }
 
 function showsearched(string) {
+  //change radio to 'show drugs'
+  $('body > form > input[type="radio"]:nth-child(1)')[0].checked = true;
+  $('body > form > input[type="radio"]:nth-child(2)')[0].checked = false;
+
   var all = $('div#checklist>span')
   //loop through all
   for (i = 0; i < all.length; i++) {
@@ -157,6 +161,7 @@ function showsearched(string) {
     searched2[i].style.display = 'block';
   }
 }
+  showdrugs();
 
 var druginputarray = [];
 
