@@ -77,7 +77,7 @@ request.onreadystatechange = function(response) {
         });
 
         //add event listener for drug class function
-        inputs.addEventListener("click", checktheclass(){
+        inputs.addEventListener("click", function(){
           if (this.checked) {
             //check the drugs of that class
             var classcheckboxes = $('div#checklist>span>input.'+this.value);
