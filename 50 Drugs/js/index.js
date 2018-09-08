@@ -221,13 +221,6 @@ moa.appendChild(moa5);
 span.appendChild(moa);
 span.appendChild(breaks);
 
-var otherinfo = document.createElement('p');
-otherinfo.setAttribute("class", "otherinfo")
-var otherinfo5 = document.createTextNode("Other information: "+item["Other information:"]);
-otherinfo.appendChild(otherinfo5);
-span.appendChild(otherinfo);
-span.appendChild(breaks);
-
 var patientinfo = document.createElement('p');
 patientinfo.setAttribute("class", "patientinfo")
 var patientinfo5 = document.createTextNode("Patient information: "+item["Patient information:"]);
@@ -248,6 +241,15 @@ var classinfo5 = document.createTextNode("Drug class: "+item.class);
 classinfo.appendChild(classinfo5);
 span.appendChild(classinfo);
 span.appendChild(breaks);
+
+if (item["Other information:"] > 0) {
+  var otherinfo = document.createElement('p');
+  otherinfo.setAttribute("class", "otherinfo")
+  var otherinfo5 = document.createTextNode("Other information: "+item["Other information:"]);
+  otherinfo.appendChild(otherinfo5);
+  span.appendChild(otherinfo);
+  span.appendChild(breaks);
+}
 
 infocontainer.appendChild(span);
 //////

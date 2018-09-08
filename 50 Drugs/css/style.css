@@ -65,3 +65,11 @@ button:hover {
     background-color: #18515E;
     color: white;
 }
+
+p.title {
+    text-decoration: underline;
+    color:white;
+    text-decoration-color: white;
+    background-color: #18515E;
+    font-size: 2em;
+}
