@@ -31,6 +31,14 @@ div#checklist * {
     display: block;
 }
 
+div#classlist span * {
+    display: inline;
+}
+
+div#classlist * {
+    display: block;
+}
+
 input {
   font-size: 400%;
   background: none;
