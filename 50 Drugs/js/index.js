@@ -74,10 +74,7 @@ request.onreadystatechange = function(response) {
         state = this.checked;
         state = !state;
         this.checked = state;
-        });
-
-        //add event listener for drug class function
-        inputs.addEventListener("click", function(){
+        //rolling into one function
           if (this.checked) {
             //check the drugs of that class
             var classcheckboxes = $('div#checklist>span>input.'+this.value);
@@ -112,7 +109,21 @@ request.onreadystatechange = function(response) {
         state = this.firstChild.checked;
         state = !state;
         this.firstChild.checked = state;
+        //rolling into one function.
+          if (this.firstChild.checked) {
+            //check the drugs of that class
+            var classcheckboxes = $('div#checklist>span>input.'+this.value);
+            for (i = 0; i < classcheckboxes.length; i++) {
+              classcheckboxes[i].checked = true;
+            }
+          } else {
+            var classcheckboxes = $('div#checklist>span>input.'+this.value);
+            for (i = 0; i < classcheckboxes.length; i++) {
+              classcheckboxes[i].checked = false;
+            }
+          }
         });
+
         //add span to checklistcontainer
         classlistcontainer.appendChild(span);
       });
