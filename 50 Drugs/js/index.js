@@ -71,9 +71,9 @@ request.onreadystatechange = function(response) {
 
         //add event listener to input (to cancel out double-effect by clicking on span)
         inputs.addEventListener("click", function(){
-        state = this.checked;
-        state = !state;
-        this.checked = state;
+        //state = this.checked;
+        //state = !state;
+        //this.checked = state;
         //rolling into one function
           if (this.checked) {
             //check the drugs of that class
@@ -88,8 +88,6 @@ request.onreadystatechange = function(response) {
             }
           }
         });
-
-        //add event listener to check the same drug class boxes
 
         // Set the value using the item in the JSON array.
         var checklists = document.createElement('p')
