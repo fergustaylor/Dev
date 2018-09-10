@@ -1,0 +1,91 @@
+---
+title: "Printing the table"
+output: html_document
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+```{r, include=FALSE}
+load("drugs.Rda")
+```
+
+Select the important data.
+```{r}
+selecttable <- totaldataframe %>%
+  select("drug", "Example(s) of drugs:", "Indication(s):", "Important pharmacokinetics / pharmacodynamics:", "Mechanism of action:", "Patient information:", "Side effects:", "class") %>%
+  rename("Drug" = drug) %>%
+  rename("Important PC/PD" = "Important pharmacokinetics / pharmacodynamics:")
+```
+
+Format it a little.
+```{r}
+blep <- function (x) {
+  unlist(x) %>%
+  str_c(collapse='. ')
+  }
+
+#Collapsing the lists.
+selecttable$'Example(s) of drugs:' <- map(selecttable[,2], blep)
+selecttable$'Indication(s):' <- map(selecttable[,3], blep)
+selecttable$'Important PC/PD' <- map(selecttable[,4], blep)
+selecttable$'Mechanism of action:' <- map(selecttable[,5], blep)
+selecttable$'Patient information:' <- map(selecttable[,6], blep)
+selecttable$'Side effects:' <- map(selecttable[,7], blep)
+
+#Removing nill
+selecttable$'Important PC/PD' <- replace_na(selecttable$'Important PC/PD')
+selecttable$'Mechanism of action:' <- replace_na(selecttable$'Mechanism of action:')
+selecttable$'Patient information:' <- replace_na(selecttable$'Patient information:')
+selecttable$'Side effects:' <- replace_na(selecttable$'Side effects:')
+```
+
+Format again by drug class.
+```{r}
+# split the dataset, creating a df for each category from the variable you'll use to group the rows
+split_Table <- selecttable %>%
+                split(.$class) %>%
+                discard(function(x) nrow(x) == 0) %>%
+                map(., ~ select(., -class)) # remove class from split dfs
+
+num_rows <- map(1:length(names(split_Table)), function(x){
+             nrow(split_Table[[x]]) 
+            }) %>% unlist()  # create function to count frequency of each category
+```
+
+Make the HTML table.
+```{r}
+Table <- split_Table %>%
+ bind_rows() %>%
+ kable("html", align = "c") %>%
+ kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+ group_rows(index = setNames(num_rows, names(split_Table)),
+            label_row_css = "background-color: #666; color: #fff;") %>%
+  footnote(general_title = "Other Information:",
+           number = unlist(totaldataframe$'Other information:'),
+           )
+```
+
+Export the table.
+```{r}
+save_kable(Table, file = "table.html", self_contained = T)
+```
+
+```{r, echo=FALSE}
+Table
+```
+
+```{r, include = FALSE}
+#Export info for 'Table export toc.Rmd'
+save(split_Table, file="split_Table.Rda")
+
+otherinfo <- totaldataframe %>%
+  select('Other information:', 'class') %>%
+                split(.$class) %>%
+                discard(function(x) nrow(x) == 0) %>%
+                map(., ~ select(., -class))
+save(otherinfo, file="otherinfo.Rda")
+```

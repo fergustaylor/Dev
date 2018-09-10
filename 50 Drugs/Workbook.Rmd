@@ -1,5 +1,6 @@
 ---
 title: "50 Drugs"
+output: html_document
 ---
 
 ```{r, warning=FALSE, message=FALSE}
@@ -12,17 +13,19 @@ library(knitr)
 ```
 
 #Log in and collect the links
-```{r, tidy.opts=TRUE, message=FALSE}
+```{r, tidy.opts=TRUE, message=FALSE, warning=FALSE}
 fiftydrugs <- html_session("https://moodle.gla.ac.uk/login/index.php")
 ```
 
+```{r, eval=FALSE}
 login <- fiftydrugs %>% 
   html_node("form") %>% 
   html_form() %>%
   set_values(username = "username", password = "password") 
 login$url <- "https://moodle.gla.ac.uk/login/index.php"
+```
 
-```{r}
+```{r, include=FALSE}
 source("dontinclude/script.R")
 ```
 
@@ -148,7 +151,6 @@ https://github.com/rstudio/webinars/blob/master/32-Web-Scraping/navigation-and-a
 Add moodle data to individual drug page data
 ```{r}
 totaldataframe <- cbind(table, dataframe)
-head(totaldataframe)
 ```
 
 Export data
@@ -170,19 +172,19 @@ totaldataframe %>%
 totaldataframe %>%
   jsonlite::toJSON() %>%
   write(file="drugs.json")
+```
 
+```{r, include=FALSE}
 #encoding to csv not sorted yet
 #dataframeNamecsv <- str_c("archive/", Datestamp) %>%
 #  str_replace_all(" ", "") %>%
 #  str_c("drugs.csv")
 #write.csv(totaldataframe, dataframeNamecsv)
 #write.csv(totaldataframe, "drugs.csv")
-```
 
-//////////////////
-//////////////////
-Extra data I might need
-```{r}
+#//////////////////
+#//////////////////
+#Extra data I might need
 #html_text(example)[which(examplelist == "h4")]
 #should always be 7
 #examplelist == "h4"
