@@ -1,19 +1,10 @@
----
-title: "50 Drugs"
-output: 
-  html_document:
-    keep_md: yes
-    toc: true
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-  html_notebook: default
+50 Drugs
+================
 
----
+Load libraries
+--------------
 
-##Load libraries
-
-```r
+``` r
 library(rvest)
 library(magrittr)
 library(stringr)
@@ -22,9 +13,10 @@ library(tidyverse)
 library(knitr)
 ```
 
-##Log-in and collect the links
+Log-in and collect the links
+----------------------------
 
-```r
+``` r
 fiftydrugs <- html_session("https://moodle.gla.ac.uk/login/index.php")
 
 login <- fiftydrugs %>% 
@@ -40,9 +32,10 @@ data <- fiftydrugs %>%
   html_nodes(".defaulttemplate p")
 ```
 
-##Separate the links
+Separate the links
+------------------
 
-```r
+``` r
 links <- ""
 for (i in 1:length(data)){
   links[i] <- data[[i]] %>%
@@ -67,9 +60,10 @@ table <- data_frame(class, drug, links)
 rm(titles, class, drug, i, links)
 ```
 
-##Follow every link
+Follow every link
+-----------------
 
-```r
+``` r
 linksdata <- ""
 
 datacomplete <- fiftydrugs %>% 
@@ -91,22 +85,21 @@ linksdata[[i]] <- datacomplete %>%
 rm(i)
 ```
 
-
-```r
+``` r
 #function
 splitAt <- function(x, pos) split(x, cumsum(seq_along(x) %in% pos))
 ```
 
-
-```r
+``` r
 listdataframe <- linksdata
 #remove unnecessary objects
 rm(data, datacomplete, fiftydrugs, login, linksdata)
 ```
 
-##Rewrite linksdata into linksdataframe
+Rewrite linksdata into linksdataframe
+-------------------------------------
 
-```r
+``` r
 #searches through the drug page, and selects the relevant parts
 for (i in 1:length(table$links)){
 subset <- listdataframe[[i]] %>%
@@ -135,9 +128,10 @@ listdataframe[[i]][[7]] <- list(listdataframe[[i]][[7]][-1])
 rm(i, examplelist, exampletext, subset, splitAt)
 ```
 
-##Split into dataframe
+Split into dataframe
+--------------------
 
-```r
+``` r
 dataframe <- data_frame(listdataframe)
 
 clearit <- function(x) {
@@ -155,85 +149,33 @@ dataframe <- example
 rm(example, i, clearit, listdataframe)
 ```
 
-https://github.com/rstudio/webinars/blob/master/32-Web-Scraping/navigation-and-authentication.md
+<https://github.com/rstudio/webinars/blob/master/32-Web-Scraping/navigation-and-authentication.md>
 
-##Add moodle data to individual drug page data
+Add moodle data to individual drug page data
+--------------------------------------------
 
-```r
+``` r
 totaldataframe <- cbind(table, dataframe)
 head(totaldataframe)
 ```
 
+    ## # A tibble: 6 x 10
+    ##   class  drug    links  `Example(s) of … `Mechanism of a… `Indication(s):`
+    ##   <chr>  <chr>   <chr>  <list>           <list>           <list>          
+    ## 1 Haema…  Anti-… https… <chr [1]>        <chr [4]>        <chr [2]>       
+    ## 2 Haema…  Anti-… https… <chr [1]>        <chr [3]>        <chr [1]>       
+    ## 3 Haema…  Recom… https… <chr [2]>        <chr [3]>        <chr [3]>       
+    ## 4 Haema…  Hepar… https… <chr [1]>        <chr [4]>        <chr [3]>       
+    ## 5 Haema…  Hepar… https… <chr [1]>        <chr [4]>        <chr [3]>       
+    ## 6 Haema…  Vitam… https… <chr [1]>        <chr [3]>        <chr [2]>       
+    ## # ... with 4 more variables: `Side effects:` <list>, `Important
+    ## #   pharmacokinetics / pharmacodynamics:` <list>, `Patient
+    ## #   information:` <list>, `Other information:` <list>
 
-```
-##            class                                              drug
-## 1 Haematological                              Anti-Platelet Drugs 
-## 2 Haematological                              Anti-Platelet Drugs 
-## 3 Haematological  Recombinant Tissue Plasminogen Activator (rtPA) 
-## 4 Haematological                                         Heparins 
-## 5 Haematological                                         Heparins 
-## 6 Haematological                            Vitamin K Antagonists 
-##                                                        links
-## 1 https://moodle.gla.ac.uk/mod/data/view.php?d=424&rid=29277
-## 2 https://moodle.gla.ac.uk/mod/data/view.php?d=424&rid=29278
-## 3 https://moodle.gla.ac.uk/mod/data/view.php?d=424&rid=29279
-## 4 https://moodle.gla.ac.uk/mod/data/view.php?d=424&rid=29280
-## 5 https://moodle.gla.ac.uk/mod/data/view.php?d=424&rid=29281
-## 6 https://moodle.gla.ac.uk/mod/data/view.php?d=424&rid=29282
-##             Example(s) of drugs:
-## 1 Acetylsalicylic acid (Aspirin)
-## 2                    Clopidogrel
-## 3        Tenecteplase, Alteplase
-## 4         Unfractionated Heparin
-## 5   Low Molecular Weight Heparin
-## 6                       Warfarin
-##                                                                                                                                                                                                                                                                                                                                  Mechanism of action:
-## 1 Irreversible inactivation of cyclooxygenase (COX) enzyme., This reduces platelet thromboxane (TXA2) production and endothelial prostaglandin (PGI2) production., Reduced platelet thromboxane production reduces platelet aggregation and thrombus formation, Reduced prostaglandin synthesis decreases nociceptive sensitisation and inflammation.
-## 2                                                                                                                                                          Irreversibly blocks the ADP-receptor on platelet cell membranes., Consequently inhibits formation of GPIIb/IIIa complex, required for platelet aggregation., Decreased thrombus formation.
-## 3                                                                                                                                                                                                                        Recombinant form of tissue plasminogen activator, Catalyses conversion of plasminogen to plasmin, Promotes fibrin clot lysis
-## 4                                                                                                                                                      Enhances activity of antithrombin III., Antithrombin III inhibits thrombin., Heparins also inhibit multiple other factors of the coagulation cascade., This produces its anticoagulant effect.
-## 5                                                                                                                                                      Enhances activity of antithrombin III., Antithrombin III inhibits thrombin., Heparins also inhibit multiple other factors of the coagulation cascade., This produces its anticoagulant effect.
-## 6                                                                                                                                                                  Inhibits vitamin K epoxide reductase., Prevents recycling of vitamin K to reduced form after carboxylation of coagulation factors II, VII, IX and X., Prevents thrombus formation.
-##                                                                                                                                                           Indication(s):
-## 1                                                                                                                 Secondary prevention of thrombotic events, Pain relief
-## 2                                                                                                                              Secondary prevention of thrombotic events
-## 3                                           Acute ischaemic stroke within 4.5 hours of onset, Myocardial infarction within 12 hours of onset, Massive pulmonary embolism
-## 4 Treatment and prophylaxis of thromboembolic diseases, including induction of vitamin K antagonists., Renal dialysis (haemodialysis), Acute Coronary Syndrome treatment
-## 5 Treatment and prophylaxis of thromboembolic diseases, including induction of vitamin K antagonists., Renal dialysis (haemodialysis), Acute Coronary Syndrome treatment
-## 6                                                                Treatment of venous thromboembolism, Thromboprophylaxis in: AF / metallic heart valves / cardiomyopathy
-##                                                                                                                                                                              Side effects:
-## 1                                                                                       Bleeding (<1% Patients), Peptic ulceration, Angiooedema, Bronchospasm, Reye’s syndrome (very rare)
-## 2                                                                                                             Bleeding (1-10% of Patients), Abdominal pain / diarrhoea (1-10% of Patients)
-## 3                                                                                                                                           Bleeding, Allergic reaction / angiooedema (1%)
-## 4                                                                                 Bleeding (Major haemorrhage risk can be as high as 3.5%), Heparin-induced thrombocytopenia, Osteoporosis
-## 5 Bleeding (Major haemorrhage risk can be as high as 3.5%), Heparin-induced thrombocytopenia (Less risk than unfractionated heparin), Osteoporosis (Less risk than unfractionated heparin)
-## 6                                                                                                           Bleeding (risk increases with increasing INR), Warfarin necrosis, Osteoporosis
-##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Important pharmacokinetics / pharmacodynamics:
-## 1                                                                                                                                                                                                                                                                                                                                                                                                                                                Half life becomes longer with very large doses (pharmacokinetics may be non-linear in overdose)
-## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Avoid in liver failure
-## 3                                                                                                                                                                                                                                                                                                                                                                Bolus-infusion regimen is used for alteplase , Tenecteplase is given as a single bolus, Pharmacodynamic interactions with other blood thinners (antiplatelets / anticoagulants)
-## 4 Administered by continuous intravenous infusion or subcutaneous injection, Complex kinetics  - non-linear relationship between dose / half-life and effect – needs TDM, Effect monitored using activated partial thromboplastin time (aPTT), Anticoagulant effect can be reversed with protamine., Unfractionated heparin has a shorter duration of action than LMW Heparin., Used in preference to LMW Heparin, in selected patients, due to the shorter duration of action and reversability with protamine (for example, Peri-operatively.)
-## 5                                                                                                           Subcutaneous injection, More predictable dose-response relationship than Unfractionated Heparin., 2-4 times longer plasma half-life than Unfractionated Heparin, Clearance is mostly via a renal pathway, thus the half-life can be prolonged in patients with renal failure, so dose adjustment may be needed., Regular coagulation monitoring is not required., Less readily reversed with protamine, than Unfractionated Heparin.
-## 6                                                                                                                                                                                                                                                                     Numerous drug interactions / food interactions, Reversal by giving vitamin K, Polymorphisms in key metabolising enzymes (VKORC1 and CYP2C9), Needs therapeutic drug monitoring and monitored loading regimen, Monitored with INR and dose adjusted according to indication
-##                                                                                                                                                                    Patient information:
-## 1                                 Avoid over the counter preparations that contain aspirin., Some patients may be advised to take a Proton Pump Inhibitor alongside long-term aspirin. 
-## 2 Patients may be advised to stop clopidogrel before surgical procedures., Patients should not stop clopidogrel without consulting their doctor if they have an arterial stent in-situ.
-## 3                         When using thrombolytic drugs, patients should be made aware of the risk-benefit ratio, which should include reference to the rate of bleeding complications.
-## 4                                                                                                                                   Risk of bleeding, Regular blood monitoring required
-## 5                                               Risk of bleeding, Requires injection, Will need blood testing in prolonged therapy (Full Blood Count, to monitor for thrombocytopenia).
-## 6       Need for compliance / attendance at visits for monitoring, Care needed with alcohol, Must inform doctor before starting new drugs – avoid over the counter aspirin preparations
-##   Other information:
-## 1                   
-## 2                   
-## 3                   
-## 4                   
-## 5                   
-## 6
-```
+Export the data
+---------------
 
-##Export the data
-
-```r
+``` r
 Datestamp <- Sys.Date()
 
 dataframeName <- str_c("archive/", Datestamp) %>%

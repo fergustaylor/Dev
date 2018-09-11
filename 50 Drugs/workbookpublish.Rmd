@@ -1,14 +1,15 @@
 ---
 title: "50 Drugs"
 output: 
+  github_document: default
+  html_notebook: default
+  pdf_document: default
   html_document:
     keep_md: yes
     toc: true
     toc_float:
       collapsed: false
       smooth_scroll: false
-  html_notebook: default
-
 ---
 
 ##Load libraries
@@ -157,7 +158,7 @@ head(totaldataframe)
 
 ```{r, echo=FALSE}
 load("drugs.Rda")
-head(totaldataframe)
+head(tibble::as_tibble(totaldataframe))
 ```
 
 ##Export the data
