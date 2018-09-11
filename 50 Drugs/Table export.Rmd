@@ -81,6 +81,7 @@ Table
 ```{r, include = FALSE}
 #Export info for 'Table export toc.Rmd'
 save(split_Table, file="split_Table.Rda")
+save(Table, file="Table.Rda")
 
 otherinfo <- totaldataframe %>%
   select('Other information:', 'class') %>%

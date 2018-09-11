@@ -1,0 +1,258 @@
+---
+output:
+  html_notebook: default
+  html_document:
+    toc: true
+    toc_float: true
+    css: css/table.css
+---
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+```
+
+
+#Anti-infectives
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$`Anti-infectives`, otherinfo$`Anti-infectives`, names(split_Table)[1])
+```
+
+
+#Cardiovascular
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$Cardiovascular, otherinfo$Cardiovascular, names(split_Table)[2])
+```
+
+
+#Endocrine
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$Endocrine, otherinfo$Endocrine, names(split_Table)[3])
+```
+
+
+#Gastrointestinal
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$Gastrointestinal, otherinfo$Gastrointestinal, names(split_Table)[4])
+```
+
+
+#Haematological
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$Haematological, otherinfo$Haematological, names(split_Table)[5])
+```
+
+
+#Immuno-modulators
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$`Immuno-modulators`, otherinfo$`Immuno-modulators`, names(split_Table)[6])
+```
+
+
+#Musculoskeletal and Pain
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$`Musculoskeletal and Pain`, otherinfo$`Musculoskeletal and Pain`, names(split_Table)[7])
+```
+
+
+#Neurology/Psychiatry
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$`Neurology/Psychiatry`, otherinfo$`Neurology/Psychiatry`, names(split_Table)[8])
+```
+
+
+#Renal
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$Renal, otherinfo$Renal, names(split_Table)[9])
+```
+
+
+#Respiratory
+```{r, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y, z) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+    group_rows(z, 1, nrow(x),
+            label_row_css = "background-color: #666; color: #fff;")
+  
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+tableit(split_Table$Respiratory, otherinfo$Respiratory, names(split_Table)[10])
+```
