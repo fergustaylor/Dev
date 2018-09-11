@@ -1,9 +1,18 @@
 ---
 title: "50 Drugs"
-output: html_document
+output: 
+  html_document:
+    keep_md: yes
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+  html_notebook: default
+
 ---
 
-```{r, warning=FALSE, message=FALSE}
+##Load libraries
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
 library(rvest)
 library(magrittr)
 library(stringr)
@@ -12,24 +21,16 @@ library(tidyverse)
 library(knitr)
 ```
 
-#Log in and collect the links
-```{r, tidy.opts=TRUE, message=FALSE, warning=FALSE}
+##Log-in and collect the links
+```{r, tidy.opts=TRUE, message=FALSE, warning=FALSE, eval=FALSE}
 fiftydrugs <- html_session("https://moodle.gla.ac.uk/login/index.php")
-```
 
-```{r, eval=FALSE}
 login <- fiftydrugs %>% 
   html_node("form") %>% 
   html_form() %>%
   set_values(username = "username", password = "password") 
 login$url <- "https://moodle.gla.ac.uk/login/index.php"
-```
 
-```{r, include=FALSE}
-source("dontinclude/script.R")
-```
-
-```{r}
 data <- fiftydrugs %>% 
   submit_form(login, submit = '<unnamed>') %>%
   jump_to("https://moodle.gla.ac.uk/mod/data/view.php?d=424") %>%
@@ -37,8 +38,8 @@ data <- fiftydrugs %>%
   html_nodes(".defaulttemplate p")
 ```
 
-#Separate the links
-```{r}
+##Separate the links
+```{r, eval=FALSE}
 links <- ""
 for (i in 1:length(data)){
   links[i] <- data[[i]] %>%
@@ -63,8 +64,8 @@ table <- data_frame(class, drug, links)
 rm(titles, class, drug, i, links)
 ```
 
-Follow every link
-```{r, tidy.opts=TRUE, warning=FALSE}
+##Follow every link
+```{r, tidy.opts=TRUE, warning=FALSE, eval=FALSE}
 linksdata <- ""
 
 datacomplete <- fiftydrugs %>% 
@@ -86,19 +87,19 @@ linksdata[[i]] <- datacomplete %>%
 rm(i)
 ```
 
-```{r}
+```{r, eval=FALSE}
 #function
 splitAt <- function(x, pos) split(x, cumsum(seq_along(x) %in% pos))
 ```
 
-```{r}
+```{r, eval=FALSE}
 listdataframe <- linksdata
 #remove unnecessary objects
 rm(data, datacomplete, fiftydrugs, login, linksdata)
 ```
 
-Rewrite linksdata into linksdataframe
-```{r}
+##Rewrite linksdata into linksdataframe
+```{r, eval=FALSE}
 #searches through the drug page, and selects the relevant parts
 for (i in 1:length(table$links)){
 subset <- listdataframe[[i]] %>%
@@ -127,8 +128,8 @@ listdataframe[[i]][[7]] <- list(listdataframe[[i]][[7]][-1])
 rm(i, examplelist, exampletext, subset, splitAt)
 ```
 
-Split into dataframe
-```{r}
+##Split into dataframe
+```{r, eval=FALSE}
 dataframe <- data_frame(listdataframe)
 
 clearit <- function(x) {
@@ -148,14 +149,19 @@ rm(example, i, clearit, listdataframe)
 
 https://github.com/rstudio/webinars/blob/master/32-Web-Scraping/navigation-and-authentication.md
 
-Add moodle data to individual drug page data
-```{r}
+##Add moodle data to individual drug page data
+```{r, eval=FALSE}
 totaldataframe <- cbind(table, dataframe)
 head(totaldataframe)
 ```
 
-Export data
-```{r}
+```{r, echo=FALSE}
+load("drugs.Rda")
+head(totaldataframe)
+```
+
+##Export the data
+```{r, eval=FALSE}
 Datestamp <- Sys.Date()
 
 dataframeName <- str_c("archive/", Datestamp) %>%
@@ -173,21 +179,4 @@ totaldataframe %>%
 totaldataframe %>%
   jsonlite::toJSON() %>%
   write(file="drugs.json")
-```
-
-```{r, include=FALSE}
-#encoding to csv not sorted yet
-#dataframeNamecsv <- str_c("archive/", Datestamp) %>%
-#  str_replace_all(" ", "") %>%
-#  str_c("drugs.csv")
-#write.csv(totaldataframe, dataframeNamecsv)
-#write.csv(totaldataframe, "drugs.csv")
-
-#//////////////////
-#//////////////////
-#Extra data I might need
-#html_text(example)[which(examplelist == "h4")]
-#should always be 7
-#examplelist == "h4"
-#which(examplelist == "h4")
 ```
