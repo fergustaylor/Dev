@@ -16,5 +16,5 @@ iframe {
 }
 </style>
 
-<iframe src="./table.html">
+<iframe src="../table.html">
 </iframe>
