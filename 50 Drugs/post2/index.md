@@ -16,5 +16,5 @@ iframe {
 }
 </style>
 
-<iframe src="./Table%20export%20toc.nb.html">
-</iframe> 
+<iframe src="./table.html">
+</iframe>
