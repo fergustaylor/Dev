@@ -1,0 +1,33 @@
+---
+title: "Ebola Humanitarian Data Exchange"
+output: github_document
+---
+
+Working on Ebola data from the Humanitarian Data Exchange.
+
+Working on these [datasets](https://data.humdata.org/ebola)
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+library(leaflet)
+```
+
+```{r, warning=FALSE, message=FALSE}
+#https://data.humdata.org/dataset/ebola-cases-2014
+data <- read_csv("ebola_data_db_format.csv")
+data2 <- read_xls("ebola-cases-and-deaths-who-gar-sitrep.xls")
+data3 <- read_xlsx("ebola_data_db_format.xlsx")
+```
+
+```{r}
+unique(data3$Indicator)
+```
+
+```{r, eval=FALSE, include=FALSE}
+leaflet()
+```
+
+Using the [hdxr package](https://callumgwtaylor.github.io/hdxr/) to load in Ebola data.
+Based on this [article](https://callumgwtaylor.github.io/blog/2017/07/03/cholera-in-yemen/) by Callum Taylor.
+
