@@ -1,5 +1,6 @@
 ---
 title: "GGanimate"
+output: md_document
 ---
 
 ```{r}

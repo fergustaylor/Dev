@@ -33,10 +33,17 @@ Making a gallery/slideshow element.
 
 # [Ebola](https://fergustaylor.github.io/Dev/Ebola)
 
+<img src="./Ebola/image.png" alt="" style="width:100%;height:auto;">
+
 # [Foundation](https://fergustaylor.github.io/Dev/Foundation)
+
+<img src="./Foundation/image.png" alt="" style="width:100%;height:auto;">
 
 # [R2D3](https://fergustaylor.github.io/Dev/r2d3)
 
+<img src="./r2d3/image.jpeg" alt="" style="width:100%;height:auto;">
+
 # [D3](https://fergustaylor.github.io/Dev/D3)
 
+<img src="./D3/image.png" alt="" style="width:100%;height:auto;">
 
