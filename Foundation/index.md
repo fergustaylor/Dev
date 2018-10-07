@@ -15,6 +15,7 @@ Load in Libraries
 ``` r
 library(tabulizer)
 library(tidyverse)
+library(kableExtra)
 ```
 
 Load in Tables
@@ -28,14 +29,89 @@ data <- extract_tables(pdf, output = "data.frame", header = TRUE)
 Index
 =====
 
-    ##   Table                                                       Title Page
-    ## 1   1.1                                              AFP Fill Rates    6
-    ## 2   1.2 Local AFP Applications and FP Preferences by Medical School    7
-    ## 3   2.1                                          Applications to FP    8
-    ## 4   2.2                  Applicant profile comparison 2016 and 2017    8
-    ## 5   2.3                   Reserve List Applicants by Medical School    9
-    ## 6   2.4                  Special Circumstances Granted by Criterion    9
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Table
+</th>
+<th style="text-align:left;">
+Title
+</th>
+<th style="text-align:right;">
+Page
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1.1
+</td>
+<td style="text-align:left;">
+AFP Fill Rates
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.2
+</td>
+<td style="text-align:left;">
+Local AFP Applications and FP Preferences by Medical School
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2.1
+</td>
+<td style="text-align:left;">
+Applications to FP
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2.2
+</td>
+<td style="text-align:left;">
+Applicant profile comparison 2016 and 2017
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2.3
+</td>
+<td style="text-align:left;">
+Reserve List Applicants by Medical School
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2.4
+</td>
+<td style="text-align:left;">
+Special Circumstances Granted by Criterion
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+</tbody>
+</table>
 Table: 1.2: Local AFP Applications and FP Preferences by Medical School
 =======================================================================
 
@@ -47,88 +123,386 @@ example1 <- data[[4]] %>%
   rename("% Applied to Local AUoA" = X.1) %>%
   rename("Number Preferenced Home UoA" = Number.1) %>%
   rename("% Preferenced Home UoA" = X.) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example1
 ```
 
-    ##   Number Applied to Local AUoA % Applied to Local AUoA
-    ## 1                           30                     75%
-    ##   Number Preferenced Home UoA % Preferenced Home UoA
-    ## 1                         215                    78%
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Number Applied to Local AUoA
+</th>
+<th style="text-align:left;">
+% Applied to Local AUoA
+</th>
+<th style="text-align:left;">
+Number Preferenced Home UoA
+</th>
+<th style="text-align:left;">
+% Preferenced Home UoA
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+30
+</td>
+<td style="text-align:left;">
+75%
+</td>
+<td style="text-align:left;">
+215
+</td>
+<td style="text-align:left;">
+78%
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.7: Local Applications by Medical School
 ===============================================
 
-    ##   Number Applied Number who Preferenced Home UoA
-    ## 1            275                             215
-    ##   % who Preferenced Home UoA
-    ## 1                        78%
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Number Applied
+</th>
+<th style="text-align:left;">
+Number who Preferenced Home UoA
+</th>
+<th style="text-align:left;">
+% who Preferenced Home UoA
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+275
+</td>
+<td style="text-align:left;">
+215
+</td>
+<td style="text-align:left;">
+78%
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.8: FP Programme Preferences
 ===================================
 
-    ##   Number of Applicants who Preferenced UoA First
-    ## 1                                            865
-    ##   Number of Applicants who Preferenced UoA Second
-    ## 1                                             331
-    ##   Number of Applicants who Preferenced UoA Third
-    ## 1                                            233
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Number of Applicants who Preferenced UoA First
+</th>
+<th style="text-align:left;">
+Number of Applicants who Preferenced UoA Second
+</th>
+<th style="text-align:left;">
+Number of Applicants who Preferenced UoA Third
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+865
+</td>
+<td style="text-align:left;">
+331
+</td>
+<td style="text-align:left;">
+233
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.9: FP Total Scores by Medical School
 ============================================
 
-    ##   FP 2016: SJT + EPM (deciles) (Max. score: 100)
-    ## 1                         79.68 6.12 95.15 65.54
-    ##   FP 2017: SJT + EPM (deciles) (Max. score: 100)
-    ## 1                         78.20 5.31 88.06 63.59
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+FP 2016: SJT + EPM (deciles) (Max. score: 100)
+</th>
+<th style="text-align:left;">
+FP 2017: SJT + EPM (deciles) (Max. score: 100)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+79.68 6.12 95.15 65.54
+</td>
+<td style="text-align:left;">
+78.20 5.31 88.06 63.59
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.10: Application Results by Medical School
 =================================================
 
-    ##   Number Applied Number Applied to FP (excl. AFP Offers)
-    ## 1            275                                     256
-    ##   Percentage of Total Applicants in FP Allocation
-    ## 1                                             93%
-    ##   Allocated to Primary List Percentage Allocated to Primary List
-    ## 1                       254                                  99%
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Number Applied
+</th>
+<th style="text-align:left;">
+Number Applied to FP (excl. AFP Offers)
+</th>
+<th style="text-align:left;">
+Percentage of Total Applicants in FP Allocation
+</th>
+<th style="text-align:left;">
+Allocated to Primary List
+</th>
+<th style="text-align:left;">
+Percentage Allocated to Primary List
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+275
+</td>
+<td style="text-align:left;">
+256
+</td>
+<td style="text-align:left;">
+93%
+</td>
+<td style="text-align:left;">
+254
+</td>
+<td style="text-align:left;">
+99%
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.11: Preference Allocation Results Information by Medical School
 =======================================================================
 
-    ##   Number Allocated to First Preference % Allocated to First Preference
-    ## 1                                  215                             85%
-    ##   Number Allocated to Top 5 Preference
-    ## 1                                  244
-    ##   Percentage Allocated to Top 5 Preference
-    ## 1                                      96%
-    ##   Percentage Allocated Lower than Top 5 Preference
-    ## 1                                               4%
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Number Allocated to First Preference
+</th>
+<th style="text-align:left;">
+% Allocated to First Preference
+</th>
+<th style="text-align:left;">
+Number Allocated to Top 5 Preference
+</th>
+<th style="text-align:left;">
+Percentage Allocated to Top 5 Preference
+</th>
+<th style="text-align:left;">
+Percentage Allocated Lower than Top 5 Preference
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+215
+</td>
+<td style="text-align:left;">
+85%
+</td>
+<td style="text-align:left;">
+244
+</td>
+<td style="text-align:left;">
+96%
+</td>
+<td style="text-align:left;">
+4%
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.12: FP Application Results by Foundation School
 =======================================================
 
-    ##   Places 1st pref apps % 1st pref apps Non-1st pref spaces
-    ## 1    792           785             99%                   7
-    ##   No. allocated via spec circs % allocated via spec circs
-    ## 1                           11                         1%
-    ##   No. allocated to 1st pref No. allocated to top 5 prefs
-    ## 1                       740                          778
-    ##   % allocated to 1st pref % allocated to top 5 prefs Lowest pref allocated
-    ## 1                     93%                        98%                    11
-    ##   Lowest allocated score (excluding s/c) Lowest s/c allocated score
-    ## 1                                  70.74                      70.53
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Places
+</th>
+<th style="text-align:left;">
+1st pref apps
+</th>
+<th style="text-align:left;">
+% 1st pref apps
+</th>
+<th style="text-align:left;">
+Non-1st pref spaces
+</th>
+<th style="text-align:left;">
+No. allocated via spec circs
+</th>
+<th style="text-align:left;">
+% allocated via spec circs
+</th>
+<th style="text-align:left;">
+No. allocated to 1st pref
+</th>
+<th style="text-align:left;">
+No. allocated to top 5 prefs
+</th>
+<th style="text-align:left;">
+% allocated to 1st pref
+</th>
+<th style="text-align:left;">
+% allocated to top 5 prefs
+</th>
+<th style="text-align:left;">
+Lowest pref allocated
+</th>
+<th style="text-align:left;">
+Lowest allocated score (excluding s/c)
+</th>
+<th style="text-align:left;">
+Lowest s/c allocated score
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+792
+</td>
+<td style="text-align:left;">
+785
+</td>
+<td style="text-align:left;">
+99%
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1%
+</td>
+<td style="text-align:left;">
+740
+</td>
+<td style="text-align:left;">
+778
+</td>
+<td style="text-align:left;">
+93%
+</td>
+<td style="text-align:left;">
+98%
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+70.74
+</td>
+<td style="text-align:left;">
+70.53
+</td>
+</tr>
+</tbody>
+</table>
 Table 2.13: SJT scores by medical school (max. score = 50). SJT scores were scaled according to the distribution of EPM decile scores
 =====================================================================================================================================
 
-    ##   FP 2014: SJT Score (only) FP 2015: SJT Score (only)
-    ## 1    38.93 3.82 47.22 26.08    38.56 3.31 48.25 25.17
-    ##   FP 2016: SJT Score (only) FP 2017: SJT Score (only)
-    ## 1    39.59 4.36 49.15 26.92  39.77 3.70 48.017 26.142
-
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+FP 2014: SJT Score (only)
+</th>
+<th style="text-align:left;">
+FP 2015: SJT Score (only)
+</th>
+<th style="text-align:left;">
+FP 2016: SJT Score (only)
+</th>
+<th style="text-align:left;">
+FP 2017: SJT Score (only)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+38.93 3.82 47.22 26.08
+</td>
+<td style="text-align:left;">
+38.56 3.31 48.25 25.17
+</td>
+<td style="text-align:left;">
+39.59 4.36 49.15 26.92
+</td>
+<td style="text-align:left;">
+39.77 3.70 48.017 26.142
+</td>
+</tr>
+</tbody>
+</table>
 Table 3.3: Applications by Medical School
 =========================================
 
-    ##   Number Applied for AFP Number Offered AFP % Offered AFP
-    ## 1                     40                 25           63%
-    ##   Number Accepted Offer % Accepted Offer
-    ## 1                    19              76%
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Number Applied for AFP
+</th>
+<th style="text-align:left;">
+Number Offered AFP
+</th>
+<th style="text-align:left;">
+% Offered AFP
+</th>
+<th style="text-align:left;">
+Number Accepted Offer
+</th>
+<th style="text-align:left;">
+% Accepted Offer
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+40
+</td>
+<td style="text-align:left;">
+25
+</td>
+<td style="text-align:left;">
+63%
+</td>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+76%
+</td>
+</tr>
+</tbody>
+</table>

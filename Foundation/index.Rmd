@@ -1,6 +1,7 @@
 ---
 title: "Foundation"
 output: github_document
+always_allow_html: yes
 ---
 
 Working on FPO data, as published in the [UK Foundation Programme](http://www.foundationprogramme.nhs.uk/content/reports), "Recruitment Stats and Facts, Interim Report April 2017".
@@ -17,6 +18,7 @@ I would say it's been worth the effort however.
 ```{r, message=FALSE, warning=FALSE}
 library(tabulizer)
 library(tidyverse)
+library(kableExtra)
 ```
 
 # Load in Tables
@@ -28,7 +30,9 @@ data <- extract_tables(pdf, output = "data.frame", header = TRUE)
 # Index
 ```{r, echo=FALSE}
 data[[2]] %>%
-  head
+  head %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
 # Table: 1.2: Local AFP Applications and FP Preferences by Medical School
@@ -40,7 +44,9 @@ example1 <- data[[4]] %>%
   rename("% Applied to Local AUoA" = X.1) %>%
   rename("Number Preferenced Home UoA" = Number.1) %>%
   rename("% Preferenced Home UoA" = X.) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example1
 ```
 
 # Table 2.7: Local Applications by Medical School
@@ -51,7 +57,9 @@ example2 <- data[[10]] %>%
   rename("Number Applied" = X.1) %>%
   rename("Number who Preferenced Home UoA" = Number.who) %>%
   rename("% who Preferenced Home UoA" = X..who) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example2
 ```
 
 # Table 2.8: FP Programme Preferences
@@ -63,7 +71,9 @@ example3 <- data[[11]] %>%
 Number.of) %>%
   rename("Number of Applicants who Preferenced UoA Second" = Number.of.1) %>%
   rename("Number of Applicants who Preferenced UoA Third" = Number.of.2) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example3
 ```
 
 # Table 2.9: FP Total Scores by Medical School
@@ -73,9 +83,11 @@ example4 <- data[[12]] %>%
   select(-X) %>%
   rename("FP 2016: SJT + EPM (deciles) (Max. score: 100)" = FP.2016..SJT...EPM) %>%
   rename("FP 2017: SJT + EPM (deciles) (Max. score: 100)" = FP.2017..SJT...EPM) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
 #c("Ave", "Std. Dev.", "Max", "Min")
+example4
 ```
 
 # Table 2.10: Application Results by Medical School
@@ -88,7 +100,9 @@ example5 <- data[[13]] %>%
   rename("Percentage of Total Applicants in FP Allocation" = Percentage) %>%
   rename("Allocated to Primary List" = X.3) %>%
   rename("Percentage Allocated to Primary List" = X.4) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example5
 ```
 
 # Table 2.11: Preference Allocation Results Information by Medical School
@@ -101,7 +115,9 @@ example6 <- data[[14]] %>%
   rename("Number Allocated to Top 5 Preference" = X.3) %>%
   rename("Percentage Allocated to Top 5 Preference" = X.4) %>%
   rename("Percentage Allocated Lower than Top 5 Preference" = Percentage) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example6
 ```
 
 # Table 2.12: FP Application Results by Foundation School
@@ -122,7 +138,9 @@ example7 <- data[[15]] %>%
   rename("Lowest pref allocated" = X.8) %>%
   rename("Lowest allocated score (excluding s/c)" = Lowest) %>%
   rename("Lowest s/c allocated score" = X.9) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+example7
 ```
 
 # Table 2.13: SJT scores by medical school (max. score = 50). SJT scores were scaled according to the distribution of EPM decile scores
@@ -134,14 +152,16 @@ example8 <- data[[17]] %>%
   rename("FP 2015: SJT Score (only)" = FP.2015..SJT.Score..only.) %>%
   rename("FP 2016: SJT Score (only)" = FP.2016..SJT.Score..only.) %>%
   rename("FP 2017: SJT Score (only)" = FP.2017..SJT.Score..only..) %>%
-  print()
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 
 #c("Ave", "SD", "Max", "Min")
+example8
 ```
 
 # Table 3.3: Applications by Medical School
 ```{r, echo=FALSE}
-example8 <- data[[22]] %>%
+example9 <- data[[22]] %>%
   filter(X == "University of Glasgow") %>%
   select(-c(X)) %>%
   rename("Number Applied for AFP" = Number) %>%
@@ -149,7 +169,8 @@ example8 <- data[[22]] %>%
   rename("% Offered AFP" = X.) %>%
   rename("Number Accepted Offer" = Number.2) %>%
   rename("% Accepted Offer" = X..1) %>%
-  print()
-
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 #c("Ave", "SD", "Max", "Min")
+example9
 ```
