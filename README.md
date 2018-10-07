@@ -1,5 +1,4 @@
 This is the index for 'Dev', a Github repository for smaller projects I'm working on.
-To go back to the main site, click [here.](https://fergustaylor.github.io)
 
 # [Search](https://fergustaylor.github.io/Dev/Search)
 Using [Google Custom Search](https://cse.google.co.uk/cse/) to look at medical resources under one page.
@@ -41,7 +40,7 @@ Making a gallery/slideshow element.
 
 # [R2D3](https://fergustaylor.github.io/Dev/r2d3)
 
-<img src="./r2d3/image.jpeg" alt="" style="width:100%;height:auto;">
+<img src="./r2d3/image.jpeg" alt="" style="width:auto;height:250px;">
 
 # [D3](https://fergustaylor.github.io/Dev/D3)
 
