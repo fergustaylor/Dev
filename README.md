@@ -1,10 +1,10 @@
 This is the index for 'Dev', a Github repository for smaller projects I'm working on.
 
 # [Search](https://fergustaylor.github.io/Dev/Search)
-Using [Google Custom Search](https://cse.google.co.uk/cse/) to look at medical resources under one page.
-Hosted without sidebar [here.](https://fergustaylor.github.io/Dev/Search/example.html)
-Uses 'refinements' to group individual site results. Unexpected benefit is the specificity of the autosuggest. 
-The most difficult part was creating a dynamic iframe to put it in.
+Using [Google Custom Search](https://cse.google.co.uk/cse/) to look at medical resources under one page.<br>
+Hosted without sidebar [here.](https://fergustaylor.github.io/Dev/Search/example.html)<br>
+Uses 'refinements' to group individual site results. Unexpected benefit is the specificity of the autosuggest.<br>
+The most difficult part was creating a dynamic iframe to put it in.<br>
 
 <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/276458805?autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
