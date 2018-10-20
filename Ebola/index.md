@@ -1,9 +1,9 @@
 Ebola Humanitarian Data Exchange
 ================
 
-Working on Ebola data from the Humanitarian Data Exchange.
+![](image.png)
 
-Working on these [datasets](https://data.humdata.org/ebola)
+Working on Ebola data from the Humanitarian Data Exchange. <br> Working on these [datasets](https://data.humdata.org/ebola)
 
 ``` r
 library(tidyverse)
@@ -16,10 +16,6 @@ library(leaflet)
 data <- read_csv("ebola_data_db_format.csv")
 data2 <- read_xls("ebola-cases-and-deaths-who-gar-sitrep.xls")
 data3 <- read_xlsx("ebola_data_db_format.xlsx")
-```
-
-``` r
-unique(data3$Indicator)
 ```
 
     ##  [1] "Cumulative number of confirmed, probable and suspected Ebola cases"                         
@@ -59,4 +55,4 @@ unique(data3$Indicator)
     ## [35] "Proportion of suspected Ebola deaths that are from the last 21 days"                        
     ## [36] "Proportion of confirmed, probable and suspected Ebola deaths that are from the last 21 days"
 
-Using the [hdxr package](https://callumgwtaylor.github.io/hdxr/) to load in Ebola data. Based on this [article](https://callumgwtaylor.github.io/blog/2017/07/03/cholera-in-yemen/) by Callum Taylor.
+Using the [hdxr package](https://callumgwtaylor.github.io/hdxr/) to load in Ebola data.<br> Based on this [article](https://callumgwtaylor.github.io/blog/2017/07/03/cholera-in-yemen/) by Callum Taylor.
