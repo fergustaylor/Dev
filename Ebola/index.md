@@ -3,6 +3,11 @@ Ebola Humanitarian Data Exchange
 
 ![](image.png)
 
+<style>
+img {
+    width: 100%;
+}
+</style>
 Working on Ebola data from the Humanitarian Data Exchange. <br> Working on these [datasets](https://data.humdata.org/ebola)
 
 ``` r
