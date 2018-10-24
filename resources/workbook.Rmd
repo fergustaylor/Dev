@@ -1,8 +1,7 @@
 ---
 title: "Study Resources for Medicine"
 output: 
-  html_document:
-    section_divs: yes
+  html_document
 ---
 
 Last updated: `r Sys.Date()`
