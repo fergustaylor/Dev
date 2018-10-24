@@ -6,8 +6,15 @@ Last updated: 2018-10-24
 This is a list of medical resources I use as a reference for revision at
 Medical School.
 
-[![](search.png)](https://fergustaylor.github.io/Dev/Search/) This is a
-custom search engine I built to look at BNF Interaction,
+[![](search.png)](https://fergustaylor.github.io/Dev/Search/)
+
+<style>
+img {
+    max-width: 100%;
+}
+</style>
+
+This is a custom search engine I built to look at BNF Interaction,
 [Radiopaedia](#radiology), [Dermnet](#dermatology), Emedicine, NICE,
 Child BNF, Evidence NHS, Nice Pathways, SIGN, CKS, and the BNF. These
 are all fantastic resources, and the only reason I’ve brought them
