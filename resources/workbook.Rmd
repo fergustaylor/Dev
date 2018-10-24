@@ -1,19 +1,67 @@
 ---
 title: "Study Resources for Medicine"
-output: github_document
+output: 
+  html_document:
+    section_divs: yes
 ---
 
 Last updated: `r Sys.Date()`
 
 This is a list of medical resources I use as a reference for revision at Medical School.
 
-[![](search.png)](https://fergustaylor.github.io/Dev/Search/)
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Search](#search)
+- [A and E](#a-and-e)
+- [Podcasts](#podcasts)
+- [Notation](#notation)
+- [Research](#research)
+- [Dermatology](#dermatology)
+- [Calculations](#calculations)
+- [Apps](#apps)
+- [Recording](#recording)
+- [Lab Normal Values](#lab-normal-values)
+- [OSCE](#osce)
+- [Renal](#renal)
+- [Psychiatric](#psychiatric)
+- [Drugs](#drugs)
+- [GP](#gp)
+- [Radiology](#radiology)
+- [EBM](#ebm)
+- [Cardiology](#cardiology)
+- [Guidelines](#guidelines)
+- [Pathology](#pathology)
+- [Paediatrics](#paediatrics)
+- [Obstetrics and Gynaecology](#obstetrics-and-gynaecology)
+- [Orthopaedics](#orthopaedics)
+- [Extra](#extra)
+- [Question Banks](#question-banks)
+- [Revision](#revision)
+
+<!-- /TOC -->
 
 <style>
 img {
     max-width: 100%;
 }
+div.level1 {
+    display: none;
+}
+li *:hover {
+    color: white;
+    background-color: #18515E;
+}
+li *:active {
+    color: #18515E;
+    background-color: white;
+}
 </style>
+
+<script src="display.js"></script>
+
+# Search
+
+[![](search.png)](https://fergustaylor.github.io/Dev/Search/)
 
 This is a custom search engine I built to look at BNF Interaction, [Radiopaedia](#radiology), [Dermnet](#dermatology), Emedicine, NICE, Child BNF, Evidence NHS, Nice Pathways, SIGN, CKS, and the BNF.
 These are all fantastic resources, and the only reason I've brought them together like this is so that I could toggle between the results, without searching on each of the websites individually.
