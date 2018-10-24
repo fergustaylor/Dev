@@ -8,9 +8,12 @@ Last updated: `r Sys.Date()`
 
 This is a list of medical resources I use as a reference for revision at Medical School.
 
+You can use the backspace key, or reload the page to return to the list from a resource.
+
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Search](#search)
+- [BNF Interactions](#bnf-interactions)
 - [A and E](#a-and-e)
 - [Podcasts](#podcasts)
 - [Notation](#notation)
@@ -60,10 +63,23 @@ li *:active {
 
 # Search
 
-[![](search.png)](https://fergustaylor.github.io/Dev/Search/)
+[![](search.png)](https://fergustaylor.github.io/Dev/Search/example.html)
 
 This is a custom search engine I built to look at BNF Interaction, [Radiopaedia](#radiology), [Dermnet](#dermatology), Emedicine, NICE, Child BNF, Evidence NHS, Nice Pathways, SIGN, CKS, and the BNF.
 These are all fantastic resources, and the only reason I've brought them together like this is so that I could toggle between the results, without searching on each of the websites individually.
+
+I tend to use it to research for portfolio cases.
+
+# BNF Interactions
+
+[![](bnfinteraction.png)](https://fergustaylor.github.io/D3/d3-2/)
+
+[![](bnfcustom.png)](https://fergustaylor.github.io/D3/d3-dynamicclassed/)
+
+
+This is a tool I built to visualise BNF Interactions. You can view the top 100 most commonly prescribed drugs.
+
+Or create your own selection from any BNF-listed drugs.
 
 # A and E
 
@@ -170,6 +186,8 @@ This is the link to the handbook used by medical staff across Glasgow to assist 
 
 # Lab Normal Values
 
+Still looking for a reputable set of reference values.
+
 # OSCE
 [Geeky Medics](https://geekymedics.com/)
 
@@ -196,7 +214,7 @@ This is the link to the handbook used by medical staff across Glasgow to assist 
 # Drugs
 [PSA](https://prescribingsafetyassessment.ac.uk)
 
-[50 Drugs]()
+50 Drugs
 
 # GP
 [General Practice Notebook](http://www.gpnotebook.co.uk/homepage.cfm)
