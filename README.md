@@ -56,3 +56,7 @@ Making a gallery/slideshow element.
 
 <img src="./D3/image.png" alt="" style="width:100%;height:auto;">
 
+# [Resources](https://fergustaylor.github.io/Dev/resources/)
+
+<img src="./resources/resources.png" alt="" style="width:100%;height:auto;">
+
