@@ -15,6 +15,7 @@ You can use the backspace key, or reload the page to return to the list from a r
 - [Search](#search)
 - [BNF Interactions](#bnf-interactions)
 - [Top 50 Drugs](#top-50-drugs)
+- [FOAMed](#foamed)
 
 ---
 
@@ -79,7 +80,6 @@ I tend to use it to research for portfolio cases.
 
 [![](bnfcustom.png)](https://fergustaylor.github.io/D3/d3-dynamicclassed/)
 
-
 This is a tool I built to visualise BNF Interactions. You can view the top 100 most commonly prescribed drugs.
 
 Or create your own selection from any BNF-listed drugs.
@@ -90,7 +90,23 @@ This is a tool originally built by University of Glasgow students as an SSC proj
 It gives revision information on 50 common drug classes. <br>
 I've since built a new beta version, [here.](https://fergustaylor.github.io/Dev/50 Drugs/)
 
+[![](50drugs.png)](https://fergustaylor.github.io/Dev/50 Drugs/)
+
+# FOAMed
+
+*FOAM – Free Open Access Meducation – Medical education for anyone, anywhere, anytime.*
+
+*FOAM is a collection of resources, a community and an ethos. The FOAM community spontaneously emerged from the collection of constantly evolving, collaborative and interactive open access medical education resources being distributed on the web with one objective — to make the world a better place. FOAM is independent of platform or media — it includes blogs, podcasts, tweets, Google hangouts, online videos, text documents, photographs, facebook groups, and a whole lot more.*
+
+[![](litfl.png)](https://lifeinthefastlane.com/foam/)
+
+[LITFL](https://lifeinthefastlane.com/foam/)
+
+[Twitter Handle](https://twitter.com/hashtag/FOAMed?src=hash)
+
 # A and E
+
+Largely adapted from a list given to me as part of my A and E placement.
 
 [LIFE IN THE FAST LANE](http://lifeinthefastlane.com/)
 
@@ -133,31 +149,42 @@ Really popular FOAMed resource which allows you be part of a virtual hospital an
 # Podcasts
 [SOCMOB blog](http://socmob.org/videos/)
 
+Standing On the Corner, Minding my Own Business. <br>
+A blog on a variety of ED/ critical care topics.
+
 [The Skeptics Guide to Emergency Medicine](https://itunes.apple.com/gb/podcast/the-skeptics-guide-to-emergency-medicine/id564247833?mt=2)
 
 [The RAGE Podcast](http://ragepodcast.com/)
 
+The RAGE podcast is the resuscitationist’s awesome guide to everything!
+
 [UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10)
 
+A series of clinical skills podcasts developed in collaboration with students and staff  at UofG.
+
 # Making notes
+
+Literally just 2 ways I like to keep notes.
+
 [Evernote](https://www.evernote.com/)
 
 [Notes](https://support.apple.com/en-gb/guide/notes/welcome/mac)
 
 # Researching a topic
-[Medscape](https://www.medscape.com/)
-
-[BestPractice](https://bestpractice.bmj.com)
-
-[The Knowledge Network](http://www.knowledge.scot.nhs.uk/home.aspx)
-
-[NICE Evidence Search](http://www.evidence.nhs.uk)
 
 [Clinical Knowledge Summaries](http://cks.nice.org.uk/#?char=A)
 
-[ICD-10](http://apps.who.int/classifications/icd10/browse/2016/en#/F20)
-
 Summary of the current evidence base and practical guidance on best practice in respect of over 330 common and/or significant primary care presentations
+
+[NICE Evidence Search](http://www.evidence.nhs.uk)
+
+[The Knowledge Network](http://www.knowledge.scot.nhs.uk/home.aspx)
+
+[BestPractice](https://bestpractice.bmj.com)
+
+[Medscape](https://www.medscape.com/)
+
+[ICD-10](http://apps.who.int/classifications/icd10/browse/2016/en#/F20)
 
 # Dermatology
 [Dermnet](https://www.dermnetnz.org/)
@@ -238,7 +265,7 @@ And here's a revision reference..
 # Drugs
 [PSA](https://prescribingsafetyassessment.ac.uk)
 
-50 Drugs
+[BNF](https://bnf.nice.org.uk/)
 
 # GP
 [General Practice Notebook](http://www.gpnotebook.co.uk/homepage.cfm)
@@ -274,14 +301,22 @@ Aimed specifically at medical students and junior doctors, this website has fram
 [BestBETs](http://bestbets.org/teaching/current.php)
 
 # Cardiology
-[ECG](http://lifeinthefastlane.com/ecg-library/)
+[ECG Library](http://lifeinthefastlane.com/ecg-library/)
 
 # Guidelines
 [NICE Evidence Search](https://www.evidence.nhs.uk/)
 
-[SIGN](https://www.sign.ac.uk/)
+[NICE Guidelines](https://www.nice.org.uk/guidance)
 
-[Respiratory Guidelines](https://www.brit-thoracic.org.uk/standards-of-care/guidelines/)
+[SIGN Guidelines](https://www.sign.ac.uk/)
+
+[British Thoracic Society Guidelines](https://www.brit-thoracic.org.uk/standards-of-care/guidelines/)
+
+[RCH Clinical Practice Guidelines](http://www.rch.org.au/clinicalguide/)
+
+[The Royal Women's Hospital Guidelines](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps)
+
+[RCOG Guidelines](https://www.rcog.org.uk/en/guidelines-research-services/guidelines/)
 
 # Pathology
 [Pathcal](https://www.pathcal.ac.uk/shibboleth/deliver/skin/layout/10/calindex.asp?CALid=118)
