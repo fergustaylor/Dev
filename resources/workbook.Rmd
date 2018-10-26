@@ -1,6 +1,6 @@
 ---
 title: "Study Resources for Medicine"
-output: 
+output:
   html_document
 ---
 
@@ -14,14 +14,18 @@ You can use the backspace key, or reload the page to return to the list from a r
 
 - [Search](#search)
 - [BNF Interactions](#bnf-interactions)
+- [Top 50 Drugs](#top-50-drugs)
+
+---
+
 - [A and E](#a-and-e)
 - [Podcasts](#podcasts)
-- [Notation](#notation)
-- [Research](#research)
+- [Making notes](#making-notes)
+- [Researching a topic](#researching-a-topic)
 - [Dermatology](#dermatology)
 - [Calculations](#calculations)
 - [Apps](#apps)
-- [Recording](#recording)
+- [Recording Procedures](#recording-procedures)
 - [Lab Normal Values](#lab-normal-values)
 - [OSCE](#osce)
 - [Renal](#renal)
@@ -36,7 +40,6 @@ You can use the backspace key, or reload the page to return to the list from a r
 - [Paediatrics](#paediatrics)
 - [Obstetrics and Gynaecology](#obstetrics-and-gynaecology)
 - [Orthopaedics](#orthopaedics)
-- [Extra](#extra)
 - [Question Banks](#question-banks)
 - [Revision](#revision)
 
@@ -80,6 +83,12 @@ I tend to use it to research for portfolio cases.
 This is a tool I built to visualise BNF Interactions. You can view the top 100 most commonly prescribed drugs.
 
 Or create your own selection from any BNF-listed drugs.
+
+# Top 50 Drugs
+
+This is a tool originally built by University of Glasgow students as an SSC project. <br>
+It gives revision information on 50 common drug classes. <br>
+I've since built a new beta version, [here.](https://fergustaylor.github.io/Dev/50 Drugs/)
 
 # A and E
 
@@ -128,12 +137,14 @@ Really popular FOAMed resource which allows you be part of a virtual hospital an
 
 [The RAGE Podcast](http://ragepodcast.com/)
 
-# Notation
+[UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10)
+
+# Making notes
 [Evernote](https://www.evernote.com/)
 
 [Notes](https://support.apple.com/en-gb/guide/notes/welcome/mac)
 
-# Research
+# Researching a topic
 [Medscape](https://www.medscape.com/)
 
 [BestPractice](https://bestpractice.bmj.com)
@@ -143,6 +154,8 @@ Really popular FOAMed resource which allows you be part of a virtual hospital an
 [NICE Evidence Search](http://www.evidence.nhs.uk)
 
 [Clinical Knowledge Summaries](http://cks.nice.org.uk/#?char=A)
+
+[ICD-10](http://apps.who.int/classifications/icd10/browse/2016/en#/F20)
 
 Summary of the current evidence base and practical guidance on best practice in respect of over 330 common and/or significant primary care presentations
 
@@ -179,14 +192,23 @@ This is the link to the handbook used by medical staff across Glasgow to assist 
 
 [Cochrane Library](https://www.cochrane.org/news/cochrane-library-app)
 
-# Recording
+# Recording Procedures
 [elogbook](https://www.elogbook.org/)
 
 [NHS eportfolios](https://www.nhseportfolios.org/Anon/Login/Login.aspx)
 
 # Lab Normal Values
 
-Still looking for a reputable set of reference values.
+Ideally I want something for the reference values of each lab. <br>
+So here's a citable link..
+
+[Per hospital](http://www.nhsggc.org.uk/about-us/professional-support-sites/biochemistry/)
+
+[North Glasgow Handbook](http://www.nhsggc.org.uk/media/245218/north-glasgow-biochemistry-user-handbook-r24-oct-2017.pdf)
+
+And here's a revision reference..
+
+[Geeky Medics Reference](https://geekymedics.com/reference-ranges/)
 
 # OSCE
 [Geeky Medics](https://geekymedics.com/)
@@ -194,6 +216,8 @@ Still looking for a reputable set of reference values.
 [The Unofficial Guide to Medicine](http://zeshanqureshi.com/unofficial-guide-to-medicine/)
 
 [UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10)
+
+[Psychiatric OSCE stations](www.trickcyclists.co.uk)
 
 # Renal
 [Renal](http://openmed.co.uk/curriculum/renal/)
@@ -272,16 +296,6 @@ Aimed specifically at medical students and junior doctors, this website has fram
 [Wheeless' Textbook of Orthopaedics](http://www.wheelessonline.com/)
 
 [Gait assessment](https://www.youtube.com/watch?v=PZBiv0uSXVg)
-
-# Extra
-
-[Kenhub](https://www.kenhub.com/en)
-
-[ICD-10](http://apps.who.int/classifications/icd10/browse/2016/en#/F20)
-
-[ECG Library and clinical cases](http://lifeinthefastlane.com/ecg-library/)
-
-[Scottish Partnership for Palliative Care](https://www.palliativecarescotland.org.uk/)
 
 # Question Banks
 [Anki](https://apps.ankiweb.net/)
