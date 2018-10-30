@@ -337,6 +337,8 @@ Aimed specifically at medical students and junior doctors, this website has fram
 
 [Pastest](https://www.pastest.com/)
 
+[Peerwise](https://peerwise.cs.auckland.ac.nz/)
+
 [BMJ OnExam](www.onexamination.com/)
 
 # Revision
