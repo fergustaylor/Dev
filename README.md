@@ -22,6 +22,8 @@ This is a tool originally built by University of Glasgow students as an SSC proj
 It gives revision information on 50 common drug classes. <br>
 I've since built a new interface.
 
+You can read about it [here](https://fergustaylor.github.io/Dev/50%20Drugs/readme/)
+
 # [Timeline](https://fergustaylor.github.io/Dev/Timeline)
 
 <img src="./Timeline/example_files/figure-markdown_github/unnamed-chunk-10-1.png" alt="" style="width:100%;height:auto;">
