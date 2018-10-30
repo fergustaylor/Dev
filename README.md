@@ -1,5 +1,9 @@
 This is the index for 'Dev', a Github repository for smaller projects I'm working on.
 
+# [Resources](https://fergustaylor.github.io/Dev/resources/)
+
+<img src="./resources/resources.png" alt="" style="width:100%;height:auto;">
+
 # [Search](https://fergustaylor.github.io/Dev/Search)
 Using [Google Custom Search](https://cse.google.co.uk/cse/) to look at medical resources under one page.<br>
 Hosted without sidebar [here.](https://fergustaylor.github.io/Dev/Search/example.html)<br>
@@ -8,9 +12,21 @@ The most difficult part was creating a dynamic iframe to put it in.
 
 <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/276458805?autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
+# [50 Drugs](https://fergustaylor.github.io/Dev/50 Drugs/)
+
+<a href="https://fergustaylor.github.io/Dev/50 Drugs/">
+<img src="./resources/50drugs.png" alt="" style="width:100%;height:auto;">
+</a>
+
+This is a tool originally built by University of Glasgow students as an SSC project. <br>
+It gives revision information on 50 common drug classes. <br>
+I've since built a new interface.
+
 # [Timeline](https://fergustaylor.github.io/Dev/Timeline)
 
 <img src="./Timeline/example_files/figure-markdown_github/unnamed-chunk-10-1.png" alt="" style="width:100%;height:auto;">
+
+A new 
 
 # [Hackday](https://fergustaylor.github.io/Dev/Hackday)
 
@@ -55,8 +71,3 @@ Making a gallery/slideshow element.
 # [D3](https://fergustaylor.github.io/Dev/D3)
 
 <img src="./D3/image.png" alt="" style="width:100%;height:auto;">
-
-# [Resources](https://fergustaylor.github.io/Dev/resources/)
-
-<img src="./resources/resources.png" alt="" style="width:100%;height:auto;">
-

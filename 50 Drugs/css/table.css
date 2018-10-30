@@ -1,0 +1,12 @@
+.toc-content.col-xs-12.col-sm-8.col-md-9 {
+    display: block;
+    width: auto;
+}
+
+.toc-content.col-xs-12.col-sm-8.col-md-9 * {
+    width: auto;
+}
+
+#TOC {
+    z-index: 10;
+}

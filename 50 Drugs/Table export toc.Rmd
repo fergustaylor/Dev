@@ -1,0 +1,85 @@
+---
+output:
+  html_notebook: default
+  html_document:
+    toc: true
+    toc_float: true
+    css: css/table.css
+---
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+
+load("split_Table.Rda")
+load("otherinfo.Rda")
+
+tableit <- function(x, y) { 
+  start <- x %>%
+    bind_rows() %>%
+    kable("html", align = "c") %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+  if (length(unlist(y)) > 0) {start %>% footnote(general_title = "Other Information:", number = unlist(y))} else {start %>% footnote(general_title = "Other Information:")}
+}
+```
+
+
+#Anti-infectives
+```{r, echo=FALSE}
+tableit(split_Table$`Anti-infectives`, otherinfo$`Anti-infectives`)
+```
+
+
+#Cardiovascular
+```{r, echo=FALSE}
+tableit(split_Table$Cardiovascular, otherinfo$Cardiovascular)
+```
+
+
+#Endocrine
+```{r, echo=FALSE}
+tableit(split_Table$Endocrine, otherinfo$Endocrine)
+```
+
+
+#Gastrointestinal
+```{r, echo=FALSE}
+tableit(split_Table$Gastrointestinal, otherinfo$Gastrointestinal)
+```
+
+
+#Haematological
+```{r, echo=FALSE}
+tableit(split_Table$Haematological, otherinfo$Haematological)
+```
+
+
+#Immuno-modulators
+```{r, echo=FALSE}
+tableit(split_Table$`Immuno-modulators`, otherinfo$`Immuno-modulators`)
+```
+
+
+#Musculoskeletal and Pain
+```{r, echo=FALSE}
+tableit(split_Table$`Musculoskeletal and Pain`, otherinfo$`Musculoskeletal and Pain`)
+```
+
+
+#Neurology/Psychiatry
+```{r, echo=FALSE}
+tableit(split_Table$`Neurology/Psychiatry`, otherinfo$`Neurology/Psychiatry`)
+```
+
+
+#Renal
+```{r, echo=FALSE}
+tableit(split_Table$Renal, otherinfo$Renal)
+```
+
+
+#Respiratory
+```{r, echo=FALSE}
+tableit(split_Table$Respiratory, otherinfo$Respiratory)
+```
