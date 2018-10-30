@@ -92,6 +92,11 @@ I've since built a new beta version, [here.](https://fergustaylor.github.io/Dev/
 
 [![](50drugs.png)](https://fergustaylor.github.io/Dev/50 Drugs/)
 
+I've also exported the data as a .csv, and loaded it into Anki, a popular flashcard app.<br>
+You can download the flashcards [here.](https://ankiweb.net/shared/info/1385997073)
+
+[![](../50 Drugs/anki.png)](https://ankiweb.net/shared/info/1385997073)
+
 # FOAMed
 
 *FOAM – Free Open Access Meducation – Medical education for anyone, anywhere, anytime.*
