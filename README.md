@@ -2,7 +2,9 @@ This is the index for 'Dev', a Github repository for smaller projects I'm workin
 
 # [Resources](https://fergustaylor.github.io/Dev/resources/)
 
+<a href="https://fergustaylor.github.io/Dev/resources/">
 <img src="./resources/resources.png" alt="" style="width:100%;height:auto;">
+</a>
 
 # [Search](https://fergustaylor.github.io/Dev/Search)
 Using [Google Custom Search](https://cse.google.co.uk/cse/) to look at medical resources under one page.<br>
