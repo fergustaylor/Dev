@@ -13,7 +13,7 @@ returning to the wards, I looked back over a course resource summarising
 the 50 most commmonly used drugs on the ward.
 
 [![Alt
-Text](./images/interface2.png)](https://fergustaylor.github.io/Dev/50%20Drugs/)
+Text](../images/interface2.png)](https://fergustaylor.github.io/Dev/50%20Drugs/)
 
 This is an interesting project created by SSC students at my University.
 Unfortunately, the resource itself isn’t prepared in an ideal form for
@@ -21,22 +21,22 @@ revision.
 
 Point 1. Example info always listed at the top of every page.
 
-![Example info always at the top of every page](./images/moodle1.png)
+![Example info always at the top of every page](../images/moodle1.png)
 
 Point 2. List info. Nothing really wrong with it. But not really
 concise.
 
-![Example info always at the top of every page](./images/moodle2.png)
+![Example info always at the top of every page](../images/moodle2.png)
 
 Point 3. Search info. Ok, but it relaods the entire page and there’s no
 results as you type.
 
-![Example info always at the top of every page](./images/moodle4.png)
+![Example info always at the top of every page](../images/moodle4.png)
 
 Finally the info. It’s useful. Switching between drugs is difficult
 however. And I can’t list multiple drugs together.
 
-![Example info always at the top of every page](./images/moodle3.png)
+![Example info always at the top of every page](../images/moodle3.png)
 
 As you can see, the original interface is quite messy. There’s a lot of
 unnecessary information listed.
@@ -84,7 +84,7 @@ You can use the new interface
 [here.](https://fergustaylor.github.io/Dev/50%20Drugs/)
 
 [![Alt
-Text](./images/interface2.png)](https://fergustaylor.github.io/Dev/50%20Drugs/)
+Text](../images/interface2.png)](https://fergustaylor.github.io/Dev/50%20Drugs/)
 
 I’ve since expanded this example by exporting the data as a file-type
 which I could then import to a flashcard app.
@@ -92,4 +92,4 @@ which I could then import to a flashcard app.
 You can find the anki deck
 [here.](https://ankiweb.net/shared/info/1385997073)
 
-[![](anki.png)](https://ankiweb.net/shared/info/1385997073)
+[![](../anki.png)](https://ankiweb.net/shared/info/1385997073)
