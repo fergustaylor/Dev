@@ -1,9 +1,7 @@
----
-title: "Anki Flashcards"
-output: github_document
----
+Anki Flashcards
+================
 
-```{r, eval=FALSE}
+``` r
 library(tidyverse)
 
 load("/Users/fergustaylor/Desktop/Repos/Dev/50 Drugs/drugs.Rda")
