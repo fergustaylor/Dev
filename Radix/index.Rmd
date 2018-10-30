@@ -1,0 +1,36 @@
+---
+title: "Radix"
+description: |
+  An example article created using the Radix format. This is an experiment with the Rstudio Preview v1.2.1030-1.
+author:
+  - name: Fergus Taylor 
+    url: https://fergustaylor.github.io/Dev/
+    affiliation: University of Glasgow
+    affiliation_url: https://www.gla.ac.uk/
+date: "2018-10-10"
+output:
+  radix::radix_article:
+    toc: true
+    toc_depth: 2
+bibliography: biblio.bib
+---
+
+# Introduction
+I referred to the how-to a lot in writing this, to try and cover a fair amount of 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = TRUE,
+  message = TRUE
+  )
+```
+
+# Radix
+Radix is a publication format for scientific and technical writing, native to the web. 
+
+Learn more about using Radix at <https://rstudio.github.io/radix>.
+
+
+
+
+

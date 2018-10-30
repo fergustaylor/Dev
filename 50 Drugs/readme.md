@@ -12,11 +12,12 @@ University of Glasgow. Not wanting to be too out-of-date before
 returning to the wards, I looked back over a course resource summarising
 the 50 most commmonly used drugs on the ward.
 
-![Alt Text](./images/interface2.png)
+[![Alt
+Text](./images/interface2.png)](https://fergustaylor.github.io/Dev/50%20Drugs/)
 
-This is an interesting project created by SSC students, …, and …. at my
-University. Unfortunately, the resource itself isn’t prepared in an
-ideal form for revision.
+This is an interesting project created by SSC students at my University.
+Unfortunately, the resource itself isn’t prepared in an ideal form for
+revision.
 
 Point 1. Example info always listed at the top of every page.
 
@@ -55,7 +56,7 @@ here.](https://fergustaylor.github.io/categories/bnf/)
 This presented me with an interesting project and a series of main
 problems.
 
-\#\#\#\#Problems
+#### Problems
 
 1.  getting the data
     
@@ -76,5 +77,19 @@ problems.
     least to the level of organisation already applied to that dataset,
     (general drug classes).
 
-I decided to use the Rscraping tool Rvest, modified to download through
-the log-in.
+You can see the code I used
+[here.](https://fergustaylor.github.io/Dev/50%20Drugs/workbookpublish)
+
+You can use the new interface
+[here.](https://fergustaylor.github.io/Dev/50%20Drugs/)
+
+[![Alt
+Text](./images/interface2.png)](https://fergustaylor.github.io/Dev/50%20Drugs/)
+
+I’ve since expanded this example by exporting the data as a file-type
+which I could then import to a flashcard app.
+
+You can find the anki deck
+[here.](https://ankiweb.net/shared/info/1385997073)
+
+[![](anki.png)](https://ankiweb.net/shared/info/1385997073)
