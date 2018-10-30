@@ -9,7 +9,6 @@ img {
 }
 </style>
 
-
 Earlier this September I started my final year of Medicine at the University of Glasgow. Not wanting to be too out-of-date before returning to the wards, I looked back over a course resource summarising the 50 most commmonly used drugs on the ward.
 
 ![Alt Text](./images/interface2.png)
