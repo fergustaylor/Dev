@@ -113,15 +113,15 @@ You can download the flashcards [here.](https://ankiweb.net/shared/info/13859970
 
 Largely adapted from a list given to me as part of my A and E placement.
 
-[LIFE IN THE FAST LANE](http://lifeinthefastlane.com/)
+[LIFE IN THE FAST LANE](https://lifeinthefastlane.com/foam/)
 
 An Australian Emergency Medicine website that is very popular amongst Emergency Medicine trainees.
 
-[ANATOMY for EMERGENCY MEDICINE](http://emergencymedicineireland.com/and-em/)
+[ANATOMY for EMERGENCY MEDICINE](https://emergencymedicineireland.com/)
 
 An anatomy podcast.
 
-[EMERGENCY MEDICINE CASES ](http://emergencymedicinecases.com/)
+[EMERGENCY MEDICINE CASES ](https://emergencymedicinecases.com/)
 
 In-depth podcasts on common EM presentations
 
@@ -133,17 +133,17 @@ Organisation that develops and promotes resuscitation courses and life-support a
 
 How to suture.
 
-[UNIVADIS](http://www.univadis.co.uk/)
+[UNIVADIS](https://www.univadis.co.uk/)
 
 This combines GP Notebook, Merck Manual, BMJ Learning all in one site.  You do have to sign up, but no charge.
 
-[ALMOST A DOCTOR](http://almostadoctor.co.uk/)
+[ALMOST A DOCTOR](https://almostadoctor.co.uk/)
 
-[RCEM LEARNING](http://www.rcemlearning.co.uk/)
+[RCEM LEARNING](https://www.rcemlearning.co.uk/)
 
 The open access e-learning site for the Royal College of Emergency
 
-[ST EMLYNS](http://www.stemlyns.org.uk/)
+[ST EMLYNS](www.stemlyns.org.uk/)
 
 Really popular FOAMed resource which allows you be part of a virtual hospital and learn from clinical cases.
 
@@ -152,7 +152,7 @@ Really popular FOAMed resource which allows you be part of a virtual hospital an
 [R.E.B.E.L. EM](http://rebelem.com)
 
 # Podcasts
-[SOCMOB blog](http://socmob.org/videos/)
+[SOCMOB blog](https://socmob.org/videos/)
 
 Standing On the Corner, Minding my Own Business. <br>
 A blog on a variety of ED/ critical care topics.
@@ -177,11 +177,11 @@ Literally just 2 ways I like to keep notes.
 
 # Researching a topic
 
-[Clinical Knowledge Summaries](http://cks.nice.org.uk/#?char=A)
+[Clinical Knowledge Summaries](https://cks.nice.org.uk/#?char=A)
 
 Summary of the current evidence base and practical guidance on best practice in respect of over 330 common and/or significant primary care presentations
 
-[NICE Evidence Search](http://www.evidence.nhs.uk)
+[NICE Evidence Search](https://www.evidence.nhs.uk/)
 
 [The Knowledge Network](http://www.knowledge.scot.nhs.uk/home.aspx)
 
@@ -197,12 +197,12 @@ Summary of the current evidence base and practical guidance on best practice in 
 # Calculations
 [Medicalc](https://www.mdcalc.com/)
 
-[Wolfram alpha](http://m.wolframalpha.com/)
+[Wolfram alpha](https://www.wolframalpha.com/)
 
 # Apps
 [MyPsych](http://mypsych.nhsggc.org.uk/)
 
-[RCH Clinical Guidelines (paeds)](http://www.rch.org.au/clinicalguide/)
+[RCH Clinical Guidelines (paeds)](https://www.rch.org.au/clinicalguide/)
 
 [e-pocketbook (WHO paeds)](https://www.rch.org.au/rch/apps/WHO/e-Pocketbook/)
 
@@ -252,20 +252,18 @@ And here's a revision reference..
 [Psychiatric OSCE stations](www.trickcyclists.co.uk)
 
 # Renal
-[Renal](http://openmed.co.uk/curriculum/renal/)
-
 [Ediburgh Renal](http://www.edren.org/pages/handbooks.php)
 
 # Psychiatric
-[Royal College of Psychiatry Info Leaflets](www.rcpsych.ac.uk)
+[Royal College of Psychiatry Info Leaflets](https://www.rcpsych.ac.uk/)
 
-[Main UK eating disorder support](www.b-eat.co.uk)
+[Main UK eating disorder support](https://www.beateatingdisorders.org.uk/)
 
-[Another site, eating disorder support](www.eatingdisorderhope.com)
+[Another site, eating disorder support](https://www.eatingdisorderhope.com/)
 
-[Self help materials for eating disorders](www.anred.com)
+[Self help materials for eating disorders](https://www.anred.com/)
 
-[Psychiatric OSCE stations](www.trickcyclists.co.uk)
+[Psychiatric OSCE stations](http://www.trickcyclists.co.uk/)
 
 # Drugs
 [PSA](https://prescribingsafetyassessment.ac.uk)
@@ -278,7 +276,7 @@ And here's a revision reference..
 # Radiology
 [Radiopaedia](https://radiopaedia.org/)
 
-[RADIOLOGY MASTERCLASS](http://radiologymasterclass.co.uk/)
+[RADIOLOGY MASTERCLASS](https://www.radiologymasterclass.co.uk/)
 
 Aimed specifically at medical students and junior doctors, this website has frameworks for interpreting a variety of X-ray interpretations, with test-yourself sections.  
 
@@ -291,22 +289,22 @@ Aimed specifically at medical students and junior doctors, this website has fram
 
 [The Cochrane Collaboration](https://cochrane.org)
 
-[AllTrials](http://www.alltrials.net)
+[AllTrials](http://www.alltrials.net/)
 
 [OpenPrescribing](https://openprescribing.net)
 
 [EBM Data Lab](https://ebmdatalab.net/)
 
-[Healthwatch](http://www.healthwatch.co.uk)
+[Healthwatch](https://www.healthwatch.co.uk/)
 
 [Quality Improvement Hub](http://www.qihub.scot.nhs.uk/default.aspx)
 
 [NHS Improvement](https://improvement.nhs.uk)
 
-[BestBETs](http://bestbets.org/teaching/current.php)
+[BestBETs](https://bestbets.org/teaching/current.php)
 
 # Cardiology
-[ECG Library](http://lifeinthefastlane.com/ecg-library/)
+[ECG Library](https://lifeinthefastlane.com/ecg-library/)
 
 # Guidelines
 [NICE Evidence Search](https://www.evidence.nhs.uk/)
@@ -317,7 +315,7 @@ Aimed specifically at medical students and junior doctors, this website has fram
 
 [British Thoracic Society Guidelines](https://www.brit-thoracic.org.uk/standards-of-care/guidelines/)
 
-[RCH Clinical Practice Guidelines](http://www.rch.org.au/clinicalguide/)
+[RCH Clinical Practice Guidelines](https://www.rch.org.au/clinicalguide/)
 
 [The Royal Women's Hospital Guidelines](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps)
 
@@ -327,7 +325,7 @@ Aimed specifically at medical students and junior doctors, this website has fram
 [Pathcal](https://www.pathcal.ac.uk/shibboleth/deliver/skin/layout/10/calindex.asp?CALid=118)
 
 # Paediatrics
-[RCH Clinical Practice Guidelines](http://www.rch.org.au/clinicalguide/)
+[RCH Clinical Practice Guidelines](https://www.rch.org.au/clinicalguide/)
 
 # Obstetrics and Gynaecology
 [The Royal Women's Hospital](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps/)
@@ -344,7 +342,7 @@ Aimed specifically at medical students and junior doctors, this website has fram
 
 [Peerwise](https://peerwise.cs.auckland.ac.nz/)
 
-[BMJ OnExam](www.onexamination.com/)
+[BMJ OnExam](https://www.onexamination.com/)
 
 # Revision
 
