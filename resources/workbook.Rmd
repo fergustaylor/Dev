@@ -1,14 +1,11 @@
 ---
 title: "Study Resources for Medicine"
-output:
-  html_document
+output: md_document
 ---
 
 Last updated: `r Sys.Date()`
 
 This is a list of medical resources I use as a reference for revision at Medical School.
-
-You can use the backspace key, or reload the page to return to the list from a resource.
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
