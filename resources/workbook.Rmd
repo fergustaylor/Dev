@@ -1,6 +1,9 @@
 ---
 title: "Study Resources for Medicine"
-output: html_document
+output: 
+  html_document:
+  includes:
+      before_body: header.html      
 ---
 
 Last updated: `r Sys.Date()`
