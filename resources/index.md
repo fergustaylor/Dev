@@ -1,4 +1,4 @@
-<iframe src="workbook.html"></iframe>
+<iframe src="workbook.html" id="iframe"></iframe>
 
 <script>
 function myFunction() {
@@ -9,6 +9,8 @@ for (i = 0; i < frames.length; i++) {
 }
 window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
+
+document.getElementById("iframe").contentWindow.document.body.onclick = myFunction;
 </script>
 
 <style>
