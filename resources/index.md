@@ -9,8 +9,7 @@ for (i = 0; i < frames.length; i++) {
 }
 window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
-
-document.getElementById("iframe").contentWindow.document.body.onclick = myFunction;
+$('#iframe').on('click', myFunction);
 </script>
 
 <style>
