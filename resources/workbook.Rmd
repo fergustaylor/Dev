@@ -352,6 +352,8 @@ Aimed specifically at medical students and junior doctors, this website has fram
 
 [Osmosis](https://www.osmosis.org/)
 
+<a target="_parent" href="https://www.osmosis.org/">Osmosis</a>
+
 [Meducation](https://meducation.net/popular)
 
 [Revision Music](https://play.spotify.com/user/spotify_uk_/playlist/1iHelgbMaB7G1bjMbABPRe)
