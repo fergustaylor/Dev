@@ -91,9 +91,9 @@ I've since built a new beta version, [here.](https://fergustaylor.github.io/Dev/
 [![](50drugs.png)](https://fergustaylor.github.io/Dev/50 Drugs/)
 
 I've also exported the data as a .csv, and loaded it into Anki, a popular flashcard app.<br>
-You can download the flashcards [here.](https://ankiweb.net/shared/info/1385997073)
+You can download the flashcards [here.](https://ankiweb.net/shared/info/1385997073){target="_parent"}
 
-[![](../50 Drugs/anki.png)](https://ankiweb.net/shared/info/1385997073)
+[![](../50 Drugs/anki.png)](https://ankiweb.net/shared/info/1385997073){target="_parent"}
 
 # FOAMed
 
@@ -101,67 +101,67 @@ You can download the flashcards [here.](https://ankiweb.net/shared/info/13859970
 
 *FOAM is a collection of resources, a community and an ethos. The FOAM community spontaneously emerged from the collection of constantly evolving, collaborative and interactive open access medical education resources being distributed on the web with one objective — to make the world a better place. FOAM is independent of platform or media — it includes blogs, podcasts, tweets, Google hangouts, online videos, text documents, photographs, facebook groups, and a whole lot more.*
 
-[![](litfl.png)](https://lifeinthefastlane.com/foam/)
+[![](litfl.png)](https://lifeinthefastlane.com/foam/){target="_parent"}
 
-[LITFL](https://lifeinthefastlane.com/foam/)
+[LITFL](https://lifeinthefastlane.com/foam/){target="_parent"}
 
-[Twitter Handle](https://twitter.com/hashtag/FOAMed?src=hash)
+[Twitter Handle](https://twitter.com/hashtag/FOAMed?src=hash){target="_parent"}
 
 # A and E
 
 Largely adapted from a list given to me as part of my A and E placement.
 
-[LIFE IN THE FAST LANE](https://lifeinthefastlane.com/foam/)
+[LIFE IN THE FAST LANE](https://lifeinthefastlane.com/foam/){target="_parent"}
 
 An Australian Emergency Medicine website that is very popular amongst Emergency Medicine trainees.
 
-[ANATOMY for EMERGENCY MEDICINE](https://emergencymedicineireland.com/)
+[ANATOMY for EMERGENCY MEDICINE](https://emergencymedicineireland.com/){target="_parent"}
 
 An anatomy podcast.
 
-[EMERGENCY MEDICINE CASES ](https://emergencymedicinecases.com/)
+[EMERGENCY MEDICINE CASES ](https://emergencymedicinecases.com/){target="_parent"}
 
 In-depth podcasts on common EM presentations
 
-[RESUSCITATION COUNCIL UK](https://www.resus.org.uk/pages/glalgos.html)
+[RESUSCITATION COUNCIL UK](https://www.resus.org.uk/pages/glalgos.html){target="_parent"}
 
 Organisation that develops and promotes resuscitation courses and life-support algorithms.
 
-[SUTURING HOW-TO](http://www.youtube.com/watch?v=e1jThI5wbVw)
+[SUTURING HOW-TO](http://www.youtube.com/watch?v=e1jThI5wbVw){target="_parent"}
 
 How to suture.
 
-[UNIVADIS](https://www.univadis.co.uk/)
+[UNIVADIS](https://www.univadis.co.uk/){target="_parent"}
 
 This combines GP Notebook, Merck Manual, BMJ Learning all in one site.  You do have to sign up, but no charge.
 
-[ALMOST A DOCTOR](https://almostadoctor.co.uk/)
+[ALMOST A DOCTOR](https://almostadoctor.co.uk/){target="_parent"}
 
-[RCEM LEARNING](https://www.rcemlearning.co.uk/)
+[RCEM LEARNING](https://www.rcemlearning.co.uk/){target="_parent"}
 
 The open access e-learning site for the Royal College of Emergency
 
-[ST EMLYNS](www.stemlyns.org.uk/)
+[ST EMLYNS](www.stemlyns.org.uk/){target="_parent"}
 
 Really popular FOAMed resource which allows you be part of a virtual hospital and learn from clinical cases.
 
-[St Mungo's](https://stmungos-ed.com/)
+[St Mungo's](https://stmungos-ed.com/){target="_parent"}
 
-[R.E.B.E.L. EM](http://rebelem.com)
+[R.E.B.E.L. EM](http://rebelem.com){target="_parent"}
 
 # Podcasts
-[SOCMOB blog](https://socmob.org/videos/)
+[SOCMOB blog](https://socmob.org/videos/){target="_parent"}
 
 Standing On the Corner, Minding my Own Business. <br>
 A blog on a variety of ED/ critical care topics.
 
-[The Skeptics Guide to Emergency Medicine](https://itunes.apple.com/gb/podcast/the-skeptics-guide-to-emergency-medicine/id564247833?mt=2)
+[The Skeptics Guide to Emergency Medicine](https://itunes.apple.com/gb/podcast/the-skeptics-guide-to-emergency-medicine/id564247833?mt=2){target="_parent"}
 
-[The RAGE Podcast](http://ragepodcast.com/)
+[The RAGE Podcast](http://ragepodcast.com/){target="_parent"}
 
 The RAGE podcast is the resuscitationist’s awesome guide to everything!
 
-[UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10)
+[UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10){target="_parent"}
 
 A series of clinical skills podcasts developed in collaboration with students and staff  at UofG.
 
@@ -169,191 +169,189 @@ A series of clinical skills podcasts developed in collaboration with students an
 
 Literally just 2 ways I like to keep notes.
 
-[Evernote](https://www.evernote.com/)
+[Evernote](https://www.evernote.com/){target="_parent"}
 
-[Notes](https://support.apple.com/en-gb/guide/notes/welcome/mac)
+[Notes](https://support.apple.com/en-gb/guide/notes/welcome/mac){target="_parent"}
 
 # Researching a topic
 
-[Clinical Knowledge Summaries](https://cks.nice.org.uk/#?char=A)
+[Clinical Knowledge Summaries](https://cks.nice.org.uk/#?char=A){target="_parent"}
 
 Summary of the current evidence base and practical guidance on best practice in respect of over 330 common and/or significant primary care presentations
 
-[NICE Evidence Search](https://www.evidence.nhs.uk/)
+[NICE Evidence Search](https://www.evidence.nhs.uk/){target="_parent"}
 
-[The Knowledge Network](http://www.knowledge.scot.nhs.uk/home.aspx)
+[The Knowledge Network](http://www.knowledge.scot.nhs.uk/home.aspx){target="_parent"}
 
-[BestPractice](https://bestpractice.bmj.com)
+[BestPractice](https://bestpractice.bmj.com){target="_parent"}
 
-[Medscape](https://www.medscape.com/)
+[Medscape](https://www.medscape.com/){target="_parent"}
 
-[ICD-10](http://apps.who.int/classifications/icd10/browse/2016/en#/F20)
+[ICD-10](http://apps.who.int/classifications/icd10/browse/2016/en#/F20){target="_parent"}
 
 # Dermatology
-[Dermnet](https://www.dermnetnz.org/)
+[Dermnet](https://www.dermnetnz.org/){target="_parent"}
 
 # Calculations
-[Medicalc](https://www.mdcalc.com/)
+[Medicalc](https://www.mdcalc.com/){target="_parent"}
 
-[Wolfram alpha](https://www.wolframalpha.com/)
+[Wolfram alpha](https://www.wolframalpha.com/){target="_parent"}
 
 # Apps
-[MyPsych](http://mypsych.nhsggc.org.uk/)
+[MyPsych](http://mypsych.nhsggc.org.uk/){target="_parent"}
 
-[RCH Clinical Guidelines (paeds)](https://www.rch.org.au/clinicalguide/)
+[RCH Clinical Guidelines (paeds)](https://www.rch.org.au/clinicalguide/){target="_parent"}
 
-[e-pocketbook (WHO paeds)](https://www.rch.org.au/rch/apps/WHO/e-Pocketbook/)
+[e-pocketbook (WHO paeds)](https://www.rch.org.au/rch/apps/WHO/e-Pocketbook/){target="_parent"}
 
-[SIGN](https://itunes.apple.com/gb/app/sign-guidelines/id427569564?mt=8)
+[SIGN](https://itunes.apple.com/gb/app/sign-guidelines/id427569564?mt=8){target="_parent"}
 
-[NICE Guidance](https://itunes.apple.com/gb/app/nice-guidance/id505146575?mt=8)
+[NICE Guidance](https://itunes.apple.com/gb/app/nice-guidance/id505146575?mt=8){target="_parent"}
 
-[NICE BNF](https://itunes.apple.com/gb/app/bnf-publications/id1045514038?mt=8)
+[NICE BNF](https://itunes.apple.com/gb/app/bnf-publications/id1045514038?mt=8){target="_parent"}
 
-[NHS Palliative Care](https://itunes.apple.com/gb/app/nhsscotland-palliative-care-guidelines/id964222025?mt=8)
+[NHS Palliative Care](https://itunes.apple.com/gb/app/nhsscotland-palliative-care-guidelines/id964222025?mt=8){target="_parent"}
 
-[Cancer Referral Guide](http://www.cancerreferral.scot.nhs.uk/)
+[Cancer Referral Guide](http://www.cancerreferral.scot.nhs.uk/){target="_parent"}
 
-[THERAPEUTICS HANDBOOK](http://www.ggcprescribing.org.uk/)
+[THERAPEUTICS HANDBOOK](http://www.ggcprescribing.org.uk/){target="_parent"}
 
 This is the link to the handbook used by medical staff across Glasgow to assist with prescribing and common presentations.  Available as an app and on-line, it is a must for day-to-day working.
 
-[Microguide](https://itunes.apple.com/gb/app/microguide/id447171786?mt=8)
+[Microguide](https://itunes.apple.com/gb/app/microguide/id447171786?mt=8){target="_parent"}
 
-[Cochrane Library](https://www.cochrane.org/news/cochrane-library-app)
+[Cochrane Library](https://www.cochrane.org/news/cochrane-library-app){target="_parent"}
 
 # Recording Procedures
-[elogbook](https://www.elogbook.org/)
+[elogbook](https://www.elogbook.org/){target="_parent"}
 
-[NHS eportfolios](https://www.nhseportfolios.org/Anon/Login/Login.aspx)
+[NHS eportfolios](https://www.nhseportfolios.org/Anon/Login/Login.aspx){target="_parent"}
 
 # Lab Normal Values
 
 Ideally I want something for the reference values of each lab. <br>
 So here's a citable link..
 
-[Per hospital](http://www.nhsggc.org.uk/about-us/professional-support-sites/biochemistry/)
+[Per hospital](http://www.nhsggc.org.uk/about-us/professional-support-sites/biochemistry/){target="_parent"}
 
-[North Glasgow Handbook](http://www.nhsggc.org.uk/media/245218/north-glasgow-biochemistry-user-handbook-r24-oct-2017.pdf)
+[North Glasgow Handbook](http://www.nhsggc.org.uk/media/245218/north-glasgow-biochemistry-user-handbook-r24-oct-2017.pdf){target="_parent"}
 
 And here's a revision reference..
 
-[Geeky Medics Reference](https://geekymedics.com/reference-ranges/)
+[Geeky Medics Reference](https://geekymedics.com/reference-ranges/){target="_parent"}
 
 # OSCE
-[Geeky Medics](https://geekymedics.com/)
+[Geeky Medics](https://geekymedics.com/){target="_parent"}
 
-[The Unofficial Guide to Medicine](http://zeshanqureshi.com/unofficial-guide-to-medicine/)
+[The Unofficial Guide to Medicine](http://zeshanqureshi.com/unofficial-guide-to-medicine/){target="_parent"}
 
-[UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10)
+[UofG ::Podcasts](https://itunes.apple.com/itunes-u/clinical-skills/id528255713?mt=10){target="_parent"}
 
-[Psychiatric OSCE stations](www.trickcyclists.co.uk)
+[Psychiatric OSCE stations](www.trickcyclists.co.uk){target="_parent"}
 
 # Renal
-[Ediburgh Renal](http://www.edren.org/pages/handbooks.php)
+[Ediburgh Renal](http://www.edren.org/pages/handbooks.php){target="_parent"}
 
 # Psychiatric
-[Royal College of Psychiatry Info Leaflets](https://www.rcpsych.ac.uk/)
+[Royal College of Psychiatry Info Leaflets](https://www.rcpsych.ac.uk/){target="_parent"}
 
-[Main UK eating disorder support](https://www.beateatingdisorders.org.uk/)
+[Main UK eating disorder support](https://www.beateatingdisorders.org.uk/){target="_parent"}
 
-[Another site, eating disorder support](https://www.eatingdisorderhope.com/)
+[Another site, eating disorder support](https://www.eatingdisorderhope.com/){target="_parent"}
 
-[Self help materials for eating disorders](https://www.anred.com/)
+[Self help materials for eating disorders](https://www.anred.com/){target="_parent"}
 
-[Psychiatric OSCE stations](http://www.trickcyclists.co.uk/)
+[Psychiatric OSCE stations](http://www.trickcyclists.co.uk/){target="_parent"}
 
 # Drugs
-[PSA](https://prescribingsafetyassessment.ac.uk)
+[PSA](https://prescribingsafetyassessment.ac.uk){target="_parent"}
 
-[BNF](https://bnf.nice.org.uk/)
+[BNF](https://bnf.nice.org.uk/){target="_parent"}
 
 # GP
-[General Practice Notebook](http://www.gpnotebook.co.uk/homepage.cfm)
+[General Practice Notebook](http://www.gpnotebook.co.uk/homepage.cfm){target="_parent"}
 
 # Radiology
-[Radiopaedia](https://radiopaedia.org/)
+[Radiopaedia](https://radiopaedia.org/){target="_parent"}
 
-[RADIOLOGY MASTERCLASS](https://www.radiologymasterclass.co.uk/)
+[RADIOLOGY MASTERCLASS](https://www.radiologymasterclass.co.uk/){target="_parent"}
 
 Aimed specifically at medical students and junior doctors, this website has frameworks for interpreting a variety of X-ray interpretations, with test-yourself sections.  
 
-[iRefer](https://www.irefer.org.uk/)
+[iRefer](https://www.irefer.org.uk/){target="_parent"}
 
 # EBM
-[James Lind Alliance](http://www.jla.nihr.ac.uk/about-the-james-lind-alliance/)
+[James Lind Alliance](http://www.jla.nihr.ac.uk/about-the-james-lind-alliance/){target="_parent"}
 
-[The Nuffield Trust](https://www.nuffieldtrust.org.uk/)
+[The Nuffield Trust](https://www.nuffieldtrust.org.uk/){target="_parent"}
 
-[The Cochrane Collaboration](https://cochrane.org)
+[The Cochrane Collaboration](https://cochrane.org){target="_parent"}
 
-[AllTrials](http://www.alltrials.net/)
+[AllTrials](http://www.alltrials.net/){target="_parent"}
 
-[OpenPrescribing](https://openprescribing.net)
+[OpenPrescribing](https://openprescribing.net){target="_parent"}
 
-[EBM Data Lab](https://ebmdatalab.net/)
+[EBM Data Lab](https://ebmdatalab.net/){target="_parent"}
 
-[Healthwatch](https://www.healthwatch.co.uk/)
+[Healthwatch](https://www.healthwatch.co.uk/){target="_parent"}
 
-[Quality Improvement Hub](http://www.qihub.scot.nhs.uk/default.aspx)
+[Quality Improvement Hub](http://www.qihub.scot.nhs.uk/default.aspx){target="_parent"}
 
-[NHS Improvement](https://improvement.nhs.uk)
+[NHS Improvement](https://improvement.nhs.uk){target="_parent"}
 
-[BestBETs](https://bestbets.org/teaching/current.php)
+[BestBETs](https://bestbets.org/teaching/current.php){target="_parent"}
 
 # Cardiology
-[ECG Library](https://lifeinthefastlane.com/ecg-library/)
+[ECG Library](https://lifeinthefastlane.com/ecg-library/){target="_parent"}
 
 # Guidelines
-[NICE Evidence Search](https://www.evidence.nhs.uk/)
+[NICE Evidence Search](https://www.evidence.nhs.uk/){target="_parent"}
 
-[NICE Guidelines](https://www.nice.org.uk/guidance)
+[NICE Guidelines](https://www.nice.org.uk/guidance){target="_parent"}
 
-[SIGN Guidelines](https://www.sign.ac.uk/)
+[SIGN Guidelines](https://www.sign.ac.uk/){target="_parent"}
 
-[British Thoracic Society Guidelines](https://www.brit-thoracic.org.uk/standards-of-care/guidelines/)
+[British Thoracic Society Guidelines](https://www.brit-thoracic.org.uk/standards-of-care/guidelines/){target="_parent"}
 
-[RCH Clinical Practice Guidelines](https://www.rch.org.au/clinicalguide/)
+[RCH Clinical Practice Guidelines](https://www.rch.org.au/clinicalguide/){target="_parent"}
 
-[The Royal Women's Hospital Guidelines](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps)
+[The Royal Women's Hospital Guidelines](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps){target="_parent"}
 
-[RCOG Guidelines](https://www.rcog.org.uk/en/guidelines-research-services/guidelines/)
+[RCOG Guidelines](https://www.rcog.org.uk/en/guidelines-research-services/guidelines/){target="_parent"}
 
 # Pathology
-[Pathcal](https://www.pathcal.ac.uk/shibboleth/deliver/skin/layout/10/calindex.asp?CALid=118)
+[Pathcal](https://www.pathcal.ac.uk/shibboleth/deliver/skin/layout/10/calindex.asp?CALid=118){target="_parent"}
 
 # Paediatrics
-[RCH Clinical Practice Guidelines](https://www.rch.org.au/clinicalguide/)
+[RCH Clinical Practice Guidelines](https://www.rch.org.au/clinicalguide/){target="_parent"}
 
 # Obstetrics and Gynaecology
-[The Royal Women's Hospital](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps/)
+[The Royal Women's Hospital](https://www.thewomens.org.au/health-professionals/clinical-resources/clinical-guidelines-gps/){target="_parent"}
 
 # Orthopaedics
-[Wheeless' Textbook of Orthopaedics](http://www.wheelessonline.com/)
+[Wheeless' Textbook of Orthopaedics](http://www.wheelessonline.com/){target="_parent"}
 
-[Gait assessment](https://www.youtube.com/watch?v=PZBiv0uSXVg)
+[Gait assessment](https://www.youtube.com/watch?v=PZBiv0uSXVg){target="_parent"}
 
 # Question Banks
-[Anki](https://apps.ankiweb.net/)
+[Anki](https://apps.ankiweb.net/){target="_parent"}
 
-[Pastest](https://www.pastest.com/)
+[Pastest](https://www.pastest.com/){target="_parent"}
 
-[Peerwise](https://peerwise.cs.auckland.ac.nz/)
+[Peerwise](https://peerwise.cs.auckland.ac.nz/){target="_parent"}
 
-[BMJ OnExam](https://www.onexamination.com/)
+[BMJ OnExam](https://www.onexamination.com/){target="_parent"}
 
 # Revision
 
-[Cheatography.com](https://www.cheatography.com/ksellybelly/cheat-sheets/)
+[Cheatography.com](https://www.cheatography.com/ksellybelly/cheat-sheets/){target="_parent"}
 
-[Medical Flashcards](https://www.cram.com/medical)
+[Medical Flashcards](https://www.cram.com/medical){target="_parent"}
 
-[Quizlet](https://quizlet.com/)
+[Quizlet](https://quizlet.com/){target="_parent"}
 
-[Osmosis](https://www.osmosis.org/)
+[Osmosis](https://www.osmosis.org/){target="_parent"}
 
-<a target="_parent" href="https://www.osmosis.org/">Osmosis</a>
+[Meducation](https://meducation.net/popular){target="_parent"}
 
-[Meducation](https://meducation.net/popular)
-
-[Revision Music](https://play.spotify.com/user/spotify_uk_/playlist/1iHelgbMaB7G1bjMbABPRe)
+[Revision Music](https://play.spotify.com/user/spotify_uk_/playlist/1iHelgbMaB7G1bjMbABPRe){target="_parent"}
