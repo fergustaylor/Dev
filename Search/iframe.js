@@ -6,57 +6,22 @@ var message = 'documentHeight:'+documentHeight;
 parent.postMessage(message, "*");
 // On resize of the window, recalculate the height of the main element, 
 // and pass to the parent document again
+
 function resize(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
   	message = 'documentHeight:'+documentHeight;
 		parent.postMessage(message,"*");
-		console.log(documentHeight);
+		//console.log(documentHeight);
 }
-//window.onresize = resize;
-//window.onclick = resize;
-//window.oninput = resize;
-//window.onchange = resize;
-//window.onsubmit = resize;
-//window.onkeyup = resize;
-//window.onkeyup = setTimeout(resize, 3000);
-//window.onclick = setTimeout(resize, 3000);
-//window.oninput = setTimeout(resize, 3000);
-//window.onsubmit = setTimeout(resize, 3000);
 
-function function1(event) {
-	  documentHeight = document.querySelector("div#main").scrollHeight;
-		console.log(documentHeight+" onresize");
-		setTimeout(resize, 2000);
-}
-function function2(event) {
-	  documentHeight = document.querySelector("div#main").scrollHeight;
-		console.log(documentHeight+" onclick");
-		setTimeout(resize, 2000);
-}
-function function3(event) {
-	  documentHeight = document.querySelector("div#main").scrollHeight;
-		console.log(documentHeight+" oninput");
-		setTimeout(resize, 2000);
-}
-function function4(event) {
-	  documentHeight = document.querySelector("div#main").scrollHeight;
-		console.log(documentHeight+" onchange");
-		setTimeout(resize, 2000);
-}
-function function5(event) {
-	  documentHeight = document.querySelector("div#main").scrollHeight;
-		console.log(documentHeight+" onsubmit");
-		setTimeout(resize, 2000);
-}
-function function6(event) {
-	  documentHeight = document.querySelector("div#main").scrollHeight;
-		console.log(documentHeight+" onkeyup");
+function resizerepeat(event) {
+		resize;
 		setTimeout(resize, 2000);
 }
 
-window.onresize = function1;
-window.onclick = function2;
-window.oninput = function3;
-window.onchange = function4;
-window.onsubmit = function5;
-window.onkeyup = function6;
+window.onresize = resizerepeat;
+window.onclick = resizerepeat;
+window.oninput = resizerepeat;
+window.onchange = resizerepeat;
+window.onsubmit = resizerepeat;
+window.onkeyup = resizerepeat;
