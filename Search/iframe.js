@@ -14,3 +14,6 @@ function resize(event) {
 }
 window.onresize = resize;
 window.onclick = resize;
+window.oninput = resize;
+window.onchange = resize;
+window.onsubmit = resize;
