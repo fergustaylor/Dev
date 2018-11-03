@@ -23,9 +23,34 @@ function resize(event) {
 //window.oninput = setTimeout(resize, 3000);
 //window.onsubmit = setTimeout(resize, 3000);
 
-window.onresize = console.log("onresize"+document.querySelector("div#main").scrollHeight);
-window.onclick = console.log("onclick"+document.querySelector("div#main").scrollHeight);
-window.oninput = console.log("oninput"+document.querySelector("div#main").scrollHeight);
-window.onchange = console.log("onchange"+document.querySelector("div#main").scrollHeight);
-window.onsubmit = console.log("onsubmit"+document.querySelector("div#main").scrollHeight);
-window.onkeyup = console.log("onkeyup"+document.querySelector("div#main").scrollHeight);
+function function1(event) {
+	  documentHeight = document.querySelector("div#main").scrollHeight;
+		console.log(documentHeight+" onresize");
+}
+function function2(event) {
+	  documentHeight = document.querySelector("div#main").scrollHeight;
+		console.log(documentHeight+" onclick");
+}
+function function3(event) {
+	  documentHeight = document.querySelector("div#main").scrollHeight;
+		console.log(documentHeight+" oninput");
+}
+function function4(event) {
+	  documentHeight = document.querySelector("div#main").scrollHeight;
+		console.log(documentHeight+" onchange");
+}
+function function5(event) {
+	  documentHeight = document.querySelector("div#main").scrollHeight;
+		console.log(documentHeight+" onsubmit");
+}
+function function6(event) {
+	  documentHeight = document.querySelector("div#main").scrollHeight;
+		console.log(documentHeight+" onkeyup");
+}
+
+window.onresize = function1;
+window.onclick = function2;
+window.oninput = function3;
+window.onchange = function4;
+window.onsubmit = function5;
+window.onkeyup = function6;
