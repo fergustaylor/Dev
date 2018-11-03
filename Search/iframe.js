@@ -23,9 +23,9 @@ function resize(event) {
 //window.oninput = setTimeout(resize, 3000);
 //window.onsubmit = setTimeout(resize, 3000);
 
-window.onresize = console.log("onresize");
-window.onclick = console.log("onclick");
-window.oninput = console.log("oninput");
-window.onchange = console.log("onchange");
-window.onsubmit = console.log("onsubmit");
-window.onkeyup = console.log("onkeyup");
+window.onresize = console.log("onresize"+document.querySelector("div#main").scrollHeight);
+window.onclick = console.log("onclick"+document.querySelector("div#main").scrollHeight);
+window.oninput = console.log("oninput"+document.querySelector("div#main").scrollHeight);
+window.onchange = console.log("onchange"+document.querySelector("div#main").scrollHeight);
+window.onsubmit = console.log("onsubmit"+document.querySelector("div#main").scrollHeight);
+window.onkeyup = console.log("onkeyup"+document.querySelector("div#main").scrollHeight);
