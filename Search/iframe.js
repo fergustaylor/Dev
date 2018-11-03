@@ -17,3 +17,4 @@ window.onclick = resize;
 window.oninput = resize;
 window.onchange = resize;
 window.onsubmit = resize;
+window.onkeyup = resize;
