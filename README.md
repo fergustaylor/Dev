@@ -14,7 +14,7 @@ The most difficult part was creating a dynamic iframe to put it in.
 
 <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/276458805?autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
-# [50 Drugs](https://fergustaylor.github.io/Dev/50%Drugs/)
+# [50 Drugs](https://fergustaylor.github.io/Dev/50 Drugs/)
 
 <a href="https://fergustaylor.github.io/Dev/50 Drugs/">
 <img src="./resources/50drugs.png" alt="" style="width:100%;height:auto;">

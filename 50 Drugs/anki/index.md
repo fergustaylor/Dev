@@ -1,9 +1,7 @@
----
-title: "Anki Flashcards"
-output: github_document
----
+Anki Flashcards
+================
 
-```{r, eval=FALSE}
+``` r
 library(tidyverse)
 
 load("/Users/fergustaylor/Desktop/Repos/Dev/50 Drugs/drugs.Rda")
@@ -44,8 +42,9 @@ totaldataframe$'Other information:' [totaldataframe$'Other information:'  =="cha
 totaldataframe$'Other information:' <- lapply(totaldataframe$'Other information:', unlistingfunct) %>%
   unlist
 
-totaldataframe[1:10] %>%
-  write.csv(file = "50 Drugs/anki/anki.csv",row.names=FALSE, fileEncoding = 'UTF-8')
+#Ignoring link
+totaldataframe[c(1:2,4:10)] %>%
+  write.csv(file = "anki.csv",row.names=FALSE, fileEncoding = 'UTF-8')
 ```
 
 Anki then required I set up an appropriate card type.
