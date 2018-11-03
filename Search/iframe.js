@@ -26,26 +26,32 @@ function resize(event) {
 function function1(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
 		console.log(documentHeight+" onresize");
+		setTimeout(resize, 2000);
 }
 function function2(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
 		console.log(documentHeight+" onclick");
+		setTimeout(resize, 2000);
 }
 function function3(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
 		console.log(documentHeight+" oninput");
+		setTimeout(resize, 2000);
 }
 function function4(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
 		console.log(documentHeight+" onchange");
+		setTimeout(resize, 2000);
 }
 function function5(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
 		console.log(documentHeight+" onsubmit");
+		setTimeout(resize, 2000);
 }
 function function6(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
 		console.log(documentHeight+" onkeyup");
+		setTimeout(resize, 2000);
 }
 
 window.onresize = function1;
