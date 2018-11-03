@@ -66,7 +66,7 @@ li *:active {
 
 # Search
 
-[![](search.png)](https://fergustaylor.github.io/Dev/Search/example.html)
+[![](search.png)](https://fergustaylor.github.io/Dev/Search/example.html){target="_parent"}
 
 This is a custom search engine I built to look at BNF Interaction, Radiopaedia, Dermnet, Emedicine, NICE, Child BNF, Evidence NHS, Nice Pathways, SIGN, CKS, and the BNF.<br>
 These are all fantastic resources, and the only reason I've brought them together like this is so that I could toggle between the results, without searching on each of the websites individually.
@@ -75,9 +75,9 @@ I tend to use it to research for portfolio cases.
 
 # BNF Interactions
 
-[![](bnfinteraction.png)](https://fergustaylor.github.io/D3/d3-2/)
+[![](bnfinteraction.png)](https://fergustaylor.github.io/D3/d3-2/){target="_parent"}
 
-[![](bnfcustom.png)](https://fergustaylor.github.io/D3/d3-dynamicclassed/)
+[![](bnfcustom.png)](https://fergustaylor.github.io/D3/d3-dynamicclassed/){target="_parent"}
 
 This is a tool I built to visualise BNF Interactions. You can view the top 100 most commonly prescribed drugs.
 
@@ -87,9 +87,9 @@ Or create your own selection from any BNF-listed drugs.
 
 This is a tool originally built by University of Glasgow students as an SSC project. <br>
 It gives revision information on 50 common drug classes. <br>
-I've since built a new beta version, [here.](https://fergustaylor.github.io/Dev/50 Drugs/)
+I've since built a new beta version, [here.](https://fergustaylor.github.io/Dev/50 Drugs/){target="_parent"}
 
-[![](50drugs.png)](https://fergustaylor.github.io/Dev/50 Drugs/)
+[![](50drugs.png)](https://fergustaylor.github.io/Dev/50 Drugs/){target="_parent"}
 
 I've also exported the data as a .csv, and loaded it into Anki, a popular flashcard app.<br>
 You can download the flashcards [here.](https://ankiweb.net/shared/info/1385997073){target="_parent"}
