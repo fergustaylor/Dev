@@ -67,7 +67,7 @@ li *:active {
 
 [![](search.png)](https://fergustaylor.github.io/Dev/Search/example.html)
 
-This is a custom search engine I built to look at BNF Interaction, [Radiopaedia](#radiology), [Dermnet](#dermatology), Emedicine, NICE, Child BNF, Evidence NHS, Nice Pathways, SIGN, CKS, and the BNF.
+This is a custom search engine I built to look at BNF Interaction, Radiopaedia, Dermnet, Emedicine, NICE, Child BNF, Evidence NHS, Nice Pathways, SIGN, CKS, and the BNF.<br>
 These are all fantastic resources, and the only reason I've brought them together like this is so that I could toggle between the results, without searching on each of the websites individually.
 
 I tend to use it to research for portfolio cases.
