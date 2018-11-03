@@ -11,6 +11,8 @@ window.addEventListener("load", myFunction);
 window.addEventListener("resize", myFunction);
 </script>
 
+<script src="parent.js"></script>
+
 <style>
 iframe {
  width:100%;
