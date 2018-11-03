@@ -10,7 +10,7 @@ function resize(event) {
 	  documentHeight = document.querySelector("div#main").scrollHeight;
   	message = 'documentHeight:'+documentHeight;
 		parent.postMessage(message,"*");
-		//console.log(documentHeight);
+		console.log(documentHeight);
 }
 window.onresize = resize;
 window.onclick = resize;
