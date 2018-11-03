@@ -12,13 +12,20 @@ function resize(event) {
 		parent.postMessage(message,"*");
 		console.log(documentHeight);
 }
-window.onresize = resize;
-window.onclick = resize;
-window.oninput = resize;
-window.onchange = resize;
-window.onsubmit = resize;
-window.onkeyup = resize;
+//window.onresize = resize;
+//window.onclick = resize;
+//window.oninput = resize;
+//window.onchange = resize;
+//window.onsubmit = resize;
+//window.onkeyup = resize;
 //window.onkeyup = setTimeout(resize, 3000);
 //window.onclick = setTimeout(resize, 3000);
 //window.oninput = setTimeout(resize, 3000);
 //window.onsubmit = setTimeout(resize, 3000);
+
+window.onresize = console.log("onresize");
+window.onclick = console.log("onclick");
+window.oninput = console.log("oninput");
+window.onchange = console.log("onchange");
+window.onsubmit = console.log("onsubmit");
+window.onkeyup = console.log("onkeyup");
