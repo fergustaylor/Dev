@@ -266,7 +266,7 @@ function describeall() {
 //remove everything from body apart from index.js.
 $("body *").not("body script").remove();
 
-examplespan;
+examplespan();
 
 //write all of them in.
 var jsonOptions = JSON.parse(request.responseText);
@@ -349,7 +349,7 @@ function describeselected() {
   //describe(druginputarray);
   $("body *").not("body script").remove();
 
-  examplespan;
+  examplespan();
 
   //write all of them in.
   var jsonOptions = JSON.parse(request.responseText);
