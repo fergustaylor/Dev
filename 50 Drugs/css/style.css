@@ -86,6 +86,6 @@ p.example {
 p.sideeffects {
     color: red;
 }
-p.example, p.pcpk, p.indication, p.moa, p.patientinfo, p.sideeffects, p.classinfo {
+p.example, p.pcpk, p.indication, p.moa, p.patientinfo, p.sideeffects, p.classinfo, p.otherinfo {
     padding-left: 40px;
 }
