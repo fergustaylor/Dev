@@ -356,7 +356,9 @@ function describeselected() {
 
   jsonOptions.forEach(function(item) {
     if (druginputarray.includes(item.drug)) {
-
+      
+      var infocontainer = document.getElementById('infocontainer');
+      
       // Create a new <span> element.
       var span = document.createElement('span');
 
