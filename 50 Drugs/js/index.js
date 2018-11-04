@@ -260,17 +260,16 @@ function examplespan() {
 }
 
 function describeall() {
-//remove everything from body apart from index.js.
-$("body *").not("body script").remove();
+  //remove everything from body apart from index.js.
+  $("body *").not("body script").remove();
 
-examplespan();
+  examplespan();
 
-//write all of them in.
-var jsonOptions = JSON.parse(request.responseText);
-
-jsonOptions.forEach(function(item) {
-builtspan(item);
-});
+  //write all of them in.
+  var jsonOptions = JSON.parse(request.responseText);
+  jsonOptions.forEach(function(item) {
+    builtspan(item);
+  });
 }
 
 function describeselected() {
@@ -285,12 +284,11 @@ function describeselected() {
 
   examplespan();
 
-  //write all of them in.
+  //write the ones in druginputarray in.
   var jsonOptions = JSON.parse(request.responseText);
-
   jsonOptions.forEach(function(item) {
     if (druginputarray.includes(item.drug)) {
-     builtspan(item);
+      builtspan(item);
     }
     });
 }
