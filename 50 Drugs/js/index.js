@@ -371,43 +371,43 @@ function describeselected() {
 
       var example = document.createElement('p');
       example.setAttribute("class", "example")
-      var example5 = document.createTextNode("Example(s) of drugs: "+item["Example(s) of drugs:"]);
+      var example5 = document.createTextNode(item["Example(s) of drugs:"]);
       example.appendChild(example5);
       span.appendChild(example);
 
       var pcpk = document.createElement('p');
       pcpk.setAttribute("class", "pcpk")
-      var pcpk5 = document.createTextNode("Important PK/PD: "+item["Important pharmacokinetics / pharmacodynamics:"]);
+      var pcpk5 = document.createTextNode(item["Important pharmacokinetics / pharmacodynamics:"]);
       pcpk.appendChild(pcpk5);
       span.appendChild(pcpk);
 
       var indication = document.createElement('p');
       indication.setAttribute("class", "indication")
-      var indication5 = document.createTextNode("Indication(s): "+item["Indication(s):"]);
+      var indication5 = document.createTextNode(item["Indication(s):"]);
       indication.appendChild(indication5);
       span.appendChild(indication);
 
       var moa = document.createElement('p');
       moa.setAttribute("class", "moa")
-      var moa5 = document.createTextNode("Mechanism of action: "+item["Mechanism of action:"]);
+      var moa5 = document.createTextNode(item["Mechanism of action:"]);
       moa.appendChild(moa5);
       span.appendChild(moa);
 
       var patientinfo = document.createElement('p');
       patientinfo.setAttribute("class", "patientinfo")
-      var patientinfo5 = document.createTextNode("Patient information: "+item["Patient information:"]);
+      var patientinfo5 = document.createTextNode(item["Patient information:"]);
       patientinfo.appendChild(patientinfo5);
       span.appendChild(patientinfo);
 
       var sideeffects = document.createElement('p');
       sideeffects.setAttribute("class", "sideeffects")
-      var sideeffects5 = document.createTextNode("Side effects: "+item["Side effects:"]);
+      var sideeffects5 = document.createTextNode(item["Side effects:"]);
       sideeffects.appendChild(sideeffects5);
       span.appendChild(sideeffects);
 
       var classinfo = document.createElement('p');
       classinfo.setAttribute("class", "classinfo")
-      var classinfo5 = document.createTextNode("Drug class: "+item.class);
+      var classinfo5 = document.createTextNode(item.class);
       classinfo.appendChild(classinfo5);
       span.appendChild(classinfo);
 
