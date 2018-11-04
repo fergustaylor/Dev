@@ -77,3 +77,13 @@ p.title {
 p.title.examplename {
     background-color: rgb(94, 24, 24);
 }
+p.classinfo {
+    font-weight: bolder;
+}
+p.example {
+    font-style: italic;
+    font-weight: bold;
+}
+p.sideeffects {
+    color: red;
+}
