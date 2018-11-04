@@ -73,3 +73,7 @@ p.title {
     background-color: #18515E;
     font-size: 2em;
 }
+
+p.title.examplename {
+    background-color: rgb(94, 24, 24);
+}
