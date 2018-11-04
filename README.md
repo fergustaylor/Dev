@@ -70,7 +70,7 @@ Making a gallery/slideshow element.
 
 # [R2D3](https://fergustaylor.github.io/Dev/r2d3)
 
-<img src="./r2d3/image.jpeg" alt="" style="width:auto;height:250px;">
+<img src="./r2d3/image.jpeg" alt="" style="width:auto;height:250px;margin-left:auto;margin-right:auto;display: block;">
 
 # [D3](https://fergustaylor.github.io/Dev/D3)
 
