@@ -190,20 +190,17 @@ function showsearched(string) {
   }
 }
 
-var druginputarray = [];
-
 function examplespan() {
-  //add new div
+
   var infocontainer = document.createElement('div');
   infocontainer.setAttribute("id", "infocontainer")
   document.body.appendChild(infocontainer);
-  var infocontainer = document.getElementById('infocontainer');
+  infocontainer = document.getElementById('infocontainer');
   
   var span = document.createElement('span');
 
   var checklists = document.createElement('p');
   checklists.setAttribute("class", "title examplename");
-  //add css
   var checklists5 = document.createTextNode("Drug Name");
   checklists.appendChild(checklists5);
 
@@ -340,6 +337,7 @@ infocontainer.appendChild(span);
 }
 
 function describeselected() {
+  var druginputarray = [];
   //code to write only the selected
   var selected = $('div#checklist>span>input:checked');
   //create array
