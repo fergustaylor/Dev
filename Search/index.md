@@ -14,6 +14,6 @@ window.addEventListener("resize", myFunction);
 <style>
 iframe {
 width:100%;
-min-height: 500px !important;
+min-height: 300px !important;
 }
 </style>
