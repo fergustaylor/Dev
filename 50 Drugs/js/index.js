@@ -354,7 +354,14 @@ function describeselected() {
 
   jsonOptions.forEach(function(item) {
     if (druginputarray.includes(item.drug)) {
-      
+     ///function build 
+     builtspan(item);
+    }
+    });
+}
+
+function builtspan(item) {
+  
       //var infocontainer = document.getElementById('infocontainer');
       
       // Create a new <span> element.
@@ -420,6 +427,4 @@ function describeselected() {
       }
 
       infocontainer.appendChild(span);
-    }
-    });
 }
