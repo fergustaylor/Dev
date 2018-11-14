@@ -11,6 +11,8 @@ date: "2018-10-08"
 output: radix::radix_article
 ---
 
+I learnt about Reticulate [here.](https://blog.rstudio.com/2018/10/09/rstudio-1-2-preview-reticulated-python/)
+
 A report built on the examples [here.](https://www.business-science.io/business/2018/10/08/python-and-r.html)
 
 ```{r setup, include=FALSE}
