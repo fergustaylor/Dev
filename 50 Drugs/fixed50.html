@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+<meta charset="UTF-8">
+<title>Search</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/loading.css">
+
+<script src="d3/d3.js"></script>
+<script src="d3/d3.layout.js"></script>
+</head>
+
+<body>
+<label for="search">Search: </label>
+<input type="text" id="search" onkeyup="showsearched(this.value)" autocomplete="off">
+<form class="filters">
+  <input type="radio" name="filter" value="Show Drugs" checked onchange="showdrugs()"> Show Drugs
+  <input type="radio" name="filter" value="Show Classes" onchange="showclasses()"> Show Classes
+  <button type="button" onclick="describeall()">Describe All</button>
+  <button type="button" onclick="describeselected()">Describe Selected</button>
+</form>
+
+<div class="loading"></div>
+
+<div class="flex-container" id="checklist"></div>
+<div class="flex-container" id="classlist"></div>
+
+<script  src="js/50fixedindex.js"></script>
+</body>
+</html>

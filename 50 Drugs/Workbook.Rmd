@@ -158,36 +158,25 @@ Export data
 ```{r}
 Datestamp <- Sys.Date()
 
+###Save as .Rda
+#Archive version
 dataframeName <- str_c("archive/", Datestamp) %>%
 str_replace_all(" ", "") %>%
 str_c("drugs.Rda")
 save(totaldataframe, file=dataframeName)
-
+#Main version
 save(totaldataframe, file="drugs.Rda")
 
+###Save as .JSON
+#Archive version
 jsonName <- str_c("archive/", str_replace_all(Datestamp, " ", ""), "drugs.json")
 totaldataframe %>%
   jsonlite::toJSON() %>%
   write(file = jsonName)
-
+#Main version
 totaldataframe %>%
   jsonlite::toJSON() %>%
   write(file="drugs.json")
 ```
 
-```{r, include=FALSE}
-#encoding to csv not sorted yet
-#dataframeNamecsv <- str_c("archive/", Datestamp) %>%
-#  str_replace_all(" ", "") %>%
-#  str_c("drugs.csv")
-#write.csv(totaldataframe, dataframeNamecsv)
-#write.csv(totaldataframe, "drugs.csv")
-
-#//////////////////
-#//////////////////
-#Extra data I might need
-#html_text(example)[which(examplelist == "h4")]
-#should always be 7
-#examplelist == "h4"
-#which(examplelist == "h4")
-```
+Encoding to CSV sorted in [./anki/]

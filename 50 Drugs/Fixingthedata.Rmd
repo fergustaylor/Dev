@@ -1,0 +1,38 @@
+---
+title: "Fixing 50 Drugs"
+output: html_document
+---
+
+So I'm planning on fixing 50 Drugs.
+
+Unfortunately, the original data has a lot of formatting issues.
+
+While I could try to programmatically fix some of them, I think the complexity of it vs the size of the dataset means that ultimately it's worth just going through in Excel.
+
+It means the data won't be fixed automatically when I redownload it, but since the 50 drugs resource isn't being actively maintained anymore this seems irrelevant.
+
+```{r}
+#Using the fixed version from /anki/index.Rmd
+#load drugs.Rda
+library(tidyverse)
+load("/Users/fergustaylor/Desktop/Repos/Dev/50 Drugs/anki/anki.Rda")
+```
+
+```{r, eval = FALSE}
+#output as .csv
+#totaldataframe%>%
+#  write.csv(file = "fix.csv", row.names=FALSE, fileEncoding = #'UTF-8')
+```
+
+Edit the csv in Excel.
+
+```{r}
+#load .csv
+fixeddataframe <- read_csv(file = "fix.csv")
+#output as .Rda
+save(fixeddataframe, file="fixeddrugs.Rda")
+#output as .json
+fixeddataframe %>%
+  jsonlite::toJSON() %>%
+  write(file="fixeddrugs.json")
+```
