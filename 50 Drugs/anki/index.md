@@ -12,14 +12,10 @@ unlistingfunct <- function(x) {
   str_c(collapse= ", ")
 }
 
-#secondunlistingfunct <- function(x) {
-#  x <- lapply(x, unlistingfunct) %>%
-#  unlist
-#}
-#totaldataframe[4:10]
-
-totaldataframe$'Example(s) of drugs:' <- lapply(totaldataframe$'Example(s) of drugs:', unlistingfunct) %>%
-  unlist
+##totaldataframe$'Example(s) of drugs:' <- lapply(totaldataframe$'Example(s) of drugs:', unlistingfunct) %>%
+##  unlist
+totaldataframe <- totaldataframe %>%
+  mutate('Example(s) of drugs:' = stri_join_list(totaldataframe$'Example(s) of drugs:', sep = ", ", collapse = NULL))
 
 totaldataframe$'Mechanism of action:'[totaldataframe$'Mechanism of action:' =="character(0)"] <- "NA"
 totaldataframe$'Mechanism of action:' <- lapply(totaldataframe$'Mechanism of action:', unlistingfunct) %>%
@@ -44,6 +40,7 @@ totaldataframe$'Other information:' <- lapply(totaldataframe$'Other information:
 
 #Ignoring link
 totaldataframe[c(1:2,4:10)] %>%
+  mutate("tags" = str_c(class, " top50 drugs")) %>%
   write.csv(file = "anki.csv",row.names=FALSE, fileEncoding = 'UTF-8')
 ```
 

@@ -3,8 +3,47 @@ title: "Anki Flashcards"
 output: github_document
 ---
 
+```{r, eval=FALSE, include=FALSE}
+#Replace all character(0)
+totaldataframe[1,10]
+
+totaldataframe$'Other information:' %>%
+  as.character()
+
+totaldataframe[44,10] %>%
+  unlist
+
+totaldataframe %>%
+  mutate('Other information:' = )
+
+stri_join_list(totaldataframe$'Other information:', sep = ". ", collapse = NULL)
+
+totaldataframe$'Other information:' %>%
+  as.character()
+
+stri_join_list(totaldataframe[44,10], sep = ". ", collapse = NULL)
+
+lapply(totaldataframe$'Other information:', function(x) {
+  if (length(x) > 0) {stri_join_list(x, sep = ". ")}
+})
+
+totaldataframe$'Other information:'[[44]] %>%
+  length
+
+totaldataframe <- totaldataframe %>%
+  mutate('Mechanism of action:' = stri_join_list(totaldataframe$'Mechanism of action:', sep = ", ", collapse = NULL))
+
+totaldataframe$'Mechanism of action:'[lapply(totaldataframe$'Mechanism of action:', function(x) {
+  unlist(x) %>%
+  identical(., character(0))
+}) %>% 
+  unlist]
+```
+
+
 ```{r, eval=FALSE}
 library(tidyverse)
+library(stringi)
 
 load("/Users/fergustaylor/Desktop/Repos/Dev/50 Drugs/drugs.Rda")
 
@@ -14,14 +53,10 @@ unlistingfunct <- function(x) {
   str_c(collapse= ", ")
 }
 
-#secondunlistingfunct <- function(x) {
-#  x <- lapply(x, unlistingfunct) %>%
-#  unlist
-#}
-#totaldataframe[4:10]
-
-totaldataframe$'Example(s) of drugs:' <- lapply(totaldataframe$'Example(s) of drugs:', unlistingfunct) %>%
-  unlist
+##totaldataframe$'Example(s) of drugs:' <- lapply(totaldataframe$'Example(s) of drugs:', unlistingfunct) %>%
+##  unlist
+totaldataframe <- totaldataframe %>%
+  mutate('Example(s) of drugs:' = stri_join_list(totaldataframe$'Example(s) of drugs:', sep = ", ", collapse = NULL))
 
 totaldataframe$'Mechanism of action:'[totaldataframe$'Mechanism of action:' =="character(0)"] <- "NA"
 totaldataframe$'Mechanism of action:' <- lapply(totaldataframe$'Mechanism of action:', unlistingfunct) %>%
@@ -44,6 +79,9 @@ totaldataframe$'Other information:' [totaldataframe$'Other information:'  =="cha
 totaldataframe$'Other information:' <- lapply(totaldataframe$'Other information:', unlistingfunct) %>%
   unlist
 
+#save data
+save(totaldataframe, file="anki.Rda")
+
 #Ignoring link
 totaldataframe[c(1:2,4:10)] %>%
   mutate("tags" = str_c(class, " top50 drugs")) %>%
@@ -57,3 +95,21 @@ I was able to import the csv.
 I then added some styling information.
 
 And was able to export the resultant flashcards as an .apkg.
+
+```{r, eval=FALSE, include=FALSE}
+#row 42 bleurgh
+#MOA if string ends with "." sep = " "
+# if not, sep = ". "
+#Indication if string ends with "." sep = " "
+# if not, sep = ". "
+#S/E if string ends with "." sep = " "
+# if not, sep = ". "
+#PK/PD if string ends with "." sep = " "
+# if not, sep = ". "
+#PI if string ends with "." sep = " "
+# if not, sep = ". "
+#Other if string ends with "." sep = " "
+# if not, sep = ". "
+
+#End whole string of each with "."
+```
