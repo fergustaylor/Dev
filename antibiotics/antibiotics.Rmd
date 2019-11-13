@@ -1,0 +1,81 @@
+---
+title: "Antibiotc Classes"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+Sys.setenv(TZ='GMT')
+```
+
+### Graphing the antibiotic tree
+
+Graphics based on [R Graph Gallery](https://www.r-graph-gallery.com/dendrogram.html)
+
+- beta-lactams
+    - penicillins
+        - benzylpen
+        - pen v
+        - ampicillin
+        - amoxicillin
+        - meticillin
+        - flucloxacillin
+        - nafacillin
+        - temocillin
+        - ureidopenicillin
+        - piperacillin
+        - carboxypenicciln
+        - co-amoxiclav
+        - mecillinoms
+    - cephalosporins
+        - 1st gen
+        - 2nd gen
+        - 3rd gen
+        - 4th gen
+        - 5th gen
+    - carbapenems
+        - imipenem
+        - meropenem
+        - etapenem
+        - doripenem
+    - monobactams
+        - azteronam
+- aminoglyclosides
+- macrolides
+- gyloceptdes
+- tetracyclines
+- quinolones
+- sulphonamides + trimethoprim
+- nitromdazoles
+- chloramphenicol
+- fusidic acid
+- oxozolidinone
+- polymyxins
+- other
+    - clindamixin
+    - streptogrammins
+    - rifamycins
+    - daptomycin
+    - nitrofurans
+    - methanamine
+    
+```{r, comment=FALSE, message=FALSE, warning=FALSE}
+# Load library
+# install.packages("collapsibleTree")
+library(collapsibleTree) 
+ 
+# # input data must be a nested data frame:
+# head(warpbreaks)
+#  
+# # Represent this tree:
+# p <- collapsibleTree( warpbreaks, c("wool", "tension", "breaks"))
+# p
+
+# save the widget
+# library(htmlwidgets)
+# saveWidget(p, file=paste0( getwd(), "/HtmlWidget/dendrogram_interactive.html"))
+
+antibiotics <- read.csv2("antibiostree2.csv", sep=",", header=FALSE)
+collapsibleTree(antibiotics, c("V1", "V2", "V3"))
+```
+

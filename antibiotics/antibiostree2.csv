@@ -1,0 +1,41 @@
+beta-lactams,penicillins,benzylpen
+beta-lactams,penicillins,pen v
+beta-lactams,penicillins,ampicillin
+beta-lactams,penicillins,amoxicillin
+beta-lactams,penicillins,meticillin
+beta-lactams,penicillins,flucloxacillin
+beta-lactams,penicillins,nafacillin
+beta-lactams,penicillins,temocillin
+beta-lactams,penicillins,ureidopenicillin
+beta-lactams,penicillins,piperacillin
+beta-lactams,penicillins,carboxypenicciln
+beta-lactams,penicillins,co-amoxiclav
+beta-lactams,penicillins,mecillinoms
+beta-lactams,cephalosporins,1st gen
+beta-lactams,cephalosporins,2nd gen
+beta-lactams,cephalosporins,3rd gen
+beta-lactams,cephalosporins,4th gen
+beta-lactams,cephalosporins,5th gen
+beta-lactams,carbapenems,imipenem
+beta-lactams,carbapenems,meropenem
+beta-lactams,carbapenems,etapenem
+beta-lactams,carbapenems,doripenem
+beta-lactams,monobactams,azteronam
+aminoglyclosides,,
+macrolides,,
+gyloceptdes,,
+tetracyclines,,
+quinolones,,
+sulphonamides + trimethoprim,,
+nitromdazoles,,
+chloramphenicol,,
+fusidic acid,,
+oxozolidinone,,
+polymyxins,,
+other,clindamixin,
+other,streptogrammins,
+other,rifamycins,
+other,daptomycin,
+other,nitrofurans,
+other,methanamine,
+,,
