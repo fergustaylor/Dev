@@ -1,0 +1,54 @@
+"Antibacterial drugs (0,4) ","Penicillins (0,0) ","Benzylpenicillin and phenoxymethylpenicillin (4,0) "
+"Antibacterial drugs (0,4) ","Penicillins (0,0) ","Penicillinase-resistant penicillins (2,0) "
+"Antibacterial drugs (0,4) ","Penicillins (0,0) ","Broad-spectrum penicillins (2,0) "
+"Antibacterial drugs (0,4) ","Penicillins (0,0) ","Antipseudomonal penicillins (1,0) "
+"Antibacterial drugs (0,4) ","Penicillins (0,0) ","Mecillinams (1,0) "
+"Antibacterial drugs (0,4) ","Cephalosporins, carbapenems and other beta-lactams (0,0) ","Cephalosporins (8,0) "
+"Antibacterial drugs (0,4) ","Cephalosporins, carbapenems and other beta-lactams (0,0) ","Carbapenems (2,0) "
+"Antibacterial drugs (0,4) ","Cephalosporins, carbapenems and other beta-lactams (0,0) ","Other beta-lactam antibiotics (2,0) "
+"Antibacterial drugs (0,4) ","Tetracyclines (4,2) "," Tigecycline (1,0) "
+"Antibacterial drugs (0,4) ","Aminoglycosides (5,0) ",
+"Antibacterial drugs (0,4) ","Macrolides (3,0) ",
+"Antibacterial drugs (0,4) ","Clindamycin (2,0) ",
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Fosfomycin (1,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Fusidic acid (1,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Vancomycin and teicoplanin (5,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Daptomycin (2,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Linezolid (1,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Tedizolid (1,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Polymyxins (4,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Rifaximin (2,0) "
+"Antibacterial drugs (0,4) ","Some other antibacterials (1,0) "," Fidaxomicin (1,0) "
+"Antibacterial drugs (0,4) ","Sulphonamides and trimethoprim (2,0) ",
+"Antibacterial drugs (0,4) ","Antituberculosis drugs (12,2) ",
+"Antibacterial drugs (0,4) ","Antileprotic drugs (1,0) ",
+"Antibacterial drugs (0,4) ","Metronidazole and tinidazole (1,0) ",
+"Antibacterial drugs (0,4) ","Quinolones (4,2) ",
+"Antibacterial drugs (0,4) ","Urinary-tract infections (3,0) ",
+"Antifungal drugs (0,0) ","Triazole antifungals (6,0) ",
+"Antifungal drugs (0,0) ","Polyene antifungals (1,0) ",
+"Antifungal drugs (0,0) ","Echinocandin antifungals (2,0) ",
+"Antifungal drugs (0,0) ","Other antifungals (2,0) ",
+"Antiviral drugs (0,0) ","HIV infection (0,0) "," Nucleoside reverse transcriptase inhibitors (20,0) "
+"Antiviral drugs (0,0) ","HIV infection (0,0) "," Protease inhibitors (8,0) "
+"Antiviral drugs (0,0) ","HIV infection (0,0) "," Non-nucleoside reverse transcriptase inhibitors (5,0) "
+"Antiviral drugs (0,0) ","HIV infection (0,0) "," Other antiretrovirals (3,1) "
+"Antiviral drugs (0,0) ","Herpesvirus infections (0,0) ","Herpes simplex and varicella-zoster infection (2,1) "
+"Antiviral drugs (0,0) ","Herpesvirus infections (0,0) ","Cytomegalovirus infrection (4,0) "
+"Antiviral drugs (0,0) ","Viral hepatitis (0,0) ","Chronic hepatitis B (4,0) "
+"Antiviral drugs (0,0) ","Viral hepatitis (0,0) ","Chronic hepatitis C (10,2) "
+"Antiviral drugs (0,0) ","Influenza (2,0) ",
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Treatment of malaria (0,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Artemether with lumefabtrine (1,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Chloroquine (1,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Mefloquine (1,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Primaquine (1,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Proguanil (2,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Pyrimethamine (1,1) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Quinine (2,0) "
+"Antiprotozoal drugs (0,0) ","Antimalarials (0,0) "," Tetracyclines (1,0) "
+"Antiprotozoal drugs (0,0) ","Amoebicides (2,0) ",
+"Antiprotozoal drugs (0,0) ","Leishmaniacides (1,0) ",
+"Antiprotozoal drugs (0,0) ","Drugs for toxoplasmosis (1,0) ",
+"Antiprotozoal drugs (0,0) ","Drugs for pneumocystis pneumonia (2,0) ",
+"Anthelmintics (6,0) ","Drugs for threadworms (0,1)",

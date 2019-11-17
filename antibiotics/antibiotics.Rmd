@@ -1,5 +1,5 @@
 ---
-title: "Antibiotc Classes"
+title: "Antibiotic Classes"
 output: html_document
 ---
 
@@ -8,9 +8,11 @@ knitr::opts_chunk$set(echo = TRUE)
 Sys.setenv(TZ='GMT')
 ```
 
-### Graphing the antibiotic tree
+### Graphing the tree
 
 Graphics based on [R Graph Gallery](https://www.r-graph-gallery.com/dendrogram.html)
+
+My old notes hierachy:
 
 - beta-lactams
     - penicillins
@@ -79,3 +81,29 @@ antibiotics <- read.csv2("antibiostree2.csv", sep=",", header=FALSE)
 collapsibleTree(antibiotics, c("V1", "V2", "V3"))
 ```
 
+[NHS Tayside Antbiotic Man]
+
+[Antimicrobial prescribing guidelines](https://www.nice.org.uk/about/what-we-do/our-programmes/nice-guidance/antimicrobial-prescribing-guidelines)
+
+[Antibacterials, principles of therapy](https://bnf.nice.org.uk/treatment-summary/antibacterials-principles-of-therapy.html)
+
+[NHS Tayside Formulary:](http://www.taysideformulary.scot.nhs.uk)
+
+[Formulary Abx](http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05.01&SubSectionID=A100)
+
+[Formulary Abx Doses](https://www.nhstaysideadtc.scot.nhs.uk/Antibiotic%20site/drugdosages.htm)
+
+[Tayside Infections](http://www.taysideformulary.scot.nhs.uk/chaptersSub.asp?FormularySectionID=5)
+
+Each formulary section has an enclosed number (x, y). THe first denotes a drug, the second a link.
+
+```{r, comment=FALSE, message=FALSE, warning=FALSE}
+antibioticstay <- read.csv2("taysideformulary.csv", sep=",", header=FALSE)
+
+#remove /xca random character, eugh
+antibioticstay$V1 <- gsub("\xca", "", antibioticstay$V1)
+antibioticstay$V2 <- gsub("\xca", "", antibioticstay$V2)
+antibioticstay$V3 <- gsub("\xca", "", antibioticstay$V3)
+
+collapsibleTree(antibioticstay, c("V1", "V2", "V3"))
+```
