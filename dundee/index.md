@@ -3,31 +3,21 @@ Dundee
 
 ## GitHub Documents
 
-This is an R Markdown format used for publishing markdown documents to
-GitHub. When you click the **Knit** button all R code chunks are run and
-a markdown file (.md) suitable for publishing to GitHub is generated.
+Looking at the Dundee Council
+[github](https://github.com/DundeeCityCouncil)
 
-## Including Code
+[NHS Health
+Boards](https://data.gov.uk/dataset/27d0fe5f-79bb-4116-aec9-a8e565ff756a/nhs-health-boards)
 
-You can include R code in the document as follows:
+[Data
+downloads](https://digital.nhs.uk/services/organisation-data-service/data-downloads)
 
-``` r
-summary(cars)
-```
+[NHS Scotland Open Data](https://opendata.nhs.uk/home)
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+[NHS Open
+API](https://www.england.nhs.uk/digitaltechnology/connecteddigitalsystems/interoperability/open-api/)
 
-## Including Plots
+## NHS Boards
 
-You can also embed plots, for example:
-
-![](index_files/figure-gfm/pressure-1.png)<!-- -->
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+Taken from here, [NHS
+shapefiles](https://data.gov.uk/dataset/27d0fe5f-79bb-4116-aec9-a8e565ff756a/nhs-health-boards)
