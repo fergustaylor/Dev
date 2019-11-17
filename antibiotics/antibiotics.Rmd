@@ -12,7 +12,7 @@ Sys.setenv(TZ='GMT')
 
 Graphics based on [R Graph Gallery](https://www.r-graph-gallery.com/dendrogram.html)
 
-My old notes hierachy:
+I'd like to graph antibiotics in an informative way. For example, my old notes hierachy:
 
 - beta-lactams
     - penicillins
@@ -60,8 +60,8 @@ My old notes hierachy:
     - daptomycin
     - nitrofurans
     - methanamine
-    
-```{r, comment=FALSE, message=FALSE, warning=FALSE}
+
+```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
 # Load library
 # install.packages("collapsibleTree")
 library(collapsibleTree) 
@@ -81,11 +81,15 @@ antibiotics <- read.csv2("antibiostree2.csv", sep=",", header=FALSE)
 collapsibleTree(antibiotics, c("V1", "V2", "V3"))
 ```
 
-[NHS Tayside Antbiotic Man]
+[NHS Tayside Antibiotic Man]()
+
+*Unfortunately, this is on Staffnet so you can't access outside the NHS Tayside network.
 
 [Antimicrobial prescribing guidelines](https://www.nice.org.uk/about/what-we-do/our-programmes/nice-guidance/antimicrobial-prescribing-guidelines)
 
 [Antibacterials, principles of therapy](https://bnf.nice.org.uk/treatment-summary/antibacterials-principles-of-therapy.html)
+
+#### NHS Tayside:
 
 [NHS Tayside Formulary:](http://www.taysideformulary.scot.nhs.uk)
 
@@ -95,15 +99,119 @@ collapsibleTree(antibiotics, c("V1", "V2", "V3"))
 
 [Tayside Infections](http://www.taysideformulary.scot.nhs.uk/chaptersSub.asp?FormularySectionID=5)
 
-Each formulary section has an enclosed number (x, y). THe first denotes a drug, the second a link.
+NHS Tayside Area Formulary has a chapter (5), "Infections".
 
-```{r, comment=FALSE, message=FALSE, warning=FALSE}
-antibioticstay <- read.csv2("taysideformulary.csv", sep=",", header=FALSE)
+I've graphed this to show the grouped antimicrobials. Each chapter formulary subsection has an enclosed number (x, y). The first denotes a drug, the second a link.
+
+```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+Formulary <- read.csv2("taysideformulary.csv", sep=",", header=FALSE)
 
 #remove /xca random character, eugh
-antibioticstay$V1 <- gsub("\xca", "", antibioticstay$V1)
-antibioticstay$V2 <- gsub("\xca", "", antibioticstay$V2)
-antibioticstay$V3 <- gsub("\xca", "", antibioticstay$V3)
+Formulary$V1 <- gsub("\xca", "", Formulary$V1)
+Formulary$V2 <- gsub("\xca", "", Formulary$V2)
+Formulary$V3 <- gsub("\xca", "", Formulary$V3)
 
-collapsibleTree(antibioticstay, c("V1", "V2", "V3"))
+collapsibleTree(Formulary, c("V1", "V2", "V3"))
 ```
+
+Laid out as a force diagram:
+```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+# Libraries
+library(igraph)
+library(networkD3)
+
+data <- data.frame(
+  from=c("Formulary"),
+  to=c(Formulary$V1)
+)
+
+data2 <- data.frame(
+  from=c(Formulary$V1),
+  to=c(Formulary$V2)
+) %>%
+    dplyr::distinct()
+
+data3 <- data.frame(
+  from=c(Formulary$V2),
+  to=c(Formulary$V3)
+) %>%
+    dplyr::filter(to != "") %>%
+    dplyr::distinct()
+
+data <- rbind(data,data2, data3)
+    
+# Plot
+p <- simpleNetwork(data, height="100px", width="100px",        
+        Source = 1,                 # column number of source
+        Target = 2,                 # column number of target
+        linkDistance = 10,          # distance between node. Increase this value to have more space between nodes
+        charge = -900,                # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
+        fontSize = 14,               # size of the node names
+        fontFamily = "serif",       # font og node names
+        linkColour = "#666",        # colour of edges, MUST be a common colour for the whole graph
+        nodeColour = "#69b3a2",     # colour of nodes, MUST be a common colour for the whole graph
+        opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
+        zoom = T                    # Can you zoom on the figure?
+        )
+
+# save the widget
+#library(htmlwidgets)
+#saveWidget(p, "networkInteractive2.html")
+p
+```
+
+Now scraped instead:
+```{r, comment=FALSE, message=FALSE, warning=FALSE}
+library(rvest)
+formularydata <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+    html_nodes(css = ".boldDrug") %>%
+    html_text() %>%
+    stringr::str_replace("\r\n\t  ", replacement = "")
+```
+
+There are `r length(formularydata)` antibiotics listed in NHS Tayside formulary.
+
+```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+##`r length(formularydata)`
+```
+
+16 of these are non-formulary. 
+
+```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+formularydata2 <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+    html_nodes(css = ".RowZ100 td , .RowA100 td , .boldDrug") %>%
+    html_text() %>%
+    stringr::str_replace("\r\n\t  ", replacement = "")
+
+#get antibio list
+formularydata3 <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+    html_nodes(css = ".RowZ100 td , .RowA100 td") %>%
+    html_text()
+
+#Scrape labels instead of copy/paste from website
+#a <- formularydata3[seq(1, length(formularydata3), 3)]
+b <- formularydata3[seq(2, length(formularydata3), 3)] %>%
+    stringr::str_replace("\r\n\ ", replacement = "") %>%
+    stringr::str_replace("\r\n\ ", replacement = "") %>%
+    stringr::str_replace("                  ", replacement = "") 
+#c <- formularydata3[seq(3, length(formularydata3), 3)]
+# 
+# formularydata3[[3]] %>%
+#     rvest::html_attrs()
+
+#get links list
+#get non-formulary list
+
+#build table
+#
+```
+
+Combining National information:
+
+[Scottish Medicines Consortium](https://www.scottishmedicines.org.uk)
+
+[BNF Interactions](https://bnf.nice.org.uk/drug/)
+
+[The Scottish Antimicrobial Prescribing Group](https://www.sapg.scot)
+
+To give functions using this new data I'll need to graph it using the [D3 Graph Gallery.](https://www.d3-graph-gallery.com/dendrogram.html)

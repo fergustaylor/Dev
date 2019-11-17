@@ -1393,6 +1393,298 @@ function separationFun(a, b) {
   return (a.parent === b.parent ? 1 : distance);
 };
 </script>
+<script>HTMLWidgets.widget({
+
+  name: "forceNetwork",
+
+  type: "output",
+
+  initialize: function(el, width, height) {
+
+    d3.select(el).append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    return d3.forceSimulation();
+  },
+
+  resize: function(el, width, height, force) {
+
+    d3.select(el).select("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    force.force("center", d3.forceCenter(width / 2, height / 2))
+        .restart();
+  },
+
+  renderValue: function(el, x, force) {
+
+  // Compute the node radius  using the javascript math expression specified
+    function nodeSize(d) {
+            if(options.nodesize){
+                    return eval(options.radiusCalculation);
+
+            }else{
+                    return 6}
+
+    }
+
+
+    // alias options
+    var options = x.options;
+
+    // convert links and nodes data frames to d3 friendly format
+    var links = HTMLWidgets.dataframeToD3(x.links);
+    var nodes = HTMLWidgets.dataframeToD3(x.nodes);
+
+    // create linkedByIndex to quickly search for node neighbors
+    // adapted from: http://stackoverflow.com/a/8780277/4389763
+    var linkedByIndex = {};
+    links.forEach(function(d) {
+      linkedByIndex[d.source + "," + d.target] = 1;
+      linkedByIndex[d.target + "," + d.source] = 1;
+    });
+    function neighboring(a, b) {
+      return linkedByIndex[a.index + "," + b.index];
+    }
+
+    // get the width and height
+    var width = el.offsetWidth;
+    var height = el.offsetHeight;
+
+    var color = eval(options.colourScale);
+
+    // set this up even if zoom = F
+    var zoom = d3.zoom();
+
+    // create d3 force layout
+    force
+      .nodes(d3.values(nodes))
+      .force("link", d3.forceLink(links).distance(options.linkDistance))
+      .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("charge", d3.forceManyBody().strength(options.charge))
+      .on("tick", tick);
+
+    force.alpha(1).restart();
+
+      var drag = d3.drag()
+        .on("start", dragstart)
+        .on("drag", dragged)
+        .on("end", dragended)
+      function dragstart(d) {
+        if (!d3.event.active) force.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+      function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+      }
+      function dragended(d) {
+        if (!d3.event.active) force.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      }
+
+    // select the svg element and remove existing children
+    var svg = d3.select(el).select("svg");
+    svg.selectAll("*").remove();
+    // add two g layers; the first will be zoom target if zoom = T
+    //  fine to have two g layers even if zoom = F
+    svg = svg
+        .append("g").attr("class","zoom-layer")
+        .append("g")
+
+    // add zooming if requested
+    if (options.zoom) {
+      function redraw() {
+        d3.select(el).select(".zoom-layer")
+          .attr("transform", d3.event.transform);
+      }
+      zoom.on("zoom", redraw)
+
+      d3.select(el).select("svg")
+        .attr("pointer-events", "all")
+        .call(zoom);
+
+    } else {
+      zoom.on("zoom", null);
+    }
+
+    // draw links
+    var link = svg.selectAll(".link")
+      .data(links)
+      .enter().append("line")
+      .attr("class", "link")
+      .style("stroke", function(d) { return d.colour ; })
+      //.style("stroke", options.linkColour)
+      .style("opacity", options.opacity)
+      .style("stroke-width", eval("(" + options.linkWidth + ")"))
+      .on("mouseover", function(d) {
+          d3.select(this)
+            .style("opacity", 1);
+      })
+      .on("mouseout", function(d) {
+          d3.select(this)
+            .style("opacity", options.opacity);
+      });
+
+    if (options.arrows) {
+      link.style("marker-end",  function(d) { return "url(#arrow-" + d.colour + ")"; });
+
+      var linkColoursArr = d3.nest().key(function(d) { return d.colour; }).entries(links);
+
+      svg.append("defs").selectAll("marker")
+          .data(linkColoursArr)
+          .enter().append("marker")
+            .attr("id", function(d) { return "arrow-" + d.key; })
+            .attr("viewBox", "0, -5, 10, 10")
+            .attr("refX", 0)
+            .attr("markerWidth", 4)
+            .attr("markerHeight", 4)
+            .attr("orient", "auto")
+            .style("fill", "context-fill")
+            .style("fill", function(d) { return d.key; })
+            .style("opacity", options.opacity)
+          .append("path")
+            .attr("d", "M0,-5 L10,0 L0,5");
+    }
+
+    // draw nodes
+    var node = svg.selectAll(".node")
+      .data(force.nodes())
+      .enter().append("g")
+      .attr("class", "node")
+      .style("fill", function(d) { return color(d.group); })
+      .style("opacity", options.opacity)
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout)
+      .on("click", click)
+      .call(drag);
+
+    node.append("circle")
+      .attr("r", function(d){return nodeSize(d);})
+      .style("stroke", "#fff")
+      .style("opacity", options.opacity)
+      .style("stroke-width", "1.5px");
+
+    node.append("svg:text")
+      .attr("class", "nodetext")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(function(d) { return d.name })
+      .style("font", options.fontSize + "px " + options.fontFamily)
+      .style("opacity", options.opacityNoHover)
+      .style("pointer-events", "none");
+
+    function tick() {
+      node.attr("transform", function(d) {
+        if(options.bounded){ // adds bounding box
+            d.x = Math.max(nodeSize(d), Math.min(width - nodeSize(d), d.x));
+            d.y = Math.max(nodeSize(d), Math.min(height - nodeSize(d), d.y));
+        }
+
+        return "translate(" + d.x + "," + d.y + ")"});
+
+      function idx(d, type) {
+        var linkWidthFunc = eval("(" + options.linkWidth + ")");
+			  var a = d.target.x - d.source.x;
+			  var b = d.target.y - d.source.y;
+			  var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+  			if (type == "x1") return (d.source.x + ((nodeSize(d.source) * a) / c));
+  			if (type == "y1") return (d.source.y + ((nodeSize(d.source) * b) / c));
+  			if (options.arrows) {
+  			  if (type == "x2") return (d.target.x - ((((5 * linkWidthFunc(d)) + nodeSize(d.target)) * a) / c));
+  			  if (type == "y2") return (d.target.y - ((((5 * linkWidthFunc(d)) + nodeSize(d.target)) * b) / c));
+  			} else {
+  			  if (type == "x2") return (d.target.x - ((nodeSize(d.target) * a) / c));
+  			  if (type == "y2") return (d.target.y - ((nodeSize(d.target) * b) / c));
+  			}
+		  }
+
+      link
+        .attr("x1", function(d) { return idx(d, "x1"); })
+        .attr("y1", function(d) { return idx(d, "y1"); })
+        .attr("x2", function(d) { return idx(d, "x2"); })
+        .attr("y2", function(d) { return idx(d, "y2"); });
+    }
+
+    function mouseover(d) {
+      // unfocus non-connected links and nodes
+      //if (options.focusOnHover) {
+        var unfocusDivisor = 4;
+
+        link.transition().duration(200)
+          .style("opacity", function(l) { return d != l.source && d != l.target ? +options.opacity / unfocusDivisor : +options.opacity });
+
+        node.transition().duration(200)
+          .style("opacity", function(o) { return d.index == o.index || neighboring(d, o) ? +options.opacity : +options.opacity / unfocusDivisor; });
+      //}
+
+      d3.select(this).select("circle").transition()
+        .duration(750)
+        .attr("r", function(d){return nodeSize(d)+5;});
+      d3.select(this).select("text").transition()
+        .duration(750)
+        .attr("x", 13)
+        .style("stroke-width", ".5px")
+        .style("font", options.clickTextSize + "px ")
+        .style("opacity", 1);
+    }
+
+    function mouseout() {
+      node.style("opacity", +options.opacity);
+      link.style("opacity", +options.opacity);
+
+      d3.select(this).select("circle").transition()
+        .duration(750)
+        .attr("r", function(d){return nodeSize(d);});
+      d3.select(this).select("text").transition()
+        .duration(1250)
+        .attr("x", 0)
+        .style("font", options.fontSize + "px ")
+        .style("opacity", options.opacityNoHover);
+    }
+
+    function click(d) {
+      return eval(options.clickAction)
+    }
+
+    // add legend option
+    if(options.legend){
+        var legendRectSize = 18;
+        var legendSpacing = 4;
+        var legend = svg.selectAll('.legend')
+          .data(color.domain())
+          .enter()
+          .append('g')
+          .attr('class', 'legend')
+          .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height * color.domain().length / 2;
+            var horz = legendRectSize;
+            var vert = i * height+4;
+            return 'translate(' + horz + ',' + vert + ')';
+          });
+
+        legend.append('rect')
+          .attr('width', legendRectSize)
+          .attr('height', legendRectSize)
+          .style('fill', color)
+          .style('stroke', color);
+
+        legend.append('text')
+          .attr('x', legendRectSize + legendSpacing)
+          .attr('y', legendRectSize - legendSpacing)
+          .text(function(d) { return d; });
+    }
+
+    // make font-family consistent across all elements
+    d3.select(el).selectAll('text').style('font-family', options.fontFamily);
+  },
+});
+</script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -1555,7 +1847,7 @@ summary {
 <div id="graphing-the-tree" class="section level3">
 <h3>Graphing the tree</h3>
 <p>Graphics based on <a href="https://www.r-graph-gallery.com/dendrogram.html">R Graph Gallery</a></p>
-<p>My old notes hierachy:</p>
+<p>I’d like to graph antibiotics in an informative way. For example, my old notes hierachy:</p>
 <ul>
 <li>beta-lactams
 <ul>
@@ -1616,42 +1908,38 @@ summary {
 <li>methanamine</li>
 </ul></li>
 </ul>
-<pre class="r"><code># Load library
-# install.packages(&quot;collapsibleTree&quot;)
-library(collapsibleTree) 
- 
-# # input data must be a nested data frame:
-# head(warpbreaks)
-#  
-# # Represent this tree:
-# p &lt;- collapsibleTree( warpbreaks, c(&quot;wool&quot;, &quot;tension&quot;, &quot;breaks&quot;))
-# p
-
-# save the widget
-# library(htmlwidgets)
-# saveWidget(p, file=paste0( getwd(), &quot;/HtmlWidget/dendrogram_interactive.html&quot;))
-
-antibiotics &lt;- read.csv2(&quot;antibiostree2.csv&quot;, sep=&quot;,&quot;, header=FALSE)
-collapsibleTree(antibiotics, c(&quot;V1&quot;, &quot;V2&quot;, &quot;V3&quot;))</code></pre>
-<div id="htmlwidget-6d7310018c9c7beb460d" style="width:672px;height:480px;" class="collapsibleTree html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6d7310018c9c7beb460d">{"x":{"data":{"name":"antibiotics","children":[{"name":"beta-lactams","children":[{"name":"penicillins","children":[{"name":"benzylpen"},{"name":"pen v"},{"name":"ampicillin"},{"name":"amoxicillin"},{"name":"meticillin"},{"name":"flucloxacillin"},{"name":"nafacillin"},{"name":"temocillin"},{"name":"ureidopenicillin"},{"name":"piperacillin"},{"name":"carboxypenicciln"},{"name":"co-amoxiclav"},{"name":"mecillinoms"}]},{"name":"cephalosporins","children":[{"name":"1st gen"},{"name":"2nd gen"},{"name":"3rd gen"},{"name":"4th gen"},{"name":"5th gen"}]},{"name":"carbapenems","children":[{"name":"imipenem"},{"name":"meropenem"},{"name":"etapenem"},{"name":"doripenem"}]},{"name":"monobactams","children":[{"name":"azteronam"}]}]},{"name":"aminoglyclosides"},{"name":"macrolides"},{"name":"gyloceptdes"},{"name":"tetracyclines"},{"name":"quinolones"},{"name":"sulphonamides + trimethoprim"},{"name":"nitromdazoles"},{"name":"chloramphenicol"},{"name":"fusidic acid"},{"name":"oxozolidinone"},{"name":"polymyxins"},{"name":"other","children":[{"name":"clindamixin"},{"name":"streptogrammins"},{"name":"rifamycins"},{"name":"daptomycin"},{"name":"nitrofurans"},{"name":"methanamine"}]}]},"options":{"hierarchy":["V1","V2","V3"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":10,"tooltip":false,"collapsed":true,"zoomable":true,"margin":{"top":20,"bottom":20,"left":80,"right":105},"fill":"lightsteelblue"}},"evals":[],"jsHooks":[]}</script>
-<p>[NHS Tayside Antbiotic Man]</p>
+<div id="htmlwidget-57e64416d86d4938afe0" style="width:672px;height:480px;" class="collapsibleTree html-widget"></div>
+<script type="application/json" data-for="htmlwidget-57e64416d86d4938afe0">{"x":{"data":{"name":"antibiotics","children":[{"name":"beta-lactams","children":[{"name":"penicillins","children":[{"name":"benzylpen"},{"name":"pen v"},{"name":"ampicillin"},{"name":"amoxicillin"},{"name":"meticillin"},{"name":"flucloxacillin"},{"name":"nafacillin"},{"name":"temocillin"},{"name":"ureidopenicillin"},{"name":"piperacillin"},{"name":"carboxypenicciln"},{"name":"co-amoxiclav"},{"name":"mecillinoms"}]},{"name":"cephalosporins","children":[{"name":"1st gen"},{"name":"2nd gen"},{"name":"3rd gen"},{"name":"4th gen"},{"name":"5th gen"}]},{"name":"carbapenems","children":[{"name":"imipenem"},{"name":"meropenem"},{"name":"etapenem"},{"name":"doripenem"}]},{"name":"monobactams","children":[{"name":"azteronam"}]}]},{"name":"aminoglyclosides"},{"name":"macrolides"},{"name":"gyloceptdes"},{"name":"tetracyclines"},{"name":"quinolones"},{"name":"sulphonamides + trimethoprim"},{"name":"nitromdazoles"},{"name":"chloramphenicol"},{"name":"fusidic acid"},{"name":"oxozolidinone"},{"name":"polymyxins"},{"name":"other","children":[{"name":"clindamixin"},{"name":"streptogrammins"},{"name":"rifamycins"},{"name":"daptomycin"},{"name":"nitrofurans"},{"name":"methanamine"}]}]},"options":{"hierarchy":["V1","V2","V3"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":10,"tooltip":false,"collapsed":true,"zoomable":true,"margin":{"top":20,"bottom":20,"left":80,"right":105},"fill":"lightsteelblue"}},"evals":[],"jsHooks":[]}</script>
+<p><a href>NHS Tayside Antibiotic Man</a></p>
+<p>*Unfortunately, this is on Staffnet so you can’t access outside the NHS Tayside network.</p>
 <p><a href="https://www.nice.org.uk/about/what-we-do/our-programmes/nice-guidance/antimicrobial-prescribing-guidelines">Antimicrobial prescribing guidelines</a></p>
 <p><a href="https://bnf.nice.org.uk/treatment-summary/antibacterials-principles-of-therapy.html">Antibacterials, principles of therapy</a></p>
+<div id="nhs-tayside" class="section level4">
+<h4>NHS Tayside:</h4>
 <p><a href="http://www.taysideformulary.scot.nhs.uk">NHS Tayside Formulary:</a></p>
 <p><a href="http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&amp;SubSectionRef=05.01&amp;SubSectionID=A100">Formulary Abx</a></p>
 <p><a href="https://www.nhstaysideadtc.scot.nhs.uk/Antibiotic%20site/drugdosages.htm">Formulary Abx Doses</a></p>
 <p><a href="http://www.taysideformulary.scot.nhs.uk/chaptersSub.asp?FormularySectionID=5">Tayside Infections</a></p>
-<pre class="r"><code>antibioticstay &lt;- read.csv2(&quot;taysideformulary.csv&quot;, sep=&quot;,&quot;, header=FALSE)
-
-#remove /xca random character, eugh
-antibioticstay$V1 &lt;- gsub(&quot;\xca&quot;, &quot;&quot;, antibioticstay$V1)
-antibioticstay$V2 &lt;- gsub(&quot;\xca&quot;, &quot;&quot;, antibioticstay$V2)
-antibioticstay$V3 &lt;- gsub(&quot;\xca&quot;, &quot;&quot;, antibioticstay$V3)
-
-collapsibleTree(antibioticstay, c(&quot;V1&quot;, &quot;V2&quot;, &quot;V3&quot;))</code></pre>
-<div id="htmlwidget-1bbf4dcd7ded5f5b6ec3" style="width:672px;height:480px;" class="collapsibleTree html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1bbf4dcd7ded5f5b6ec3">{"x":{"data":{"name":"antibioticstay","children":[{"name":"Antibacterial drugs(0,4)","children":[{"name":"Penicillins(0,0)","children":[{"name":"Benzylpenicillin and phenoxymethylpenicillin(4,0)"},{"name":"Penicillinase-resistant penicillins(2,0)"},{"name":"Broad-spectrum penicillins(2,0)"},{"name":"Antipseudomonal penicillins(1,0)"},{"name":"Mecillinams(1,0)"}]},{"name":"Cephalosporins, carbapenems and other beta-lactams(0,0)","children":[{"name":"Cephalosporins(8,0)"},{"name":"Carbapenems(2,0)"},{"name":"Other beta-lactam antibiotics(2,0)"}]},{"name":"Tetracyclines(4,2)","children":[{"name":"Tigecycline(1,0)"}]},{"name":"Aminoglycosides(5,0)"},{"name":"Macrolides(3,0)"},{"name":"Clindamycin(2,0)"},{"name":"Some other antibacterials(1,0)","children":[{"name":"Fosfomycin(1,0)"},{"name":"Fusidic acid(1,0)"},{"name":"Vancomycin and teicoplanin(5,0)"},{"name":"Daptomycin(2,0)"},{"name":"Linezolid(1,0)"},{"name":"Tedizolid(1,0)"},{"name":"Polymyxins(4,0)"},{"name":"Rifaximin(2,0)"},{"name":"Fidaxomicin(1,0)"}]},{"name":"Sulphonamides and trimethoprim(2,0)"},{"name":"Antituberculosis drugs(12,2)"},{"name":"Antileprotic drugs(1,0)"},{"name":"Metronidazole and tinidazole(1,0)"},{"name":"Quinolones(4,2)"},{"name":"Urinary-tract infections(3,0)"}]},{"name":"Antifungal drugs(0,0)","children":[{"name":"Triazole antifungals(6,0)"},{"name":"Polyene antifungals(1,0)"},{"name":"Echinocandin antifungals(2,0)"},{"name":"Other antifungals(2,0)"}]},{"name":"Antiviral drugs(0,0)","children":[{"name":"HIV infection(0,0)","children":[{"name":"Nucleoside reverse transcriptase inhibitors(20,0)"},{"name":"Protease inhibitors(8,0)"},{"name":"Non-nucleoside reverse transcriptase inhibitors(5,0)"},{"name":"Other antiretrovirals(3,1)"}]},{"name":"Herpesvirus infections(0,0)","children":[{"name":"Herpes simplex and varicella-zoster infection(2,1)"},{"name":"Cytomegalovirus infrection(4,0)"}]},{"name":"Viral hepatitis(0,0)","children":[{"name":"Chronic hepatitis B(4,0)"},{"name":"Chronic hepatitis C(10,2)"}]},{"name":"Influenza(2,0)"}]},{"name":"Antiprotozoal drugs(0,0)","children":[{"name":"Antimalarials(0,0)","children":[{"name":"Treatment of malaria(0,0)"},{"name":"Artemether with lumefabtrine(1,0)"},{"name":"Chloroquine(1,0)"},{"name":"Mefloquine(1,0)"},{"name":"Primaquine(1,0)"},{"name":"Proguanil(2,0)"},{"name":"Pyrimethamine(1,1)"},{"name":"Quinine(2,0)"},{"name":"Tetracyclines(1,0)"}]},{"name":"Amoebicides(2,0)"},{"name":"Leishmaniacides(1,0)"},{"name":"Drugs for toxoplasmosis(1,0)"},{"name":"Drugs for pneumocystis pneumonia(2,0)"}]},{"name":"Anthelmintics(6,0)","children":[{"name":"Drugs for threadworms(0,1)"}]}]},"options":{"hierarchy":["V1","V2","V3"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":10,"tooltip":false,"collapsed":true,"zoomable":true,"margin":{"top":20,"bottom":20,"left":95,"right":285},"fill":"lightsteelblue"}},"evals":[],"jsHooks":[]}</script>
+<p>NHS Tayside Area Formulary has a chapter (5), “Infections”.</p>
+<p>I’ve graphed this to show the grouped antimicrobials. Each chapter formulary subsection has an enclosed number (x, y). The first denotes a drug, the second a link.</p>
+<div id="htmlwidget-20ec0e5760f5d7bc9f0e" style="width:672px;height:480px;" class="collapsibleTree html-widget"></div>
+<script type="application/json" data-for="htmlwidget-20ec0e5760f5d7bc9f0e">{"x":{"data":{"name":"Formulary","children":[{"name":"Antibacterial drugs(0,4)","children":[{"name":"Penicillins(0,0)","children":[{"name":"Benzylpenicillin and phenoxymethylpenicillin(4,0)"},{"name":"Penicillinase-resistant penicillins(2,0)"},{"name":"Broad-spectrum penicillins(2,0)"},{"name":"Antipseudomonal penicillins(1,0)"},{"name":"Mecillinams(1,0)"}]},{"name":"Cephalosporins, carbapenems and other beta-lactams(0,0)","children":[{"name":"Cephalosporins(8,0)"},{"name":"Carbapenems(2,0)"},{"name":"Other beta-lactam antibiotics(2,0)"}]},{"name":"Tetracyclines(4,2)","children":[{"name":"Tigecycline(1,0)"}]},{"name":"Aminoglycosides(5,0)"},{"name":"Macrolides(3,0)"},{"name":"Clindamycin(2,0)"},{"name":"Some other antibacterials(1,0)","children":[{"name":"Fosfomycin(1,0)"},{"name":"Fusidic acid(1,0)"},{"name":"Vancomycin and teicoplanin(5,0)"},{"name":"Daptomycin(2,0)"},{"name":"Linezolid(1,0)"},{"name":"Tedizolid(1,0)"},{"name":"Polymyxins(4,0)"},{"name":"Rifaximin(2,0)"},{"name":"Fidaxomicin(1,0)"}]},{"name":"Sulphonamides and trimethoprim(2,0)"},{"name":"Antituberculosis drugs(12,2)"},{"name":"Antileprotic drugs(1,0)"},{"name":"Metronidazole and tinidazole(1,0)"},{"name":"Quinolones(4,2)"},{"name":"Urinary-tract infections(3,0)"}]},{"name":"Antifungal drugs(0,0)","children":[{"name":"Triazole antifungals(6,0)"},{"name":"Polyene antifungals(1,0)"},{"name":"Echinocandin antifungals(2,0)"},{"name":"Other antifungals(2,0)"}]},{"name":"Antiviral drugs(0,0)","children":[{"name":"HIV infection(0,0)","children":[{"name":"Nucleoside reverse transcriptase inhibitors(20,0)"},{"name":"Protease inhibitors(8,0)"},{"name":"Non-nucleoside reverse transcriptase inhibitors(5,0)"},{"name":"Other antiretrovirals(3,1)"}]},{"name":"Herpesvirus infections(0,0)","children":[{"name":"Herpes simplex and varicella-zoster infection(2,1)"},{"name":"Cytomegalovirus infrection(4,0)"}]},{"name":"Viral hepatitis(0,0)","children":[{"name":"Chronic hepatitis B(4,0)"},{"name":"Chronic hepatitis C(10,2)"}]},{"name":"Influenza(2,0)"}]},{"name":"Antiprotozoal drugs(0,0)","children":[{"name":"Antimalarials(0,0)","children":[{"name":"Treatment of malaria(0,0)"},{"name":"Artemether with lumefabtrine(1,0)"},{"name":"Chloroquine(1,0)"},{"name":"Mefloquine(1,0)"},{"name":"Primaquine(1,0)"},{"name":"Proguanil(2,0)"},{"name":"Pyrimethamine(1,1)"},{"name":"Quinine(2,0)"},{"name":"Tetracyclines(1,0)"}]},{"name":"Amoebicides(2,0)"},{"name":"Leishmaniacides(1,0)"},{"name":"Drugs for toxoplasmosis(1,0)"},{"name":"Drugs for pneumocystis pneumonia(2,0)"}]},{"name":"Anthelmintics(6,0)","children":[{"name":"Drugs for threadworms(0,1)"}]}]},"options":{"hierarchy":["V1","V2","V3"],"input":null,"attribute":"leafCount","linkLength":null,"fontSize":10,"tooltip":false,"collapsed":true,"zoomable":true,"margin":{"top":20,"bottom":20,"left":70,"right":285},"fill":"lightsteelblue"}},"evals":[],"jsHooks":[]}</script>
+<p>Laid out as a force diagram: <div id="htmlwidget-9b32f9928d65800bcfe7" style="width:672px;height:480px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9b32f9928d65800bcfe7">{"x":{"links":{"source":[28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,10,10,10,10,7,7,7,7,7,2,47,47,47,47,47,15,15,15,61,57,57,57,57,57,57,57,57,57,33,33,33,33,32,32,67,67,6,6,6,6,6,6,6,6,6],"target":[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,10,10,10,10,10,10,10,10,10,7,7,7,7,7,7,7,7,7,7,7,7,7,2,47,15,61,0,37,20,57,58,9,5,40,55,65,64,48,26,43,33,32,67,34,6,1,35,25,23,24,12,46,13,8,38,16,14,45,62,29,30,66,22,36,59,49,56,27,42,52,41,44,31,21,18,19,63,11,17,39,50,51,53,54,60],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["Aminoglycosides(5,0)","Amoebicides(2,0)","Anthelmintics(6,0)","Antibacterial drugs(0,4)","Antifungal drugs(0,0)","Antileprotic drugs(1,0)","Antimalarials(0,0)","Antiprotozoal drugs(0,0)","Antipseudomonal penicillins(1,0)","Antituberculosis drugs(12,2)","Antiviral drugs(0,0)","Artemether with lumefabtrine(1,0)","Benzylpenicillin and phenoxymethylpenicillin(4,0)","Broad-spectrum penicillins(2,0)","Carbapenems(2,0)","Cephalosporins, carbapenems and other beta-lactams(0,0)","Cephalosporins(8,0)","Chloroquine(1,0)","Chronic hepatitis B(4,0)","Chronic hepatitis C(10,2)","Clindamycin(2,0)","Cytomegalovirus infrection(4,0)","Daptomycin(2,0)","Drugs for pneumocystis pneumonia(2,0)","Drugs for threadworms(0,1)","Drugs for toxoplasmosis(1,0)","Echinocandin antifungals(2,0)","Fidaxomicin(1,0)","Formulary","Fosfomycin(1,0)","Fusidic acid(1,0)","Herpes simplex and varicella-zoster infection(2,1)","Herpesvirus infections(0,0)","HIV infection(0,0)","Influenza(2,0)","Leishmaniacides(1,0)","Linezolid(1,0)","Macrolides(3,0)","Mecillinams(1,0)","Mefloquine(1,0)","Metronidazole and tinidazole(1,0)","Non-nucleoside reverse transcriptase inhibitors(5,0)","Nucleoside reverse transcriptase inhibitors(20,0)","Other antifungals(2,0)","Other antiretrovirals(3,1)","Other beta-lactam antibiotics(2,0)","Penicillinase-resistant penicillins(2,0)","Penicillins(0,0)","Polyene antifungals(1,0)","Polymyxins(4,0)","Primaquine(1,0)","Proguanil(2,0)","Protease inhibitors(8,0)","Pyrimethamine(1,1)","Quinine(2,0)","Quinolones(4,2)","Rifaximin(2,0)","Some other antibacterials(1,0)","Sulphonamides and trimethoprim(2,0)","Tedizolid(1,0)","Tetracyclines(1,0)","Tetracyclines(4,2)","Tigecycline(1,0)","Treatment of malaria(0,0)","Triazole antifungals(6,0)","Urinary-tract infections(3,0)","Vancomycin and teicoplanin(5,0)","Viral hepatitis(0,0)"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#69b3a2'])","fontSize":14,"fontFamily":"serif","clickTextSize":35,"linkDistance":10,"linkWidth":"'1.5px'.toString()","charge":-900,"opacity":0.9,"zoom":true,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script></p>
+<p>Now scraped instead:</p>
+<pre class="r"><code>library(rvest)
+formularydata &lt;- xml2::read_html(&quot;http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&amp;SubSectionRef=05&amp;SubSectionID=A100&amp;FC=1&quot;) %&gt;%
+    html_nodes(css = &quot;.boldDrug&quot;) %&gt;%
+    html_text() %&gt;%
+    stringr::str_replace(&quot;\r\n\t  &quot;, replacement = &quot;&quot;)</code></pre>
+<p>There are 183 antibiotics listed in NHS Tayside formulary.</p>
+<p>16 of these are non-formulary.</p>
+<p>Combining National information:</p>
+<p><a href="https://www.scottishmedicines.org.uk">Scottish Medicines Consortium</a></p>
+<p><a href="https://bnf.nice.org.uk/drug/">BNF Interactions</a></p>
+<p><a href="https://www.sapg.scot">The Scottish Antimicrobial Prescribing Group</a></p>
+<p>To give functions using this new data I’ll need to graph it using the <a href="https://www.d3-graph-gallery.com/dendrogram.html">D3 Graph Gallery.</a></p>
+</div>
 </div>
 
 
