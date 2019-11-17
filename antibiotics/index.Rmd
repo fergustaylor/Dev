@@ -4,8 +4,9 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, out.width = "100%")
+knitr::opts_chunk$set(out.width = "100%", comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE)
 Sys.setenv(TZ='GMT')
+library(tidyverse)
 ```
 
 ### Graphing the tree
@@ -61,22 +62,11 @@ I'd like to graph antibiotics in an informative way. For example, my old notes h
     - nitrofurans
     - methanamine
 
-```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r}
 # Load library
-# install.packages("collapsibleTree")
-library(collapsibleTree) 
- 
-# # input data must be a nested data frame:
-# head(warpbreaks)
-#  
-# # Represent this tree:
-# p <- collapsibleTree( warpbreaks, c("wool", "tension", "breaks"))
-# p
+library(collapsibleTree)
 
-# save the widget
-# library(htmlwidgets)
-# saveWidget(p, file=paste0( getwd(), "/HtmlWidget/dendrogram_interactive.html"))
-
+## input data must be a nested data frame:
 antibiotics <- read.csv2("antibiostree2.csv", sep=",", header=FALSE)
 collapsibleTree(antibiotics, c("V1", "V2", "V3"))
 ```
@@ -103,19 +93,20 @@ NHS Tayside Area Formulary has a chapter (5), "Infections".
 
 I've graphed this to show the grouped antimicrobials. Each chapter formulary subsection has an enclosed number (x, y). The first denotes a drug, the second a link.
 
-```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r}
 Formulary <- read.csv2("taysideformulary.csv", sep=",", header=FALSE)
-
-#remove /xca random character, eugh
+# remove /xca random character, eugh
+# Formulary <- lapply(Formulary, function(x){
+#   gsub("\xca", "", x)}
+#   ) %>% as.data.frame
 Formulary$V1 <- gsub("\xca", "", Formulary$V1)
 Formulary$V2 <- gsub("\xca", "", Formulary$V2)
 Formulary$V3 <- gsub("\xca", "", Formulary$V3)
-
 collapsibleTree(Formulary, c("V1", "V2", "V3"))
 ```
 
 Laid out as a force diagram:
-```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r}
 # Libraries
 library(igraph)
 library(networkD3)
@@ -139,29 +130,29 @@ data3 <- data.frame(
     dplyr::distinct()
 
 data <- rbind(data,data2, data3)
-    
+rm(data2, data3)
+
 # Plot
 p <- simpleNetwork(data, height="100px", width="100px",        
         Source = 1,                 # column number of source
         Target = 2,                 # column number of target
         linkDistance = 10,          # distance between node. Increase this value to have more space between nodes
-        charge = -900,                # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
-        fontSize = 14,               # size of the node names
+        charge = -900,              # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
+        fontSize = 14,              # size of the node names
         fontFamily = "serif",       # font og node names
         linkColour = "#666",        # colour of edges, MUST be a common colour for the whole graph
         nodeColour = "#69b3a2",     # colour of nodes, MUST be a common colour for the whole graph
         opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
         zoom = T                    # Can you zoom on the figure?
         )
-
-# save the widget
-#library(htmlwidgets)
-#saveWidget(p, "networkInteractive2.html")
 p
+rm(data)
+# save the widget
+htmlwidgets::saveWidget(p, "networkInteractive2.html")
 ```
 
 Now scraped instead:
-```{r, comment=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=TRUE}
 library(rvest)
 formularydata <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
     html_nodes(css = ".boldDrug") %>%
@@ -171,13 +162,15 @@ formularydata <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chapte
 
 There are `r length(formularydata)` antibiotics listed in NHS Tayside formulary.
 
-```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r}
 ##`r length(formularydata)`
+##work out non-formulary stuff.
 ```
 
 16 of these are non-formulary. 
 
-```{r, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE}
+```{r}
+#build more data
 formularydata2 <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
     html_nodes(css = ".RowZ100 td , .RowA100 td , .boldDrug") %>%
     html_text() %>%
