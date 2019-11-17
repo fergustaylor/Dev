@@ -1,0 +1,70 @@
+---
+title: "Fluid Balance"
+output: github_document
+---
+
+Just demonstrating some data used in fluid balance.
+
+```{r setup, include=FALSE}
+Sys.setenv(TZ='GMT')
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE
+                      )
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+fluidreq <- readxl::read_xlsx("data.xlsx")
+```
+
+```{r}
+maintenancefluidreq <- function (weight) {
+  if (weight <= 10) {
+    weight * 100/24
+    } 
+  else if (weight < 10 & weight <= 20) {
+    (10 * 100/24) + ((weight - 10) * 50/24)
+    } 
+  else {
+    (10 * 100/24) + (10 * 50/24) + ((weight - 20) * 25/24)
+    }
+}
+```
+
+```{r}
+example <- maintenancefluidreq(7) %>%
+  round
+```
+E.g a 7kg infant requires `r example` ml per hour.
+
+```{r}
+#4-2-1 Rule
+maintenancefluidreq421 <- function (weight) {
+  if (weight <= 10) {
+    weight * 4
+    } 
+  else if (weight < 10 & weight <= 20) {
+    (10 * 4) + ((weight - 10) * 2)
+    } 
+  else {
+    (10 * 4) + (10 * 2) + ((weight - 20) * 1)
+    }
+}
+
+fluidreqdf <- data_frame(
+  "Weight (kg)" = rep(c(0, 10, 20, 50), 2),
+  "Requirement (ml/hr)" = c(sapply(c(0, 10, 20, 50), maintenancefluidreq),
+  sapply(c(0, 10, 20, 50), maintenancefluidreq421)),
+  "Rules" = c(rep("Trad", 4), rep("421", 4))
+)
+
+fluidreqdf %>%
+ggplot(aes(x = `Weight (kg)`, y = `Requirement (ml/hr)`, group = Rules)) +
+  geom_line()
+```
+
+If I plot the 2 rules below, you can see a little difference in calculated values towards the larger weight. But otherwise, pretty much perfect.
