@@ -3,6 +3,12 @@ Dundee
 
 ![](dundee2.png)
 
+<style>
+img {
+    width: 100%;
+}
+</style>
+
 Looking at the Dundee Council
 [github](https://github.com/DundeeCityCouncil)
 
