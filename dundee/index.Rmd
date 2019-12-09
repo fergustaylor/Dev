@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Sys.setenv(TZ='GMT')
 ```
 
-## GitHub Documents
+![](dundee2.png)
 
 Looking at the Dundee Council [github](https://github.com/DundeeCityCouncil)
 
@@ -29,10 +29,10 @@ library("sf")
 library("tidyverse")
 nhsshapefiles <- read_sf("SG_NHS_HealthBoards_2019/SG_NHS_HealthBoards_2019.shp")
 
-# plot <- nhsshapefiles %>%
-#   ggplot() +
-#   geom_sf() +
-#   geom_sf(data = nhsshapefiles[12,], aes(fill = "red"))
-# 
-# plot
+plot <- nhsshapefiles %>%
+  ggplot() +
+  geom_sf() +
+  geom_sf(data = nhsshapefiles[12,], aes(fill = "red"))
+
+plot
 ```

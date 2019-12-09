@@ -1,7 +1,7 @@
 Dundee
 ================
 
-## GitHub Documents
+![](dundee2.png)
 
 Looking at the Dundee Council
 [github](https://github.com/DundeeCityCouncil)
@@ -21,3 +21,5 @@ API](https://www.england.nhs.uk/digitaltechnology/connecteddigitalsystems/intero
 
 Taken from here, [NHS
 shapefiles](https://data.gov.uk/dataset/27d0fe5f-79bb-4116-aec9-a8e565ff756a/nhs-health-boards)
+
+![](index_files/figure-gfm/shapefiles-1.png)<!-- -->
