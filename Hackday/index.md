@@ -16,56 +16,56 @@ iframe {
 }
 </style>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/DEvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/DEvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/EDvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/EDvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/GPledUCCwEDvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/GPledUCCwEDvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/IUCCASvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/IUCCASvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/MIUvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/MIUvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/OOHvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/OOHvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/SpecEDvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/SpecEDvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/UUHvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/UUHvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/voronoi/WICvoronoi.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/voronoi/WICvoronoi.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/DEpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/DEpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/EDpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/EDpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/GPledUCCwEDpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/GPledUCCwEDpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/IUCCASpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/IUCCASpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/MIUpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/MIUpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/OOHpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/OOHpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/SpecEDpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/SpecEDpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/UUHpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/UUHpoints.html">
 </iframe>
 
-<iframe src="https://fergustaylor.github.io/Dev/Hackday/points/WICpoints.html">
+<iframe src="https://fergustaylor.github.io/dev/Hackday/points/WICpoints.html">
 </iframe>
