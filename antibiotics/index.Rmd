@@ -4,93 +4,87 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(out.width = "100%", comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE)
+knitr::opts_chunk$set(out.width = "100%", comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE, fig.align="center")
 Sys.setenv(TZ='GMT')
 library(tidyverse)
 ```
 
 ### Graphing the tree
 
-Graphics based on [R Graph Gallery](https://www.r-graph-gallery.com/dendrogram.html)
-
-I'd like to graph antibiotics in an informative way. For example, my old notes hierachy:
-
-- beta-lactams
-    - penicillins
-        - benzylpen
-        - pen v
-        - ampicillin
-        - amoxicillin
-        - meticillin
-        - flucloxacillin
-        - nafacillin
-        - temocillin
-        - ureidopenicillin
-        - piperacillin
-        - carboxypenicciln
-        - co-amoxiclav
-        - mecillinoms
-    - cephalosporins
-        - 1st gen
-        - 2nd gen
-        - 3rd gen
-        - 4th gen
-        - 5th gen
-    - carbapenems
-        - imipenem
-        - meropenem
-        - etapenem
-        - doripenem
-    - monobactams
-        - azteronam
-- aminoglyclosides
-- macrolides
-- gyloceptdes
-- tetracyclines
-- quinolones
-- sulphonamides + trimethoprim
-- nitromdazoles
-- chloramphenicol
-- fusidic acid
-- oxozolidinone
-- polymyxins
-- other
-    - clindamixin
-    - streptogrammins
-    - rifamycins
-    - daptomycin
-    - nitrofurans
-    - methanamine
+Following my audit of antiprescribing patterns in an acute MFE ward, for the departmental Clinical Governance Meeting, I'd like to graph antibiotics in an informative way. For example, my old notes hierachy based on [R Graph Gallery.](https://www.r-graph-gallery.com/dendrogram.html)
 
 ```{r}
-# Load library
-library(collapsibleTree)
-
-## input data must be a nested data frame:
-antibiotics <- read.csv2("antibiostree2.csv", sep=",", header=FALSE)
-collapsibleTree(antibiotics, c("V1", "V2", "V3"))
+# - beta-lactams
+#     - penicillins
+#         - benzylpen
+#         - pen v
+#         - ampicillin
+#         - amoxicillin
+#         - meticillin
+#         - flucloxacillin
+#         - nafacillin
+#         - temocillin
+#         - ureidopenicillin
+#         - piperacillin
+#         - carboxypenicciln
+#         - co-amoxiclav
+#         - mecillinoms
+#     - cephalosporins
+#         - 1st gen
+#         - 2nd gen
+#         - 3rd gen
+#         - 4th gen
+#         - 5th gen
+#     - carbapenems
+#         - imipenem
+#         - meropenem
+#         - etapenem
+#         - doripenem
+#     - monobactams
+#         - azteronam
+# - aminoglyclosides
+# - macrolides
+# - gyloceptdes
+# - tetracyclines
+# - quinolones
+# - sulphonamides + trimethoprim
+# - nitromdazoles
+# - chloramphenicol
+# - fusidic acid
+# - oxozolidinone
+# - polymyxins
+# - other
+#     - clindamixin
+#     - streptogrammins
+#     - rifamycins
+#     - daptomycin
+#     - nitrofurans
+#     - methanamine
 ```
 
-[NHS Tayside Antibiotic Man]()
+```{r}
+library(collapsibleTree) # Load library
+oldnoteshierachy <- read.csv2("antibiostree2.csv", sep=",", header=FALSE) ## input data must be a nested data frame
+collapsibleTree(oldnoteshierachy, c("V1", "V2", "V3"))
+```
 
-*Unfortunately, this is on Staffnet so you can't access outside the NHS Tayside network.
+The clinical information I'm expected to use is [NHS Tayside - A Guide to Antimicrobial Use.](https://www.nhstaysideadtc.scot.nhs.uk/Antibiotic%20site/Antibiotic%20front%20page.htm)
 
-[Antimicrobial prescribing guidelines](https://www.nice.org.uk/about/what-we-do/our-programmes/nice-guidance/antimicrobial-prescribing-guidelines)
+[![Adult Antibiotic Man](https://www.nhstaysideadtc.scot.nhs.uk/TAPG%20html/Section%2014/Man.ht1.jpg){width=10%}](https://www.nhstaysideadtc.scot.nhs.uk/TAPG%20html/Section%2014/Man.ht1.jpg)
 
-[Antibacterials, principles of therapy](https://bnf.nice.org.uk/treatment-summary/antibacterials-principles-of-therapy.html)
+The following NICE guidance is also relevant:
 
-#### NHS Tayside:
+- [Antimicrobial prescribing guidelines](https://www.nice.org.uk/about/what-we-do/our-programmes/nice-guidance/antimicrobial-prescribing-guidelines)
 
-[NHS Tayside Formulary:](http://www.taysideformulary.scot.nhs.uk)
+- [Antibacterials, principles of therapy](https://bnf.nice.org.uk/treatment-summary/antibacterials-principles-of-therapy.html)
 
-[Formulary Abx](http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05.01&SubSectionID=A100)
+#### [NHS Tayside Formulary:](http://www.taysideformulary.scot.nhs.uk)
 
-[Formulary Abx Doses](https://www.nhstaysideadtc.scot.nhs.uk/Antibiotic%20site/drugdosages.htm)
+- [Adult Antibiotic Man](https://www.nhstaysideadtc.scot.nhs.uk/Antibiotic%20site/pdf%20docs/Antibiotic%20hospital%20man%20.pdf)
 
-[Tayside Infections](http://www.taysideformulary.scot.nhs.uk/chaptersSub.asp?FormularySectionID=5)
+- [Formulary Abx Doses](https://www.nhstaysideadtc.scot.nhs.uk/Antibiotic%20site/drugdosages.htm)
 
-NHS Tayside Area Formulary has a chapter (5), "Infections".
-
+NHS Tayside Area Formulary has a chapter (5), ["Infections".](http://www.taysideformulary.scot.nhs.uk/chaptersSub.asp?FormularySectionID=5)
 I've graphed this to show the grouped antimicrobials. Each chapter formulary subsection has an enclosed number (x, y). The first denotes a drug, the second a link.
 
 ```{r}
@@ -103,14 +97,19 @@ Formulary$V1 <- gsub("\xca", "", Formulary$V1)
 Formulary$V2 <- gsub("\xca", "", Formulary$V2)
 Formulary$V3 <- gsub("\xca", "", Formulary$V3)
 collapsibleTree(Formulary, c("V1", "V2", "V3"))
+
+formularydatacopied <- list()
+formularydatacopied[[1]] <- Formulary
+#work out how to rename object
 ```
 
 Laid out as a force diagram:
 ```{r}
-# Libraries
+#https://www.r-graph-gallery.com/network-interactive.html
 library(igraph)
 library(networkD3)
 
+#build edge-list dataframe
 data <- data.frame(
   from=c("Formulary"),
   to=c(Formulary$V1)
@@ -129,82 +128,318 @@ data3 <- data.frame(
     dplyr::filter(to != "") %>%
     dplyr::distinct()
 
-data <- rbind(data,data2, data3)
-rm(data2, data3)
+Formulary2 <- rbind(data,data2, data3)
+rm(data, data2, data3)
 
-# Plot
-p <- simpleNetwork(data, height="100px", width="100px",        
-        Source = 1,                 # column number of source
-        Target = 2,                 # column number of target
-        linkDistance = 10,          # distance between node. Increase this value to have more space between nodes
+# plot1 <- simpleNetwork(Formulary2,        
+#         linkDistance = 10,          # distance between node. Increase this value to have more space between nodes
+#         charge = -900,              # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
+#         fontSize = 14,              # size of the node names
+#         fontFamily = "serif",       # font og node names
+#         linkColour = "#18515E",     # colour of edges, MUST be a common colour for the whole graph
+#         nodeColour = "#69b3a2",     # colour of nodes, MUST be a common colour for the whole graph
+#         opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
+#         zoom = T                    # Can you zoom on the figure?
+#         )
+# plot1
+# 
+# # save the widget
+# htmlwidgets::saveWidget(plot1, "networkInteractive2.html")
+```
+
+<!-- Compared to top-level formulary hierachy. <br> -->
+<!-- (Which includes antivirals, etc) -->
+
+```{r}
+plot2 <- simpleNetwork(Formulary2[-c(1:54),],        
+        linkDistance = 2,          # distance between node. Increase this value to have more space between nodes
         charge = -900,              # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
         fontSize = 14,              # size of the node names
         fontFamily = "serif",       # font og node names
-        linkColour = "#666",        # colour of edges, MUST be a common colour for the whole graph
+        linkColour = "#18515E",     # colour of edges, MUST be a common colour for the whole graph
         nodeColour = "#69b3a2",     # colour of nodes, MUST be a common colour for the whole graph
         opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
         zoom = T                    # Can you zoom on the figure?
         )
-p
-rm(data)
+plot2
+
 # save the widget
-htmlwidgets::saveWidget(p, "networkInteractive2.html")
+htmlwidgets::saveWidget(plot2, "networkInteractive2.html")
+
+formularydatacopied[[2]] <- Formulary2
+rm(Formulary2)
+#rm(Formulary, Formulary2)
 ```
 
-Now scraped instead:
+Optimised as a static version
+
+- [Network chart with R and igraph from any type of input](https://www.r-graph-gallery.com/257-input-formats-for-network-charts.html)
+- [Basic network diagram](https://www.r-graph-gallery.com/251-network-with-node-size-based-on-edges-number.html)
+- [Network chart with R and igraph: chart parameters](https://www.r-graph-gallery.com/248-igraph-plotting-parameters.html)
+- [Map variable to node and links feature in R igraph network](https://www.r-graph-gallery.com/249-igraph-network-map-a-color.html)
+- [Clustering result visualization with network diagram](https://www.r-graph-gallery.com/250-correlation-network-with-igraph.html)
+
+Now scraped, so it can be updated automatically instead:
 ```{r, echo=TRUE}
 library(rvest)
-formularydata <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+formularydatascraped <- list()
+formularydatascraped[[1]] <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>% # formularydatascraped[[1]] is all the drugs (antimicrobials)
     html_nodes(css = ".boldDrug") %>%
     html_text() %>%
     stringr::str_replace("\r\n\t  ", replacement = "")
 ```
 
-There are `r length(formularydata)` antibiotics listed in NHS Tayside formulary.
+There are `r length(formularydatascraped[[1]])` antibiotics listed in NHS Tayside formulary.
 
 ```{r}
-##`r length(formularydata)`
-##work out non-formulary stuff.
+##work out non-formulary stuff, length(formularydatascraped[[1]])
 ```
 
-16 of these are non-formulary. 
+16`r ##length(formularydatascraped[[1]])` of these are non-formulary. 
 
 ```{r}
-#build more data
-formularydata2 <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+formularydatascraped[[2]] <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
     html_nodes(css = ".RowZ100 td , .RowA100 td , .boldDrug") %>%
     html_text() %>%
     stringr::str_replace("\r\n\t  ", replacement = "")
 
-#get antibio list
-formularydata3 <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+# formularydatascraped[[2]] everything (titles and drugs)
+```
+
+```{r}
+#Scrape labels instead of copy/paste from website
+formularydatascraped[[3]] <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
     html_nodes(css = ".RowZ100 td , .RowA100 td") %>%
     html_text()
+a <- formularydatascraped[[3]][seq(1, length(formularydatascraped[[3]]), 3)]
+b <- formularydatascraped[[3]][seq(2, length(formularydatascraped[[3]]), 3)] %>%
+    stringr::str_replace_all("\r\n\ ", replacement = "") %>%
+    stringr::str_replace("                  ", replacement = "")
+formularydatascraped[[3]] <- data.frame(a,b)
+rm(a,b)
 
-#Scrape labels instead of copy/paste from website
-#a <- formularydata3[seq(1, length(formularydata3), 3)]
-b <- formularydata3[seq(2, length(formularydata3), 3)] %>%
-    stringr::str_replace("\r\n\ ", replacement = "") %>%
-    stringr::str_replace("\r\n\ ", replacement = "") %>%
-    stringr::str_replace("                  ", replacement = "") 
-#c <- formularydata3[seq(3, length(formularydata3), 3)]
+# formularydatascraped[[3]] All the titles
+#break down by grouping?
+formularydatascraped[[3]] <- formularydatascraped[[3]] %>%
+  mutate(a = a %>%
+    as.character() %>%
+    str_sub(-12, -2) %>% #why does this work, remove ws
+    substr(4, 12)) %>% #remove chapter 5 bit
+  mutate(first = a %>%
+           substr(1, 2)) %>%
+  mutate(second = a %>%
+           substr(4, 5)) %>%
+  mutate(third = a %>%
+           substr(7, 12))
+
+
+# formularydatascraped[[3]]
+# formularydatacopied[[1]]
+
+# example %>%
+#   mutate(third = a %>%
+#        substr(4, 12))
 # 
-# formularydata3[[3]] %>%
-#     rvest::html_attrs()
-
-#get links list
-#get non-formulary list
-
-#build table
-#
+# example$a
+# #str_length()
+# 
+#   as.character() %>%
+#   substr(4, 12)
+# 
+# example %>%
+#   substr(-12, -1)
+# 
+#   str_extract(1:2)
+#   
+#   str_length()
+# 
+# example %>%
+#   str_length() %>%
+#   unique()
+# 
+# conversionfunction <- function(x) {
+#   if (str_length(x == 6)) { print("hello2") } 
+#   else if (str_length(x == 6)) { print("hello2") }
+#   else if (str_length(x == 6)) { print("hello2") }
+#   else {print("hello")}
+#   }
+#  
+# example %>%
+#   conversionfunction
+#   
+# # formularydatascraped[[3]][[3]] %>%
+# #     rvest::html_attrs()
+# 
+# #get links list
+# #get non-formulary list
+# 
+# #build table
+# #
 ```
+
+There are a handful of [hierachy methods](https://observablehq.com/collection/@d3/d3-hierarchy) for D3. I've already demonstrated the [Force-directed trees](https://observablehq.com/@d3/force-directed-tree), including the [dragging effect](https://bl.ocks.org/mbostock/ad70335eeef6d167bc36fd3c04378048).
+
+I've also already tried a variant of [Tidy Tree](https://observablehq.com/@d3/tidy-tree?collection=@d3/d3-hierarchy) in other methods. I could reformat my tidy trees a little to present it as a [Radial Tidy Tree](https://observablehq.com/@d3/radial-tidy-tree?collection=@d3/d3-hierarchy) or [Radial Dendrogram.](https://observablehq.com/@d3/radial-dendrogram?collection=@d3/d3-hierarchy)
+
+In order to do this though, I'll reformat the data to work directly through D3. Rather than just an R wrapper.
+
+![](template.png)
+
+[1, Radial Dendrogram](https://observablehq.com/@d3/radial-dendrogram?collection=@d3/d3-hierarchy), [2, Radial Tidy Tree](https://observablehq.com/@d3/radial-tidy-tree?collection=@d3/d3-hierarchy), [3, Tidy Tree, ](https://observablehq.com/@d3/tidy-tree?collection=@d3/d3-hierarchy) [4, Cluster Dendrogram.](https://observablehq.com/@d3/cluster-dendrogram?collection=@d3/d3-hierarchy)
+
+[![](https://static.observableusercontent.com/thumbnail/278516556172557a945111e81e0996b1e461364bc1402c57e412a33597d2f014.jpg){width=33%}](https://observablehq.com/@d3/treemap?collection=@d3/d3-hierarchy) [![](https://static.observableusercontent.com/thumbnail/6d2e1f16d415ac13f13740b6155fdcfb8d3836e5b2332277de1e26742ffbcb0c.jpg){width=33%}](https://observablehq.com/@d3/zoomable-sunburst?collection=@d3/d3-hierarchy) [![](https://static.observableusercontent.com/thumbnail/03d2124f60277b56802456cca845106cc66eef77771000ce575a196da6d2fa89.jpg){width=33%}](https://observablehq.com/@d3/circle-packing?collection=@d3/d3-hierarchy)
+
+I could also use a [1, Treemap](https://observablehq.com/@d3/treemap?collection=@d3/d3-hierarchy), a [2, (Zoomable) Sunburst](https://observablehq.com/@d3/zoomable-sunburst?collection=@d3/d3-hierarchy), a [Circle Packing Diagram, ](https://observablehq.com/@d3/circle-packing-monochrome?collection=@d3/d3-hierarchy) [3, in colour.](https://observablehq.com/@d3/circle-packing?collection=@d3/d3-hierarchy)
+
+#### Reformating the data
+
+I have to reformat my data to match flare-2.json.
+
+```{r}
+rm(formularydatacopied, formularydatascraped, oldnoteshierachy, plot1, plot2)
+# examplejson <- jsonlite::fromJSON("flare-2.json")
+
+Formulary$value <- Formulary$V3 %>%
+  map(function(x) if (x != "") {
+  runif(1, min=0, max=100) %>%
+      round
+} else {NA}) %>% unlist
+
+Formulary$value <- Formulary$value %>%
+  as.integer()
+Formulary$V1 <- Formulary$V1 %>%
+  as.character()
+Formulary$V2 <- Formulary$V2 %>%
+  as.character()
+Formulary$V3 <- Formulary$V3 %>%
+  as.character()
+myjson <- Formulary %>%
+  dplyr::rename(name = V3)
+```
+
+```{r}
+myjson <- Formulary %>%  
+  group_by(V1, V2) %>%
+  nest() 
+myjson <- myjson %>%
+  ungroup
+myjson$data <- myjson$data %>%
+  as.list
+myjson$data <- lapply(myjson$data, function(x){
+  x %>%
+  as.data.frame %>%
+  dplyr::rename(name = V3)  
+  })
+
+myjson <- myjson %>%
+  dplyr::rename(children = data) %>%
+  group_by(V1) %>%
+  dplyr::rename(name = V2) %>%
+  nest()
+
+myjson <- myjson %>%
+  ungroup
+
+myjson$data <- myjson$data %>%
+  as.list
+
+myjson$data <- lapply(myjson$data, function(x){
+  x %>%
+  as.data.frame
+  # %>%
+  # dplyr::rename(name = V3)  
+  })
+
+myjson <- myjson %>%
+  dplyr::rename(name = V1, children = data)
+
+myjson <- list("name" = "Antimicrobials", "children" = myjson)
+
+myjson %>%
+  jsonlite::toJSON() %>%
+  write(file="Formulary.json")
+
+rm(myjson)
+# https://www.andrewheiss.com/blog/2020/01/01/flexdashboard-dynamic-data/
+# randomly generate number weightings for above graphics, stand-in for Tayside figures
+```
+
+Now the data is appropriate: <br>
+I've omitted a couple of diagrams that are similar.
+<!-- <div id="observablehq-0a34be2b"></div> -->
+<!-- <script type="module"> -->
+<!-- import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js"; -->
+<!-- import define from "https://api.observablehq.com/@fergustaylor/radial-dendrogram.js?v=3"; -->
+<!-- const inspect = Inspector.into("#observablehq-0a34be2b"); -->
+<!-- (new Runtime).module(define, name => (name === "chart") && inspect()); -->
+<!-- </script> -->
+
+<div id="observablehq-27a04448"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@fergustaylor/radial-tidy-tree.js?v=3";
+const inspect = Inspector.into("#observablehq-27a04448");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
+
+<div id="observablehq-7a6bf51a"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@fergustaylor/tidy-tree.js?v=3";
+const inspect = Inspector.into("#observablehq-7a6bf51a");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
+
+<!-- <div id="observablehq-11ce13b0"></div> -->
+<!-- <script type="module"> -->
+<!-- import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js"; -->
+<!-- import define from "https://api.observablehq.com/@fergustaylor/cluster-dendrogram.js?v=3"; -->
+<!-- const inspect = Inspector.into("#observablehq-11ce13b0"); -->
+<!-- (new Runtime).module(define, name => (name === "chart") && inspect()); -->
+<!-- </script> -->
+
+More:
+
+<div id="observablehq-c82a6342"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@fergustaylor/treemap.js?v=3";
+const inspect = Inspector.into("#observablehq-c82a6342");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
+
+<div id="observablehq-c4e9ef15"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@fergustaylor/zoomable-sunburst.js?v=3";
+const inspect = Inspector.into("#observablehq-c4e9ef15");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
+
+<div id="observablehq-e2eae8f8"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@fergustaylor/circle-packing-monochrome.js?v=3";
+const inspect = Inspector.into("#observablehq-e2eae8f8");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
+
+<div id="observablehq-c6a4d434"></div>
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/@fergustaylor/circle-packing.js?v=3";
+const inspect = Inspector.into("#observablehq-c6a4d434");
+(new Runtime).module(define, name => (name === "chart") && inspect());
+</script>
 
 Combining National information:
 
-[Scottish Medicines Consortium](https://www.scottishmedicines.org.uk)
-
-[BNF Interactions](https://bnf.nice.org.uk/drug/)
-
-[The Scottish Antimicrobial Prescribing Group](https://www.sapg.scot)
+- [Scottish Medicines Consortium](https://www.scottishmedicines.org.uk)
+- [BNF Interactions](https://bnf.nice.org.uk/drug/)
+- [The Scottish Antimicrobial Prescribing Group](https://www.sapg.scot)
 
 To give functions using this new data I'll need to graph it using the [D3 Graph Gallery.](https://www.d3-graph-gallery.com/dendrogram.html)
+
+- [D3 Force](https://github.com/d3/d3-force)
+- [Most basic radial dendrogram in d3.js](https://www.d3-graph-gallery.com/graph/dendrogram_radial_basic.html)
+- [r2d3](https://rstudio.github.io/r2d3/)

@@ -238,13 +238,38 @@
           theseArgs = theseArgs.concat([task.data]);
           task = task.code;
         }
-        var taskFunc = eval("(" + task + ")");
+        var taskFunc = tryEval(task);
         if (typeof(taskFunc) !== "function") {
           throw new Error("Task must be a function! Source:\n" + task);
         }
         taskFunc.apply(target, theseArgs);
       });
     }
+  }
+
+  // Attempt eval() both with and without enclosing in parentheses.
+  // Note that enclosing coerces a function declaration into
+  // an expression that eval() can parse
+  // (otherwise, a SyntaxError is thrown)
+  function tryEval(code) {
+    var result = null;
+    try {
+      result = eval(code);
+    } catch(error) {
+      if (!error instanceof SyntaxError) {
+        throw error;
+      }
+      try {
+        result = eval("(" + code + ")");
+      } catch(e) {
+        if (e instanceof SyntaxError) {
+          throw error;
+        } else {
+          throw e;
+        }
+      }
+    }
+    return result;
   }
 
   function initSizing(el) {
@@ -639,17 +664,56 @@
     invokePostRenderHandlers();
   }
 
-  // Wait until after the document has loaded to render the widgets.
+
+  function has_jQuery3() {
+    if (!window.jQuery) {
+      return false;
+    }
+    var $version = window.jQuery.fn.jquery;
+    var $major_version = parseInt($version.split(".")[0]);
+    return $major_version >= 3;
+  }
+
+  /*
+  / Shiny 1.4 bumped jQuery from 1.x to 3.x which means jQuery's
+  / on-ready handler (i.e., $(fn)) is now asyncronous (i.e., it now
+  / really means $(setTimeout(fn)).
+  / https://jquery.com/upgrade-guide/3.0/#breaking-change-document-ready-handlers-are-now-asynchronous
+  /
+  / Since Shiny uses $() to schedule initShiny, shiny>=1.4 calls initShiny
+  / one tick later than it did before, which means staticRender() is
+  / called renderValue() earlier than (advanced) widget authors might be expecting.
+  / https://github.com/rstudio/shiny/issues/2630
+  /
+  / For a concrete example, leaflet has some methods (e.g., updateBounds)
+  / which reference Shiny methods registered in initShiny (e.g., setInputValue).
+  / Since leaflet is privy to this life-cycle, it knows to use setTimeout() to
+  / delay execution of those methods (until Shiny methods are ready)
+  / https://github.com/rstudio/leaflet/blob/18ec981/javascript/src/index.js#L266-L268
+  /
+  / Ideally widget authors wouldn't need to use this setTimeout() hack that
+  / leaflet uses to call Shiny methods on a staticRender(). In the long run,
+  / the logic initShiny should be broken up so that method registration happens
+  / right away, but binding happens later.
+  */
+  function maybeStaticRenderLater() {
+    if (shinyMode && has_jQuery3()) {
+      window.jQuery(window.HTMLWidgets.staticRender);
+    } else {
+      window.HTMLWidgets.staticRender();
+    }
+  }
+
   if (document.addEventListener) {
     document.addEventListener("DOMContentLoaded", function() {
       document.removeEventListener("DOMContentLoaded", arguments.callee, false);
-      window.HTMLWidgets.staticRender();
+      maybeStaticRenderLater();
     }, false);
   } else if (document.attachEvent) {
     document.attachEvent("onreadystatechange", function() {
       if (document.readyState === "complete") {
         document.detachEvent("onreadystatechange", arguments.callee);
-        window.HTMLWidgets.staticRender();
+        maybeStaticRenderLater();
       }
     });
   }
@@ -737,7 +801,7 @@
       if (o !== null && typeof o === "object" && part in o) {
         if (i == (l - 1)) { // if we are at the end of the line then evalulate
           if (typeof o[part] === "string")
-            o[part] = eval("(" + o[part] + ")");
+            o[part] = tryEval(o[part]);
         } else { // otherwise continue to next embedded object
           o = o[part];
         }
@@ -1146,11 +1210,11 @@ return function(){for(var n=0,e=0;e<t;++e)n+=Math.random();return n}},um=functio
 </head>
 <body style="background-color: white;">
 <div id="htmlwidget_container">
-<div id="htmlwidget-95682b0869803b10c707" class="forceNetwork html-widget" style="width:960px;height:500px;">
+<div id="htmlwidget-4ef7c094809217cbca57" class="forceNetwork html-widget" style="width:960px;height:500px;">
 
 </div>
 </div>
-<script type="application/json" data-for="htmlwidget-95682b0869803b10c707">{"x":{"links":{"source":[28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,10,10,10,10,7,7,7,7,7,2,47,47,47,47,47,15,15,15,61,57,57,57,57,57,57,57,57,57,33,33,33,33,32,32,67,67,6,6,6,6,6,6,6,6,6],"target":[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,10,10,10,10,10,10,10,10,10,7,7,7,7,7,7,7,7,7,7,7,7,7,2,47,15,61,0,37,20,57,58,9,5,40,55,65,64,48,26,43,33,32,67,34,6,1,35,25,23,24,12,46,13,8,38,16,14,45,62,29,30,66,22,36,59,49,56,27,42,52,41,44,31,21,18,19,63,11,17,39,50,51,53,54,60],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["Aminoglycosides(5,0)","Amoebicides(2,0)","Anthelmintics(6,0)","Antibacterial drugs(0,4)","Antifungal drugs(0,0)","Antileprotic drugs(1,0)","Antimalarials(0,0)","Antiprotozoal drugs(0,0)","Antipseudomonal penicillins(1,0)","Antituberculosis drugs(12,2)","Antiviral drugs(0,0)","Artemether with lumefabtrine(1,0)","Benzylpenicillin and phenoxymethylpenicillin(4,0)","Broad-spectrum penicillins(2,0)","Carbapenems(2,0)","Cephalosporins, carbapenems and other beta-lactams(0,0)","Cephalosporins(8,0)","Chloroquine(1,0)","Chronic hepatitis B(4,0)","Chronic hepatitis C(10,2)","Clindamycin(2,0)","Cytomegalovirus infrection(4,0)","Daptomycin(2,0)","Drugs for pneumocystis pneumonia(2,0)","Drugs for threadworms(0,1)","Drugs for toxoplasmosis(1,0)","Echinocandin antifungals(2,0)","Fidaxomicin(1,0)","Formulary","Fosfomycin(1,0)","Fusidic acid(1,0)","Herpes simplex and varicella-zoster infection(2,1)","Herpesvirus infections(0,0)","HIV infection(0,0)","Influenza(2,0)","Leishmaniacides(1,0)","Linezolid(1,0)","Macrolides(3,0)","Mecillinams(1,0)","Mefloquine(1,0)","Metronidazole and tinidazole(1,0)","Non-nucleoside reverse transcriptase inhibitors(5,0)","Nucleoside reverse transcriptase inhibitors(20,0)","Other antifungals(2,0)","Other antiretrovirals(3,1)","Other beta-lactam antibiotics(2,0)","Penicillinase-resistant penicillins(2,0)","Penicillins(0,0)","Polyene antifungals(1,0)","Polymyxins(4,0)","Primaquine(1,0)","Proguanil(2,0)","Protease inhibitors(8,0)","Pyrimethamine(1,1)","Quinine(2,0)","Quinolones(4,2)","Rifaximin(2,0)","Some other antibacterials(1,0)","Sulphonamides and trimethoprim(2,0)","Tedizolid(1,0)","Tetracyclines(1,0)","Tetracyclines(4,2)","Tigecycline(1,0)","Treatment of malaria(0,0)","Triazole antifungals(6,0)","Urinary-tract infections(3,0)","Vancomycin and teicoplanin(5,0)","Viral hepatitis(0,0)"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#69b3a2'])","fontSize":14,"fontFamily":"serif","clickTextSize":35,"linkDistance":10,"linkWidth":"'1.5px'.toString()","charge":-900,"opacity":0.9,"zoom":true,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
-<script type="application/htmlwidget-sizing" data-for="htmlwidget-95682b0869803b10c707">{"viewer":{"width":450,"height":350,"padding":10,"fill":true},"browser":{"width":960,"height":500,"padding":10,"fill":true}}</script>
+<script type="application/json" data-for="htmlwidget-4ef7c094809217cbca57">{"x":{"links":{"source":[3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,10,10,10,10,7,7,7,7,7,2,46,46,46,46,46,15,15,15,60,56,56,56,56,56,56,56,56,56,32,32,32,32,31,31,66,66,6,6,6,6,6,6,6,6,6],"target":[46,15,60,0,36,20,56,57,9,5,39,54,64,63,47,26,42,32,31,66,33,6,1,34,25,23,24,12,45,13,8,37,16,14,44,61,28,29,65,22,35,58,48,55,27,41,51,40,43,30,21,18,19,62,11,17,38,49,50,52,53,59],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E","#18515E"]},"nodes":{"name":["Aminoglycosides(5,0)","Amoebicides(2,0)","Anthelmintics(6,0)","Antibacterial drugs(0,4)","Antifungal drugs(0,0)","Antileprotic drugs(1,0)","Antimalarials(0,0)","Antiprotozoal drugs(0,0)","Antipseudomonal penicillins(1,0)","Antituberculosis drugs(12,2)","Antiviral drugs(0,0)","Artemether with lumefabtrine(1,0)","Benzylpenicillin and phenoxymethylpenicillin(4,0)","Broad-spectrum penicillins(2,0)","Carbapenems(2,0)","Cephalosporins, carbapenems and other beta-lactams(0,0)","Cephalosporins(8,0)","Chloroquine(1,0)","Chronic hepatitis B(4,0)","Chronic hepatitis C(10,2)","Clindamycin(2,0)","Cytomegalovirus infrection(4,0)","Daptomycin(2,0)","Drugs for pneumocystis pneumonia(2,0)","Drugs for threadworms(0,1)","Drugs for toxoplasmosis(1,0)","Echinocandin antifungals(2,0)","Fidaxomicin(1,0)","Fosfomycin(1,0)","Fusidic acid(1,0)","Herpes simplex and varicella-zoster infection(2,1)","Herpesvirus infections(0,0)","HIV infection(0,0)","Influenza(2,0)","Leishmaniacides(1,0)","Linezolid(1,0)","Macrolides(3,0)","Mecillinams(1,0)","Mefloquine(1,0)","Metronidazole and tinidazole(1,0)","Non-nucleoside reverse transcriptase inhibitors(5,0)","Nucleoside reverse transcriptase inhibitors(20,0)","Other antifungals(2,0)","Other antiretrovirals(3,1)","Other beta-lactam antibiotics(2,0)","Penicillinase-resistant penicillins(2,0)","Penicillins(0,0)","Polyene antifungals(1,0)","Polymyxins(4,0)","Primaquine(1,0)","Proguanil(2,0)","Protease inhibitors(8,0)","Pyrimethamine(1,1)","Quinine(2,0)","Quinolones(4,2)","Rifaximin(2,0)","Some other antibacterials(1,0)","Sulphonamides and trimethoprim(2,0)","Tedizolid(1,0)","Tetracyclines(1,0)","Tetracyclines(4,2)","Tigecycline(1,0)","Treatment of malaria(0,0)","Triazole antifungals(6,0)","Urinary-tract infections(3,0)","Vancomycin and teicoplanin(5,0)","Viral hepatitis(0,0)"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['#69b3a2'])","fontSize":14,"fontFamily":"serif","clickTextSize":35,"linkDistance":2,"linkWidth":"'1.5px'.toString()","charge":-900,"opacity":0.9,"zoom":true,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/htmlwidget-sizing" data-for="htmlwidget-4ef7c094809217cbca57">{"viewer":{"width":450,"height":350,"padding":10,"fill":true},"browser":{"width":960,"height":500,"padding":10,"fill":true}}</script>
 </body>
 </html>
