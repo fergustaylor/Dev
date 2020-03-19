@@ -1,81 +1,43 @@
 
-Now scraped, so it can be updated automatically instead:
+Now scraped, so it can be updated automatically:
 ```{r, echo=TRUE}
-# formularydatascraped[[1]] all the drugs
-# formularydatascraped[[2]] drugs + titles (incl. non-formulary)
-# formularydatascraped[[5]] all the titles
-
+link <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1")
 formularydatascraped <- list()
-formularydatascraped[[1]] <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>% # formularydatascraped[[1]] is all the drugs (antimicrobials)
-  html_nodes(css = ".boldDrug") %>%
-  html_text() %>%
-  as.character() %>%
-  stringr::str_replace("\r\n\t  ", replacement = "")
-```
 
-There are `r length(formularydatascraped[[1]])` antibiotics listed in NHS Tayside formulary.
-
-```{r}
-##work out non-formulary stuff
-##does this work?
-".boldDrug "
-# length(formularydatascraped[[1]])
-# Eurgh, I could count the childnodes between comment tags in HTML. That might take a while to write.
-```
-
-16`r ##length(formularydatascraped[[1]])` of these are non-formulary. 
-
-```{r}
-# ".RowZ100 td , .RowA100 td , .boldDrug" all titles and drugs, incl non-formulary
-# formularydatascraped[[2]] everything (titles and drugs)
-formularydatascraped[[2]] <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+formularydatascraped[[2]] <- link %>% #all titles and drugs, incl non-formulary
   html_nodes(css = ".RowZ100 td , .RowA100 td , .boldDrug") %>%
-  html_text() %>%
-  as.character() %>%
+  html_text %>%
+  as.character %>%
   stringr::str_replace_all("\r\n\t  ", replacement = "") %>%
   stringr::str_replace_all("\r\n ", replacement = "") %>%
-  stringr::str_replace_all("  ", replacement = " ") %>%
-  str_trim() %>%
-  unlist
+  str_trim %>%
+  unlist %>%
+  na_if("")
 
-#gives xx.xx followed by name, followed by "" lines
 examplelist2 <- formularydatascraped[[2]] %>%
   lapply(function(x) {str_detect(x, pattern = '[0-9][0-9].[0-9][0-9]')})
 
-#replace values
-list <- which(examplelist2 == TRUE)
+formularydatascraped[[3]] <- formularydatascraped[[2]][which(examplelist2 == TRUE)]
 
-formularydatascraped[[3]] <- formularydatascraped[[2]][list]
-
-replacementvalues <- paste(formularydatascraped[[2]][c(which(examplelist2 == TRUE))],
-      formularydatascraped[[2]][c(which(examplelist2 == TRUE)+1)])
 formularydatascraped[[2]] <- replace(formularydatascraped[[2]],
-        list,
-        replacementvalues)
-rm(list, replacementvalues)
+                                     which(examplelist2 == TRUE),
+                                     paste(formularydatascraped[[2]][c(which(examplelist2 == TRUE))],       formularydatascraped[[2]][c(which(examplelist2 == TRUE)+1)]))
 
 formularydatascraped[[2]] <- formularydatascraped[[2]][-c(which(examplelist2 == TRUE)+1,
                              which(examplelist2 == TRUE)+2)]
 
-#make new index vector
 examplelist3 <- formularydatascraped[[2]] %>%
   lapply(function(x) {str_detect(x, pattern = '[0-9][0-9].[0-9][0-9]')})
+
 index <- which(examplelist3 == TRUE)
 
-  formularydatascraped[[2]] <- lapply(1:length(index), function(x) {
+formularydatascraped[[2]] <- lapply(1:length(index), function(x) {
     if (x+1 <= length(index)) {end <- x+1} else {end <- length(index)}
-    formularydatascraped[[2]][index[x]:(index[end]-1)]
-})
+    formularydatascraped[[2]][index[x]:(index[end]-1)]})
 
 formularydatascraped[[4]] <- lapply(formularydatascraped[[2]], `[[`, 1) #first element in list
 
-rm(examplelist2, examplelist3, i, index)
-```
-
-```{r, }
-# ".RowZ100 td , .RowA100 td" all titles
-#Scrape labels instead of copy/paste from website
-formularydatascraped[[5]] <- xml2::read_html("http://www.taysideformulary.scot.nhs.uk/chaptersSubDetails.asp?FormularySectionID=5&SubSectionRef=05&SubSectionID=A100&FC=1") %>%
+formularydatascraped[[5]] <- link %>% # all the titles
     html_nodes(css = ".RowZ100 td , .RowA100 td") %>%
     html_text()
 
@@ -86,154 +48,86 @@ b <- formularydatascraped[[5]][seq(2, length(formularydatascraped[[5]]), 3)] %>%
      stringr::str_replace_all("\r\n\ ", replacement = "") %>%
      str_trim()
 
-formularydatascraped[[5]] <- data.frame(a,b) %>% #break down by grouping?
-  mutate(first = substr(a, 1, 2),
-         second = substr(a, 4, 5),
+formularydatascraped[[5]] <- data.frame(a, b) %>% #break down by grouping?
+  mutate(second = substr(a, 4, 5),
          third = substr(a, 7, 8),
-         fourth = substr(a, 10, 12))
-rm(a,b)
-# #get links list
-# #get non-formulary list
+         fourth = substr(a, 10, 12),
+         b = as.character(b))
+
+rm(a,b, examplelist2, examplelist3, index)
 ```
 
+There are `r length(formularydatascraped[[1]])` antibiotics listed in NHS Tayside formulary.
+
 ```{r}
-#don't need formularydatascraped[[1]] anymore
-#do't delete, input without, then retitle appropriately
+# #get links list
+# #get non-formulary list
+##work out non-formulary stuff
+##does this work?
+".boldDrug "
+# length(formularydatascraped[[1]])
+# Eurgh, I could count the childnodes between comment tags in HTML. That might take a while to write.
+```
 
-#don't need 'Code', in breakdown. Nor 'Combined', in breakdown
-#but! be wary of difference in scraping techniques for breakdown (formularydatascraped[[4]]) and the others
+16`r ##length(formularydatascraped[[1]])` of these are non-formulary. 
 
-example <- tibble(formularydatascraped[[2]],
-       # formularydatascraped[[3]], 
-       # formularydatascraped[[4]],
-       formularydatascraped[[5]]) %>%
-  rename(All = "formularydatascraped[[2]]", 
-         # Code = "formularydatascraped[[3]]", 
-         # Combined = "formularydatascraped[[4]]", 
-         Breakdown = "formularydatascraped[[5]]")
-
-#change "All" to remove title from first element of vector.
-example$All <- example$All %>%
-  lapply(function(x) {x[-1]}
-         )
-
-#create values
-example$value <- example$All %>%
-  lapply(function(x) {
-    runif(n=length(x), min=0, max=100) %>%
-      round
-  })
-
-example$Breakdown <- example$Breakdown %>% #drop first
-  select(-c("first"))
+```{r}
+example <- tibble(All = formularydatascraped[[2]], Breakdown = formularydatascraped[[5]]) %>%
+  mutate(All = lapply(All, function(x) {x[-1]})) %>% #remove title from first element of vector.
+  mutate(value = lapply(All, function(x) {runif(n=length(x), min=0, max=100) %>% round })) #create values
 
 firstlevel <- example$Breakdown$a %>%
   as.character %>%
   str_trim %>%
-  nchar
+  nchar %>%
+  as.factor
 
-firstindex <- which(firstlevel == 5) 
-secondindex <- which(firstlevel == 8) 
-thirdindex <- which(firstlevel == 11) 
-
-# example %>%
-#   mutate(firstlevel = )
-# 
-# example[firstindex,]$Breakdown
-
-
-# example[firstindex,] #first level items
-# example[secondindex,] #second level items
-# example[thirdindex,] #third level items
-
-# example2 <- example %>%
-#   dplyr::rename(name = All)  %>% 
-#   mutate(data = map2(name, value, function(name, value) {
-#     data.frame(name, value) })) %>%
-#   select(-c("name", "value")) %>% # drop name, value
-
-example2 <- example[thirdindex,] %>% #third level items
+example2 <- example[which(firstlevel == 11),] %>% #third level items
   dplyr::rename(name = All)  %>% 
-  mutate(children = map2(name, value, function(name, value) {
-    data.frame(name, value) })) %>%
-  select(-c("name", "value")) # drop name, value  
+  transmute(Breakdown, 
+            children = map2(name, value, function(name, value) {data.frame(name, value)}))
 
-example3 <- example[secondindex,] #subsect example by second level items
-example3$children <- NA  #create an blank example 3 children
-example3[thirdindex,]$children <- example2$children
+example3 <- example[which(firstlevel == 8) ,] %>% #second level items
+  mutate(children = NA)
 
-example4 <- example[firstindex,]
-example4$children <- NA
-example4$Breakdown$b <- as.character(example4$Breakdown$b)
-#firstlevel breakdown.b
+example3[which(firstlevel == 11),]$children <- example2$children
 
-#need to make simpler
+example4 <- example[which(firstlevel == 5),] %>%
+  mutate(children = NA) 
+
 example$Breakdown$second[example$Breakdown$second == "01"] <- example4$Breakdown$b[1]
 example$Breakdown$second[example$Breakdown$second == "02"] <- example4$Breakdown$b[2]
 example$Breakdown$second[example$Breakdown$second == "03"] <- example4$Breakdown$b[3]
 example$Breakdown$second[example$Breakdown$second == "04"] <- example4$Breakdown$b[4]
 example$Breakdown$second[example$Breakdown$second == "05"] <- example4$Breakdown$b[5]
 
-example5 <- example[secondindex,]
-example5$Breakdown$b <- as.character(example5$Breakdown$b)
+example5 <- example[which(firstlevel == 8),]
 
-
-myjson <- Formulary %>%
-  mutate_at(c("V1", "V2", "V3"), as.character) %>%
-  mutate_at("value", as.integer) %>%
-  dplyr::rename(name = V3) %>%
-  nest(name:value) %>%
-  mutate_at("data", as.list) %>%
-  mutate_at("data", function(x) {lapply(x, as.data.frame)}) %>%
-  dplyr::rename(children = data, name = V2) %>%
-  nest(name:children) %>%
-  mutate_at("data", as.list) %>%
-  mutate_at("data", function(x) {lapply(x, as.data.frame)}) %>%
-  dplyr::rename(name = V1, children = data)  
-
-#now what do I do?
+rm(firstlevel)
 ```
-
 
 #### Reformating the data
 
 I have to reformat my data to match flare-2.json.
 
 ```{r}
-# rm(formularydatacopied, formularydatascraped, oldnoteshierachy, plot1, plot2)
-# examplejson <- jsonlite::fromJSON("flare-2.json")
-
-Formulary$value <- Formulary$V3 %>% #create example values
-  map(function(x) if (x != "") {
-  runif(1, min=0, max=100) %>%
-      round
-} else {NA}) %>% unlist
-
-myjson <- Formulary %>%
-  mutate_at(c("V1", "V2", "V3"), as.character) %>%
-  mutate_at("value", as.integer) %>%
-  dplyr::rename(name = V3) %>%
-  nest(name:value) %>%
-  mutate_at("data", as.list) %>%
-  mutate_at("data", function(x) {lapply(x, as.data.frame)}) %>%
-  dplyr::rename(children = data, name = V2) %>%
-  nest(name:children) %>%
-  mutate_at("data", as.list) %>%
-  mutate_at("data", function(x) {lapply(x, as.data.frame)}) %>%
-  dplyr::rename(name = V1, children = data)
-
-myjson <- list("name" = "Antimicrobials", "children" = myjson)
+Formulary %>%
+  select(-V4) %>%
+  mutate(value = map(V3, function(x) if (x != "") {runif(1, min=0, max=100) %>% round} else {NA}) %>% as.integer) %>%
+  rename(name = V3) %>%
+  nest(children = name:value) %>%
+  mutate_at("children", function(x) {lapply(x, as.data.frame)}) %>%
+  rename(name = V2) %>%
+  nest(children = name:children) %>%
+  mutate_at("children", function(x) {lapply(x, as.data.frame)}) %>%
+  rename(name = V1) %>%
+  as.data.frame %>%
+  list("name" = "Antimicrobials", "children" = .) -> myjson
 
 myjson %>%
   jsonlite::toJSON() %>%
   write(file="Formulary.json")
-
-# rm(myjson)
-# https://www.andrewheiss.com/blog/2020/01/01/flexdashboard-dynamic-data/
-# randomly generate number weightings for above graphics, stand-in for Tayside figures
 ```
-
-///
 
 Combining National information:
 

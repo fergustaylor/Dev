@@ -91,15 +91,15 @@ See the full version here, [Force Diagram.](./networkInteractive.html)
 
 ```{r}
 plot2 <- formularydata[-c(1:169),] %>%
-simpleNetwork(        
-        linkDistance = 2,          # distance between node. Increase this value to have more space between nodes
-        charge = -900,              # numeric value indicating either the strength of the node repulsion (negative value) or attraction (positive value)
-        fontSize = 14,              # size of the node names
-        fontFamily = "serif",       # font og node names
-        linkColour = "#18515E",     # colour of edges, MUST be a common colour for the whole graph
-        nodeColour = "#69b3a2",     # colour of nodes, MUST be a common colour for the whole graph
-        opacity = 0.9,              # opacity of nodes. 0=transparent. 1=no transparency
-        zoom = T                    # Can you zoom on the figure?
+  simpleNetwork(        
+        linkDistance = 0.05,
+        charge = -100,
+        fontSize = 20,
+        fontFamily = "serif",
+        linkColour = "#18515E",
+        nodeColour = "#69b3a2",
+        opacity = 0.9,
+        zoom = T
         )
 plot2
 
