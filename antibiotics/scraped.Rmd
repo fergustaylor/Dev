@@ -108,8 +108,6 @@ rm(firstlevel)
 
 #### Reformating the data
 
-I have to reformat my data to match flare-2.json.
-
 ```{r}
 Formulary %>%
   select(-V4) %>%
@@ -127,6 +125,41 @@ Formulary %>%
 myjson %>%
   jsonlite::toJSON() %>%
   write(file="Formulary.json")
+```
+
+Try to include V4
+```{r}
+#formulary either V3 or V4. Separate into two, then recombine and nest together
+a <- Formulary %>%
+  filter(V4 != "") %>%
+  mutate(value = map(V4, function(x) if (x != "") {runif(1, min=0, max=100) %>% round} else {NA}) %>% as.integer) %>%
+  rename(name = V4) %>%
+  nest(children = name:value) %>%
+  mutate_at("children", function(x) {lapply(x, as.data.frame)}) %>%
+  rename(name = V3) %>%
+  nest(children = name:children) %>%
+  mutate_at("children", function(x) {lapply(x, as.data.frame)})
+
+b <- Formulary %>%
+  filter(V4 == "") %>%
+  select(-V4) %>%
+  mutate(value = map(V3, function(x) if (x != "") {runif(1, min=0, max=100) %>% round} else {NA}) %>% as.integer) %>%
+  rename(name = V3) %>%
+  nest(children = name:value) %>%
+  mutate_at("children", function(x) {lapply(x, as.data.frame)})
+
+rbind(a,b) %>%
+  rename(name = V2) %>%
+  nest(children = name:children) %>%
+  mutate_at("children", function(x) {lapply(x, as.data.frame)}) %>%
+  rename(name = V1) %>%
+  as.data.frame %>%
+  list("name" = "Antimicrobials", "children" = .) -> myjson2
+
+myjson2 %>%
+  jsonlite::toJSON() %>%
+  write(file="Formulary2.json")
+rm(a,b)
 ```
 
 Combining National information:
